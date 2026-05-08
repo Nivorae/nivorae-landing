@@ -1,0 +1,71 @@
+{
+  "name": "nivorae-landing",
+  "version": "0.1.0",
+  "private": true,
+  "packageManager": "pnpm@10.28.2",
+  "scripts": {
+    "dev": "concurrently -n fe,be -c blue,green \"pnpm --filter @repo/frontend dev\" \"pnpm --filter @repo/backend dev\"",
+    "dev:fe": "pnpm --filter @repo/frontend dev",
+    "dev:be": "pnpm --filter @repo/backend dev",
+    "build": "pnpm --filter @repo/shared build && pnpm --filter @repo/frontend build",
+    "build:all": "pnpm --filter @repo/shared build && pnpm --filter @repo/frontend build && pnpm --filter @repo/backend build",
+    "build:backend": "pnpm --filter @repo/shared build && pnpm --filter @repo/backend build",
+    "lint": "pnpm -r --if-present lint",
+    "lint:fix": "pnpm -r --if-present lint:fix",
+    "type-check": "pnpm --filter @repo/shared build && pnpm -r --if-present type-check",
+    "format": "pnpm -r --if-present format",
+    "format:check": "pnpm -r --if-present format:check",
+    "test": "pnpm -r --if-present test",
+    "db:migrate": "pnpm --filter @repo/backend db:migrate",
+    "db:studio": "pnpm --filter @repo/backend db:studio",
+    "db:seed": "pnpm --filter @repo/backend db:seed",
+    "audit": "pnpm audit",
+    "update:deps": "pnpm up --latest -r",
+    "prepare": "husky install",
+    "agent": "tsx .agent/index.ts",
+    "agent:setup": "tsx .agent/setup-runner.ts",
+    "agent:review": "tsx .agent/review-agent.ts",
+    "agent:cleanup": "tsx .agent/scripts/cleanup-sessions.ts",
+    "agent:orchestrate": "tsx .agent/orchestrator/index.ts",
+    "agent:worktrees": "tsx .agent/orchestrator/index.ts --worktrees",
+    "agent:build": "tsx .agent/orchestrator/index.ts --build",
+    "agent:integrate": "tsx .agent/orchestrator/index.ts --integrate"
+  },
+  "devDependencies": {
+    "@anthropic-ai/claude-agent-sdk": "^0.1.77",
+    "@anthropic-ai/sdk": "^0.71.2",
+    "@commitlint/cli": "^18.4.0",
+    "@commitlint/config-conventional": "^18.4.0",
+    "concurrently": "^9.1.0",
+    "eslint": "^8.57.1",
+    "husky": "^8.0.3",
+    "lint-staged": "^15.1.0",
+    "prettier": "^3.8.1",
+    "tsx": "^4.7.0"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild",
+      "@prisma/client",
+      "@prisma/engines",
+      "prisma"
+    ]
+  },
+  "lint-staged": {
+    "frontend/**/*.{ts,tsx}": [
+      "eslint --fix --config frontend/.eslintrc.cjs",
+      "prettier --write"
+    ],
+    "backend/**/*.ts": [
+      "eslint --fix --config backend/.eslintrc.cjs",
+      "prettier --write"
+    ],
+    "shared/**/*.ts": [
+      "eslint --fix --config shared/.eslintrc.cjs",
+      "prettier --write"
+    ],
+    "*.{css,json,md}": [
+      "prettier --write"
+    ]
+  }
+}

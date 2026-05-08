@@ -1,0 +1,29 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git status)",
+      "Bash(git diff:*)",
+      "Bash(git branch:*)",
+      "Bash(git checkout:*)",
+      "Bash(npm install:*)",
+      "Bash(npm run:*)",
+      "Bash(npm test:*)",
+      "Write(src/components/*)",
+      "Write(src/features/*/components/*)",
+      "Write(src/data/mocks/*)",
+      "Write(src/hooks/*)",
+      "Write(src/utils/*)",
+      "Edit(*.tsx)",
+      "Edit(*.ts)",
+      "Edit(*.css)",
+      "Edit(*.md)",
+      "Bash(gh pr:*)",
+      "Bash(gh run:*)",
+      "Bash(git push:*)"
+    ]
+  },
+  "enableAllProjectMcpServers": true,
+  "enabledMcpjsonServers": ["framer", "shadcn"]
+}

@@ -1,0 +1,118 @@
+name: CI
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    name: Quality Check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+        env:
+          HUSKY: '0'
+
+      - name: Generate Prisma client
+        run: pnpm --filter backend db:generate
+
+      - name: Auto-fix format and lint
+        run: |
+          pnpm format
+          pnpm lint:fix
+        continue-on-error: true
+
+      - name: Commit and push auto-fixes
+        if: >
+          github.event_name == 'push' ||
+          (github.event_name == 'pull_request' &&
+           github.event.pull_request.head.repo.full_name == github.repository)
+        env:
+          HEAD_REF: ${{ github.head_ref }}
+          REF_NAME: ${{ github.ref_name }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          if ! git diff --quiet; then
+            git add -A
+            git commit -m "style: auto-fix format and lint [skip ci]"
+            git push origin HEAD:"${HEAD_REF:-$REF_NAME}"
+          fi
+
+      - name: Type check
+        id: typecheck
+        run: pnpm type-check
+        continue-on-error: true
+
+      - name: Build
+        id: build
+        run: pnpm build
+        continue-on-error: true
+
+      - name: Notify Discord on failure
+        if: steps.typecheck.outcome == 'failure' || steps.build.outcome == 'failure'
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          REPO: ${{ github.repository }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          REF: ${{ github.ref_name }}
+        run: |
+          if [ -z "$DISCORD_WEBHOOK_URL" ]; then
+            echo "::error::DISCORD_WEBHOOK_URL secret is not set"
+            exit 1
+          fi
+          RESPONSE=$(curl -s -o /tmp/discord_response.txt -w "%{http_code}" \
+            -H "Content-Type: application/json" \
+            -d "{\"content\":\"@here\",\"embeds\":[{\"title\":\"❌ CI Failed\",\"color\":13458524,\"fields\":[{\"name\":\"Repository\",\"value\":\"$REPO\",\"inline\":true},{\"name\":\"Branch\",\"value\":\"$REF\",\"inline\":true},{\"name\":\"Details\",\"value\":\"[View run]($RUN_URL)\",\"inline\":false}]}]}" \
+            "$DISCORD_WEBHOOK_URL")
+          echo "Discord response code: $RESPONSE"
+          cat /tmp/discord_response.txt
+          if [ "$RESPONSE" != "204" ]; then
+            echo "::error::Discord webhook failed with HTTP $RESPONSE"
+            exit 1
+          fi
+
+      - name: Fail if critical checks failed
+        if: steps.typecheck.outcome == 'failure' || steps.build.outcome == 'failure'
+        run: exit 1
+
+  # Placeholder for future testing - uncomment when test framework is added
+  # test:
+  #   name: Test
+  #   needs: check
+  #   if: success()
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #     - uses: pnpm/action-setup@v4
+  #       with:
+  #         version: 9
+  #     - uses: actions/setup-node@v4
+  #       with:
+  #         node-version: '20'
+  #         cache: 'pnpm'
+  #     - run: pnpm install --frozen-lockfile
+  #       env:
+  #         HUSKY: '0'
+  #     - run: pnpm --filter backend db:generate
+  #     - run: pnpm test

@@ -1,0 +1,300 @@
+/**
+ * Layout Tokens
+ *
+ * Units Strategy:
+ * - Viewport units: vh/vw for fullscreen, svh/dvh for mobile stability
+ * - Container queries: Use with relative units for component responsiveness
+ * - CSS Grid: fr units for flexible columns, rem for fixed constraints
+ * - Widths: % for fluid, max-width constraints for readability
+ *
+ * Reference: DESIGN-SYSTEM.md
+ */
+
+:root {
+  /* ============================================
+   * VIEWPORT HEIGHT VARIANTS
+   * Use svh/dvh for mobile where address bar affects height
+   * ============================================ */
+
+  /* Standard viewport height */
+  --vh-full: 100vh;
+  --vh-screen: 100vh;
+  --vh-half: 50vh;
+  --vh-third: 33.333vh;
+  --vh-quarter: 25vh;
+  --vh-two-thirds: 66.667vh;
+  --vh-three-quarters: 75vh;
+
+  /* Small viewport height (excludes mobile UI) */
+  --svh-full: 100svh;
+  --svh-screen: 100svh;
+  --svh-half: 50svh;
+
+  /* Dynamic viewport height (accounts for mobile UI changes) */
+  --dvh-full: 100dvh;
+  --dvh-screen: 100dvh;
+  --dvh-half: 50dvh;
+
+  /* Large viewport height (full addressable area) */
+  --lvh-full: 100lvh;
+  --lvh-screen: 100lvh;
+
+  /* ============================================
+   * VIEWPORT WIDTH VARIANTS
+   * ============================================ */
+  --vw-full: 100vw;
+  --vw-half: 50vw;
+  --vw-third: 33.333vw;
+  --vw-quarter: 25vw;
+  --vw-two-thirds: 66.667vw;
+  --vw-three-quarters: 75vw;
+
+  /* ============================================
+   * ASPECT RATIOS
+   * For responsive media containers
+   * ============================================ */
+  --aspect-square: 1 / 1;
+  --aspect-video: 16 / 9;
+  --aspect-photo: 4 / 3;
+  --aspect-portrait: 3 / 4;
+  --aspect-wide: 21 / 9;
+  --aspect-golden: 1.618 / 1;
+
+  /* ============================================
+   * Z-INDEX SCALE
+   * Consistent layering across the app
+   * ============================================ */
+  --z-base: 0;
+  --z-dropdown: 100;
+  --z-sticky: 200;
+  --z-fixed: 300;
+  --z-drawer: 400;
+  --z-modal-backdrop: 500;
+  --z-modal: 600;
+  --z-popover: 700;
+  --z-tooltip: 800;
+  --z-toast: 900;
+  --z-max: 9999;
+
+  /* ============================================
+   * BREAKPOINT REFERENCE
+   * These are for reference; use @media queries in CSS
+   * or Tailwind responsive prefixes
+   * ============================================ */
+  --breakpoint-xs: 480px;
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1536px;
+}
+
+/* ============================================
+ * CONTAINER QUERY SETUP
+ * Apply these classes to create container query contexts
+ * ============================================ */
+
+/* Container type: inline-size (width-based queries) */
+.container-inline {
+  container-type: inline-size;
+}
+
+/* Container type: size (both width and height queries) */
+.container-size {
+  container-type: size;
+}
+
+/* Named containers for specific query targeting */
+.container-card {
+  container-type: inline-size;
+  container-name: card;
+}
+
+.container-sidebar {
+  container-type: inline-size;
+  container-name: sidebar;
+}
+
+.container-main {
+  container-type: inline-size;
+  container-name: main;
+}
+
+.container-hero {
+  container-type: inline-size;
+  container-name: hero;
+}
+
+/* ============================================
+ * CONTAINER QUERY BREAKPOINTS
+ * Use these within @container rules
+ * Example: @container (min-width: 20rem) { ... }
+ * ============================================ */
+
+/*
+ * Container query size reference:
+ * --cq-xs: 15rem (240px)
+ * --cq-sm: 20rem (320px)
+ * --cq-md: 28rem (448px)
+ * --cq-lg: 32rem (512px)
+ * --cq-xl: 40rem (640px)
+ * --cq-2xl: 48rem (768px)
+ */
+
+/* ============================================
+ * CSS GRID UTILITIES
+ * Using fr units for flexible columns
+ * ============================================ */
+
+/* Auto-fit grid: cards that fill available space */
+.grid-auto-fit {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+  gap: var(--space-4);
+}
+
+/* Auto-fill grid: maintains column size, creates empty tracks */
+.grid-auto-fill {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 16rem), 1fr));
+  gap: var(--space-4);
+}
+
+/* Responsive grid columns */
+.grid-cols-fluid-sm {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr));
+  gap: var(--space-4);
+}
+
+.grid-cols-fluid-md {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
+  gap: var(--space-4);
+}
+
+.grid-cols-fluid-lg {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 24rem), 1fr));
+  gap: var(--space-6);
+}
+
+/* Sidebar + main content layout */
+.grid-sidebar-main {
+  display: grid;
+  grid-template-columns: minmax(12rem, 16rem) 1fr;
+  gap: var(--space-6);
+}
+
+/* Holy grail layout */
+.grid-holy-grail {
+  display: grid;
+  grid-template-columns: minmax(12rem, 1fr) minmax(0, 3fr) minmax(12rem, 1fr);
+  gap: var(--space-6);
+}
+
+/* Feature grid (2-3 columns based on space) */
+.grid-features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
+  gap: var(--space-8);
+}
+
+/* ============================================
+ * FULLSCREEN SECTION UTILITIES
+ * Using viewport units for hero sections
+ * ============================================ */
+
+.section-fullscreen {
+  min-height: 100vh;
+  min-height: 100dvh; /* Fallback for mobile */
+}
+
+.section-hero {
+  min-height: 80vh;
+  min-height: 80dvh;
+}
+
+.section-half {
+  min-height: 50vh;
+  min-height: 50dvh;
+}
+
+/* Viewport-based padding for sections */
+.section-padding-viewport {
+  padding-block: clamp(var(--space-8), 10vh, var(--space-20));
+}
+
+/* ============================================
+ * FLUID WIDTH UTILITIES
+ * Using % with max-width constraints
+ * ============================================ */
+
+.w-fluid-prose {
+  width: 100%;
+  max-width: var(--prose-max-width);
+}
+
+.w-fluid-content {
+  width: 100%;
+  max-width: var(--container-5xl);
+  margin-inline: auto;
+  padding-inline: var(--space-4);
+}
+
+.w-fluid-wide {
+  width: 100%;
+  max-width: var(--container-7xl);
+  margin-inline: auto;
+  padding-inline: var(--space-4);
+}
+
+.w-fluid-full {
+  width: 100%;
+  max-width: var(--container-full);
+  margin-inline: auto;
+  padding-inline: var(--space-4);
+}
+
+/* ============================================
+ * RESPONSIVE CONTAINER QUERIES
+ * Example patterns for component-level responsiveness
+ * ============================================ */
+
+/* Card that adapts based on its container */
+@container (min-width: 20rem) {
+  .cq-card-responsive {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: var(--space-4);
+  }
+}
+
+@container (min-width: 28rem) {
+  .cq-card-responsive {
+    gap: var(--space-6);
+  }
+}
+
+/* Stack that becomes row in larger containers */
+@container (min-width: 24rem) {
+  .cq-stack-to-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: var(--space-4);
+  }
+}
+
+/* Text size that adapts to container */
+@container (min-width: 32rem) {
+  .cq-text-responsive {
+    font-size: var(--text-body-lg-size);
+  }
+}
+
+@container (min-width: 48rem) {
+  .cq-text-responsive {
+    font-size: var(--text-h3-size);
+  }
+}

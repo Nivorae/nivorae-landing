@@ -1,0 +1,114 @@
+/**
+ * Typography Tokens
+ *
+ * Units Strategy:
+ * - Font sizes: rem (respects user browser preferences)
+ * - Line heights: unitless ratios (scales with font-size)
+ * - Letter spacing: em (scales with font-size)
+ * - Fluid typography: clamp() with vw for responsive scaling
+ *
+ * Reference: DESIGN-SYSTEM.md
+ */
+
+:root {
+  /* ============================================
+   * FONT WEIGHTS
+   * ============================================ */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* ============================================
+   * DISPLAY TEXT (Hero/Marketing - Semibold)
+   * Fluid typography with clamp() for responsive scaling
+   * ============================================ */
+
+  /* Display XL: 56px base → 3.5rem */
+  --text-display-xl-size: 3.5rem;
+  --text-display-xl-fluid: clamp(2.5rem, 5vw + 1rem, 3.5rem);
+  --text-display-xl-line-height: 1.143; /* ~64px at base */
+  --text-display-xl-letter-spacing: -0.02em;
+
+  /* Display LG: 48px base → 3rem */
+  --text-display-lg-size: 3rem;
+  --text-display-lg-fluid: clamp(2.25rem, 4vw + 1rem, 3rem);
+  --text-display-lg-line-height: 1.167; /* ~56px at base */
+  --text-display-lg-letter-spacing: -0.02em;
+
+  /* Display MD: 40px base → 2.5rem */
+  --text-display-md-size: 2.5rem;
+  --text-display-md-fluid: clamp(2rem, 3.5vw + 0.75rem, 2.5rem);
+  --text-display-md-line-height: 1.2; /* ~48px at base */
+  --text-display-md-letter-spacing: -0.02em;
+
+  /* ============================================
+   * HEADLINES (Medium Weight)
+   * Fluid typography for responsive headings
+   * ============================================ */
+
+  /* H1: 32px base → 2rem */
+  --text-h1-size: 2rem;
+  --text-h1-fluid: clamp(1.75rem, 2.5vw + 0.5rem, 2rem);
+  --text-h1-line-height: 1.25; /* ~40px at base */
+  --text-h1-letter-spacing: -0.02em;
+
+  /* H2: 24px base → 1.5rem */
+  --text-h2-size: 1.5rem;
+  --text-h2-fluid: clamp(1.25rem, 2vw + 0.5rem, 1.5rem);
+  --text-h2-line-height: 1.333; /* ~32px at base */
+  --text-h2-letter-spacing: -0.02em;
+
+  /* H3: 20px base → 1.25rem */
+  --text-h3-size: 1.25rem;
+  --text-h3-fluid: clamp(1.125rem, 1.5vw + 0.5rem, 1.25rem);
+  --text-h3-line-height: 1.4; /* ~28px at base */
+  --text-h3-letter-spacing: -0.01em;
+
+  /* H4: 18px base → 1.125rem */
+  --text-h4-size: 1.125rem;
+  --text-h4-fluid: clamp(1rem, 1vw + 0.5rem, 1.125rem);
+  --text-h4-line-height: 1.444; /* ~26px at base */
+  --text-h4-letter-spacing: -0.01em;
+
+  /* ============================================
+   * BODY TEXT (Regular Weight)
+   * ============================================ */
+
+  /* Body LG: 18px → 1.125rem */
+  --text-body-lg-size: 1.125rem;
+  --text-body-lg-line-height: 1.556; /* ~28px at base */
+
+  /* Body: 16px → 1rem (base) */
+  --text-body-size: 1rem;
+  --text-body-line-height: 1.5; /* 24px at base */
+
+  /* Body SM: 14px → 0.875rem */
+  --text-body-sm-size: 0.875rem;
+  --text-body-sm-line-height: 1.571; /* ~22px at base */
+
+  /* ============================================
+   * LABELS & CAPTIONS (Regular/Medium Weight)
+   * ============================================ */
+
+  /* Label LG: 14px → 0.875rem */
+  --text-label-lg-size: 0.875rem;
+  --text-label-lg-line-height: 1.429; /* ~20px at base */
+
+  /* Label: 12px → 0.75rem */
+  --text-label-size: 0.75rem;
+  --text-label-line-height: 1.333; /* ~16px at base */
+
+  /* Label SM/Caption: 11px → 0.6875rem */
+  --text-label-sm-size: 0.6875rem;
+  --text-label-sm-line-height: 1.455; /* ~16px at base */
+
+  /* ============================================
+   * PROSE SETTINGS (for long-form content)
+   * Optimal reading width and vertical rhythm
+   * ============================================ */
+  --prose-max-width: 65ch; /* Optimal reading width */
+  --prose-paragraph-spacing: 1.5em; /* Relative to font-size */
+  --prose-heading-spacing-top: 2em;
+  --prose-heading-spacing-bottom: 0.5em;
+}

@@ -1,0 +1,27 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+# Run lint-staged (eslint --fix + prettier)
+if ! npx lint-staged; then
+  echo ""
+  echo "❌ lint-staged failed. Attempting Claude auto-fix..."
+
+  # Try Claude auto-fix (graceful - won't fail if no API key)
+  if ./scripts/claude-fix.sh; then
+    echo ""
+    echo "🔄 Files fixed. Please review and re-run 'git commit'"
+    exit 1  # Exit to let developer review
+  else
+    echo ""
+    echo "⚠️  Claude auto-fix unavailable. Please fix errors manually."
+    exit 1
+  fi
+fi
+
+# Run type-check (catches errors that lint-staged + eslint miss)
+echo "Running type-check..."
+if ! pnpm type-check; then
+  echo ""
+  echo "❌ Type check failed. Fix type errors before committing."
+  exit 1
+fi

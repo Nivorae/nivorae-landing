@@ -1,0 +1,136 @@
+/**
+ * Spacing Tokens
+ *
+ * Units Strategy:
+ * - Global/layout spacing: rem (consistent across the app, respects user preferences)
+ * - Component spacing: em (grows with local font-size for proportional scaling)
+ * - Container widths: rem with % fallback for fluid behavior
+ * - Grid: fr units for flexible columns, rem for gutters
+ *
+ * Based on a 4pt (0.25rem) grid system.
+ * Reference: DESIGN-SYSTEM.md
+ */
+
+:root {
+  /* ============================================
+   * GLOBAL SPACING SCALE (rem)
+   * Use for layout-level spacing: margins, padding, gaps
+   * These are consistent regardless of local font-size
+   * ============================================ */
+
+  /* Base scale (4pt grid) */
+  --space-0: 0;
+  --space-px: 1px; /* Hairline spacing */
+  --space-0-5: 0.125rem; /* 2px */
+  --space-1: 0.25rem; /* 4px - Base unit */
+  --space-1-5: 0.375rem; /* 6px */
+  --space-2: 0.5rem; /* 8px */
+  --space-2-5: 0.625rem; /* 10px */
+  --space-3: 0.75rem; /* 12px */
+  --space-3-5: 0.875rem; /* 14px */
+  --space-4: 1rem; /* 16px */
+  --space-5: 1.25rem; /* 20px */
+  --space-6: 1.5rem; /* 24px */
+  --space-7: 1.75rem; /* 28px */
+  --space-8: 2rem; /* 32px */
+  --space-9: 2.25rem; /* 36px */
+  --space-10: 2.5rem; /* 40px */
+  --space-11: 2.75rem; /* 44px */
+  --space-12: 3rem; /* 48px */
+  --space-14: 3.5rem; /* 56px */
+  --space-16: 4rem; /* 64px */
+  --space-20: 5rem; /* 80px */
+  --space-24: 6rem; /* 96px */
+  --space-28: 7rem; /* 112px */
+  --space-32: 8rem; /* 128px */
+  --space-36: 9rem; /* 144px */
+  --space-40: 10rem; /* 160px */
+  --space-44: 11rem; /* 176px */
+  --space-48: 12rem; /* 192px */
+  --space-52: 13rem; /* 208px */
+  --space-56: 14rem; /* 224px */
+  --space-60: 15rem; /* 240px */
+  --space-64: 16rem; /* 256px */
+  --space-72: 18rem; /* 288px */
+  --space-80: 20rem; /* 320px */
+  --space-96: 24rem; /* 384px */
+
+  /* Semantic spacing aliases */
+  --space-xs: var(--space-1); /* 4px */
+  --space-sm: var(--space-2); /* 8px */
+  --space-md: var(--space-3); /* 12px */
+  --space-lg: var(--space-4); /* 16px */
+  --space-xl: var(--space-6); /* 24px */
+  --space-2xl: var(--space-8); /* 32px */
+  --space-3xl: var(--space-12); /* 48px */
+  --space-4xl: var(--space-16); /* 64px */
+  --space-5xl: var(--space-20); /* 80px */
+
+  /* ============================================
+   * COMPONENT SPACING (em)
+   * Use inside components where spacing should
+   * scale with the component's font-size
+   * ============================================ */
+  --component-space-xs: 0.25em;
+  --component-space-sm: 0.5em;
+  --component-space-md: 0.75em;
+  --component-space-lg: 1em;
+  --component-space-xl: 1.5em;
+  --component-space-2xl: 2em;
+  --component-space-3xl: 3em;
+
+  /* Component-specific spacing patterns */
+  --component-padding-inline: 1em; /* Horizontal padding */
+  --component-padding-block: 0.75em; /* Vertical padding */
+  --component-gap: 0.5em; /* Default gap between elements */
+  --component-icon-gap: 0.375em; /* Gap between icon and text */
+
+  /* ============================================
+   * CONTAINER MAX-WIDTHS (rem)
+   * Use with % width for fluid containers
+   * ============================================ */
+  --container-xs: 20rem; /* 320px */
+  --container-sm: 24rem; /* 384px */
+  --container-md: 28rem; /* 448px */
+  --container-lg: 32rem; /* 512px */
+  --container-xl: 36rem; /* 576px */
+  --container-2xl: 42rem; /* 672px */
+  --container-3xl: 48rem; /* 768px */
+  --container-4xl: 56rem; /* 896px */
+  --container-5xl: 64rem; /* 1024px */
+  --container-6xl: 72rem; /* 1152px */
+  --container-7xl: 80rem; /* 1280px */
+  --container-full: 90rem; /* 1440px */
+
+  /* ============================================
+   * GRID CONFIGURATION
+   * Gutters in rem, columns use fr units in CSS Grid
+   * ============================================ */
+
+  /* Mobile (< 640px) */
+  --grid-columns-mobile: 4;
+  --grid-gutter-mobile: var(--space-3); /* 12px */
+  --grid-margin-mobile: var(--space-4); /* 16px */
+
+  /* Tablet (640px - 1023px) */
+  --grid-columns-tablet: 8;
+  --grid-gutter-tablet: var(--space-4); /* 16px */
+  --grid-margin-tablet: var(--space-6); /* 24px */
+
+  /* Desktop (1024px+) */
+  --grid-columns-desktop: 12;
+  --grid-gutter-desktop: var(--space-6); /* 24px */
+  --grid-margin-desktop: var(--space-8); /* 32px */
+
+  /* ============================================
+   * SECTION SPACING
+   * Vertical rhythm for page sections
+   * ============================================ */
+  --section-padding-sm: var(--space-8); /* 32px */
+  --section-padding-md: var(--space-12); /* 48px */
+  --section-padding-lg: var(--space-16); /* 64px */
+  --section-padding-xl: var(--space-20); /* 80px */
+
+  /* Fluid section padding with clamp() */
+  --section-padding-fluid: clamp(var(--space-8), 8vw, var(--space-20));
+}

@@ -1,0 +1,17 @@
+/**
+ * Design Tokens Index
+ *
+ * Import all token files from this single entry point.
+ * Order matters: base tokens first, then dependent tokens.
+ *
+ * Token Files:
+ * - typography.css: Font sizes (rem), line heights, letter spacing, fluid typography
+ * - spacing.css: Global spacing (rem), component spacing (em), containers, grid
+ * - layout.css: Viewport units (vh/vw/svh/dvh), container queries, CSS Grid, z-index
+ * - borders.css: Border widths (px), radius (rem), shadows (px), transitions
+ */
+
+@import "./typography.css";
+@import "./spacing.css";
+@import "./layout.css";
+@import "./borders.css";

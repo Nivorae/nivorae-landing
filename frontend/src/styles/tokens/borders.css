@@ -1,0 +1,172 @@
+/**
+ * Borders, Shadows & Effects Tokens
+ *
+ * Units Strategy:
+ * - Border widths: px for pixel-perfect precision
+ * - Border radius: rem for consistent scaling with root font
+ * - Shadows: px for precise offsets and blur
+ * - Ring widths: px for focus indicators
+ *
+ * Reference: DESIGN-SYSTEM.md
+ */
+
+:root {
+  /* ============================================
+   * BORDER WIDTHS (px)
+   * Pixel-perfect for crisp edges on all displays
+   * ============================================ */
+  --border-0: 0px;
+  --border-hairline: 0.5px; /* Retina hairline */
+  --border-1: 1px;
+  --border-2: 2px;
+  --border-3: 3px;
+  --border-4: 4px;
+  --border-8: 8px;
+
+  /* Semantic border aliases */
+  --border-default: var(--border-1);
+  --border-thick: var(--border-2);
+  --border-heavy: var(--border-4);
+
+  /* ============================================
+   * BORDER RADIUS (rem)
+   * Using rem so radius scales with user preferences
+   * ============================================ */
+  --radius-none: 0;
+  --radius-sm: 0.125rem; /* 2px */
+  --radius-default: 0.25rem; /* 4px */
+  --radius-md: 0.375rem; /* 6px */
+  --radius-lg: 0.5rem; /* 8px */
+  --radius-xl: 0.75rem; /* 12px */
+  --radius-2xl: 1rem; /* 16px */
+  --radius-3xl: 1.5rem; /* 24px */
+  --radius-4xl: 2rem; /* 32px */
+  --radius-full: 9999px; /* Pill shape */
+
+  /* Component-specific radius */
+  --radius-button: var(--radius-md);
+  --radius-input: var(--radius-md);
+  --radius-card: var(--radius-lg);
+  --radius-modal: var(--radius-xl);
+  --radius-tooltip: var(--radius-md);
+
+  /* ============================================
+   * BOX SHADOWS (px)
+   * Using px for precise shadow positioning
+   * ============================================ */
+
+  /* Elevation shadows */
+  --shadow-none: none;
+
+  --shadow-xs: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+
+  --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+
+  --shadow-default: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+
+  --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+
+  --shadow-inner: inset 0 2px 4px 0 rgb(0 0 0 / 0.05);
+
+  /* Component-specific shadows */
+  --shadow-button: var(--shadow-sm);
+  --shadow-button-hover: var(--shadow-md);
+  --shadow-card: var(--shadow-sm);
+  --shadow-card-hover: var(--shadow-md);
+  --shadow-dropdown: var(--shadow-lg);
+  --shadow-modal: var(--shadow-xl);
+  --shadow-toast: var(--shadow-lg);
+
+  /* Dark mode shadows (more subtle) */
+  --shadow-dark-sm: 0 1px 3px 0 rgb(0 0 0 / 0.3), 0 1px 2px -1px rgb(0 0 0 / 0.3);
+
+  --shadow-dark-md: 0 4px 6px -1px rgb(0 0 0 / 0.4), 0 2px 4px -2px rgb(0 0 0 / 0.3);
+
+  --shadow-dark-lg: 0 10px 15px -3px rgb(0 0 0 / 0.4), 0 4px 6px -4px rgb(0 0 0 / 0.3);
+
+  /* ============================================
+   * FOCUS RING (px)
+   * For accessibility focus indicators
+   * ============================================ */
+  --ring-width-0: 0px;
+  --ring-width-1: 1px;
+  --ring-width-2: 2px;
+  --ring-width-4: 4px;
+  --ring-width-8: 8px;
+
+  --ring-width-default: var(--ring-width-2);
+  --ring-offset-width: 2px;
+
+  /* ============================================
+   * OUTLINE (px)
+   * For focus and selection states
+   * ============================================ */
+  --outline-width: 2px;
+  --outline-offset: 2px;
+
+  /* ============================================
+   * DIVIDERS & SEPARATORS
+   * Thin lines for visual separation
+   * ============================================ */
+  --divider-width: 1px;
+  --divider-style: solid;
+
+  /* ============================================
+   * TRANSITIONS
+   * Timing for interactive elements
+   * ============================================ */
+  --transition-fast: 150ms;
+  --transition-default: 200ms;
+  --transition-slow: 300ms;
+  --transition-slower: 500ms;
+
+  --ease-default: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* Composed transitions */
+  --transition-colors:
+    color var(--transition-default) var(--ease-default),
+    background-color var(--transition-default) var(--ease-default),
+    border-color var(--transition-default) var(--ease-default);
+
+  --transition-shadow: box-shadow var(--transition-default) var(--ease-default);
+
+  --transition-transform: transform var(--transition-default) var(--ease-default);
+
+  --transition-all: all var(--transition-default) var(--ease-default);
+
+  /* ============================================
+   * OPACITY SCALE
+   * For layering and disabled states
+   * ============================================ */
+  --opacity-0: 0;
+  --opacity-5: 0.05;
+  --opacity-10: 0.1;
+  --opacity-20: 0.2;
+  --opacity-25: 0.25;
+  --opacity-30: 0.3;
+  --opacity-40: 0.4;
+  --opacity-50: 0.5;
+  --opacity-60: 0.6;
+  --opacity-70: 0.7;
+  --opacity-75: 0.75;
+  --opacity-80: 0.8;
+  --opacity-90: 0.9;
+  --opacity-95: 0.95;
+  --opacity-100: 1;
+
+  /* Semantic opacity */
+  --opacity-disabled: var(--opacity-50);
+  --opacity-hover-overlay: var(--opacity-10);
+  --opacity-active-overlay: var(--opacity-20);
+  --opacity-backdrop: var(--opacity-50);
+}
