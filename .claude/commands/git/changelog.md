@@ -14,13 +14,13 @@ Generate changelog entries from git commit history, bump the root `package.json`
 
 - Extract `version` (optional positional arg) and `--tag` flag from the arguments.
 
-### 2. Branch Check (if `--tag` flag present)
+### 2. Branch Check + Sync (always)
 
-- Run `git branch --show-current` to get the current branch.
-- If not on `main`, use `AskUserQuestion` to warn:
-  > ⚠️ Tagging on a non-main branch is unusual. Consider merging first. Continue anyway?
-- If user declines, stop immediately. Do not write any files.
-- This check runs **before any file writes**.
+- Run `git branch --show-current`. If not `develop`, stop and print:
+  > ❌ `/git:changelog` must run on `develop`. Current: `<branch>`.
+- Abort if working tree is dirty (`git status --porcelain` non-empty).
+- Pull latest: `git pull --ff-only origin develop`. Stop on failure (diverged branch needs manual resolve before bumping version).
+- These checks run **before any reads, writes, or version computation** — version must be derived from up-to-date remote state.
 
 ### 3. Determine Version
 

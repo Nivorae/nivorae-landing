@@ -21,6 +21,8 @@ Creates well-formatted commits with conventional messages.
 <type>: <description>
 ```
 
+Title-only. **No body, no context paragraph, no bullet list below the description.**
+
 **NEVER use scoped format like `feat(ui):` or `fix(api):`**
 
 ## Types
@@ -42,6 +44,7 @@ Creates well-formatted commits with conventional messages.
 - First line <72 chars
 - No scope in parentheses
 - No Claude signature
+- No commit body — never pass `-m` twice or use a HEREDOC with explanatory paragraphs; the message is the title only
 
 ## Split Criteria (ask user only if)
 
