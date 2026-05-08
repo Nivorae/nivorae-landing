@@ -12,15 +12,15 @@ allowed-tools:
 
 # Git Branch
 
-Analyzes staged changes and requirements to suggest branch names.
+Suggest a branch name from staged changes or a requirement argument.
 
 ## Process
 
-1. **Check staged changes first** - Run `git status` and `git diff --cached --stat`
-2. **Analyze requirement** - From argument or staged file patterns
-3. **Output branch name** - Single clean recommendation
+1. Run `git status` and `git diff --cached --stat`.
+2. Infer intent from staged files or the argument.
+3. Output one branch name.
 
-## Branch Types
+## Types
 
 | Type         | Pattern                    | Example                 |
 | ------------ | -------------------------- | ----------------------- |
@@ -30,13 +30,12 @@ Analyzes staged changes and requirements to suggest branch names.
 | Experimental | `experimental/description` | `experimental/new-api`  |
 | Release      | `release/version`          | `release/1.2.0`         |
 
-With ticket: `feature/JIRA-123_description`
+With ticket: `feature/JIRA-123_description` (underscore separates ticket from description).
 
 ## Rules
 
-- Lowercase with hyphens
-- Create from `main` branch only
-- Underscore separates ticket from description
+- Lowercase, hyphen-separated.
+- Branch from `main` only.
 
 ## Output
 
@@ -44,11 +43,9 @@ With ticket: `feature/JIRA-123_description`
 **Recommended Branch Name**: `feature/user-authentication`
 ```
 
-If not on main:
+If not on `main`, append:
 
 ```
-**Recommended Branch Name**: `feature/user-authentication`
-
 ⚠️ Switch to main first:
 git checkout main && git pull origin main
 git checkout -b feature/user-authentication

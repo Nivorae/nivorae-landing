@@ -15,6 +15,14 @@ if [[ ! "$FILE_PATH" =~ CHANGELOG\.md$ ]]; then
   exit 0
 fi
 
+# Only validate on develop branch (releases ship from develop).
+# Skip silently on feature/* or main so in-progress edits aren't blocked.
+BRANCH=$(git rev-parse --abbrev-ref HEAD 2>/dev/null)
+if [[ "$BRANCH" != "develop" ]]; then
+  echo '{"decision": "allow"}'
+  exit 0
+fi
+
 # Check if the file exists
 if [[ ! -f "$FILE_PATH" ]]; then
   echo '{"decision": "allow"}'
