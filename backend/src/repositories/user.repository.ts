@@ -9,8 +9,7 @@ class UserRepository {
   }
 
   async findMany(query: ListUsersQuery) {
-    const { page, limit, search, sortBy, sortOrder, role, includeDeleted } =
-      query;
+    const { page, limit, search, sortBy, sortOrder, role, includeDeleted } = query;
     const where: Prisma.UserWhereInput = {
       ...(role && { role }),
       ...(search && {

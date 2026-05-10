@@ -13,7 +13,5 @@ export function validate(schema: AnyZodObject, type: ValidationType = "body") {
 }
 
 export const validateBody = (schema: AnyZodObject) => validate(schema, "body");
-export const validateParams = (schema: AnyZodObject) =>
-  validate(schema, "params");
-export const validateQuery = (schema: AnyZodObject) =>
-  validate(schema, "query");
+export const validateParams = (schema: AnyZodObject) => validate(schema, "params");
+export const validateQuery = (schema: AnyZodObject) => validate(schema, "query");
