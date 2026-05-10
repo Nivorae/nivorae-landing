@@ -345,3 +345,14 @@
     aspect-ratio: var(--aspect-golden);
   }
 }
+
+/* Card width formula: calc((100vw - 48px) / 4), gap 12px
+   One loop of 8 items = 8 × (card + gap) = 8 × 25vw = 200vw */
+@keyframes nivorae-specialty-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-200vw);
+  }
+}

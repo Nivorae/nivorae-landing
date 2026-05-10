@@ -4,7 +4,7 @@ export const i18n = {
   zh: {
     nav: {
       plans: "方案",
-      team: "開發人員介紹",
+      team: "團隊介紹",
     },
     hero: {
       badge: "三位工程師，無限可能",
