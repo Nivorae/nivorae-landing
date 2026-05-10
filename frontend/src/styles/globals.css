@@ -55,18 +55,18 @@
 
   /* Color scheme tokens */
   :root {
-    --background: 255 255 255;
-    --foreground: 11 17 64;
-    --card: 255 255 255;
-    --card-foreground: 11 17 64;
-    --popover: 255 255 255;
-    --popover-foreground: 11 17 64;
+    --background: 250 246 238;
+    --foreground: 26 18 4;
+    --card: 244 239 228;
+    --card-foreground: 26 18 4;
+    --popover: 244 239 228;
+    --popover-foreground: 26 18 4;
     --primary: 68 88 255;
     --primary-foreground: 255 255 255;
-    --secondary: 243 244 246;
-    --secondary-foreground: 75 85 99;
-    --muted: 249 250 251;
-    --muted-foreground: 107 114 128;
+    --secondary: 238 232 218;
+    --secondary-foreground: 60 50 30;
+    --muted: 240 234 220;
+    --muted-foreground: 110 100 82;
     --accent: 238 240 255;
     --accent-foreground: 44 63 205;
     --destructive: 220 53 69;
@@ -77,8 +77,8 @@
     --warning-foreground: 77 61 0;
     --info: 48 129 238;
     --info-foreground: 255 255 255;
-    --border: 229 231 235;
-    --input: 229 231 235;
+    --border: 218 210 194;
+    --input: 218 210 194;
     --ring: 68 88 255;
     --chart-1: 59 130 246;
     --chart-2: 37 99 235;
@@ -240,20 +240,6 @@
 /* ============================================
  * MARQUEE ANIMATION
  * ============================================ */
-@keyframes marquee-scroll {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
-  }
-}
-
-.marquee-track {
-  display: flex;
-  width: max-content;
-  animation: marquee-scroll 40s linear infinite;
-}
 
 /* ============================================
  * UTILITIES LAYER: Custom Utility Classes

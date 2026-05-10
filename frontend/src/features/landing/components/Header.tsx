@@ -13,8 +13,8 @@ export function Header({ lang, onLangChange }: HeaderProps) {
   const t = i18n[lang];
 
   return (
-    <header className="fixed top-0 inset-x-0 z-fixed h-16 bg-background/95 backdrop-blur-sm border-b border-border">
-      <div className="w-fluid-wide h-full grid grid-cols-3 items-center">
+    <header className="fixed top-0 inset-x-0 z-fixed h-16 bg-background/80 backdrop-blur-md">
+      <div className="w-full h-full px-6 lg:px-12 grid grid-cols-3 items-center">
         <a href="/" className="flex items-center gap-3">
           <img src="/nivorae-logo.png" alt="Nivorae" className="h-9 w-auto object-contain" />
         </a>
