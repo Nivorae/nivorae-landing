@@ -16,18 +16,18 @@ export function Header({ lang, onLangChange }: HeaderProps) {
     <header className="fixed top-0 inset-x-0 z-fixed h-16 bg-background/80 backdrop-blur-md">
       <div className="w-full h-full px-6 lg:px-12 grid grid-cols-3 items-center">
         <a href="/" className="flex items-center gap-3">
-          <img src="/nivorae-logo.png" alt="Nivorae" className="h-9 w-auto object-contain" />
+          <img src="/favicon.ico" alt="Nivorae" className="h-9 w-auto object-contain" />
         </a>
 
         <nav className="flex items-center justify-center gap-8" aria-label="Navigation">
           <a
-            href="#plans"
+            href="/#plans"
             className="text-body font-medium text-foreground/70 hover:text-primary transition-colors duration-fast"
           >
             {t.nav.plans}
           </a>
           <a
-            href="#team"
+            href="/team"
             className="text-body font-medium text-foreground/70 hover:text-primary transition-colors duration-fast"
           >
             {t.nav.team}
