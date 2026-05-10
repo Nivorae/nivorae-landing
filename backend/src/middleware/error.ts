@@ -12,7 +12,7 @@ export const errorHandler: ErrorRequestHandler = (err, req, res, _next) => {
       error: err.message,
       stack: process.env.NODE_ENV === "development" ? err.stack : undefined,
     },
-    "Request error",
+    "Request error"
   );
 
   // Zod validation errors
@@ -48,10 +48,7 @@ export const errorHandler: ErrorRequestHandler = (err, req, res, _next) => {
         });
         return;
       default:
-        logger.error(
-          { code: err.code, meta: err.meta },
-          "Unhandled Prisma error",
-        );
+        logger.error({ code: err.code, meta: err.meta }, "Unhandled Prisma error");
     }
   }
 

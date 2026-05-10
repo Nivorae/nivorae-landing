@@ -7,7 +7,6 @@ const config = {
   bracketSpacing: true,
   arrowParens: "always",
   printWidth: 100,
-  jsxBracketSameLine: false,
   proseWrap: "preserve",
   endOfLine: "lf",
 };

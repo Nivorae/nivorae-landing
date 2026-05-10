@@ -8,9 +8,7 @@ const envSchema = z.object({
     .url()
     .transform((v) => v.replace(/\/+$/, "")),
   REDIS_URL: z.string().url().optional(),
-  NODE_ENV: z
-    .enum(["development", "production", "test"])
-    .default("development"),
+  NODE_ENV: z.enum(["development", "production", "test"]).default("development"),
 });
 
 export const env = envSchema.parse(process.env);

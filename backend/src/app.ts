@@ -22,7 +22,7 @@ export function createApp() {
       frameguard: { action: "deny" },
       noSniff: true,
       referrerPolicy: { policy: "strict-origin-when-cross-origin" },
-    }),
+    })
   );
 
   // CORS locked to client origin
@@ -42,7 +42,7 @@ export function createApp() {
         success: false,
         error: { code: "RATE_LIMITED", message: "Too many requests" },
       },
-    }),
+    })
   );
 
   // Structured logging
@@ -57,7 +57,7 @@ export function createApp() {
           status: "healthy",
           db: "connected",
           timestamp: new Date().toISOString(),
-        }),
+        })
       );
     } catch {
       res.status(503).json({
