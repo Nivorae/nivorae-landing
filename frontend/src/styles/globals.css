@@ -245,6 +245,19 @@
  * UTILITIES LAYER: Custom Utility Classes
  * ============================================ */
 @layer utilities {
+  .transform-style-3d {
+    transform-style: preserve-3d;
+  }
+
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
   /* Fluid typography utilities */
   .text-fluid-display-xl {
     font-size: var(--text-display-xl-fluid);
