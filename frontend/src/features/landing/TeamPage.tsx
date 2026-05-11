@@ -1,14 +1,10 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { cn } from "@/lib/utils";
 import { type Lang } from "./i18n";
 import { Header } from "./components/Header";
 import { teamI18n } from "./teamI18n";
 
-const MEMBER_GRADIENTS = [
-  "linear-gradient(155deg, #3c3c3c 0%, #1e1e1e 45%, #0a0a0a 100%)",
-  "linear-gradient(175deg, #2a2a2a 0%, #131313 100%)",
-  "linear-gradient(205deg, #343434 0%, #1a1a1a 55%, #0d0d0d 100%)",
-];
+const MEMBER_PHOTOS = ["/Juliana.png", "/James.png", "/Max.png"];
 
 const SPECIALTY_GRADIENTS = [
   "linear-gradient(175deg, #383838 0%, #111 100%)",
@@ -23,25 +19,19 @@ export function TeamPage() {
   const [activeMember, setActiveMember] = useState<number>(0);
   const t = teamI18n[lang];
 
-  // Tripled specialties with stable, index-free keys for seamless infinite scroll
   const currentSpecialties = t.team.members[activeMember].specialties;
-  const carouselItems = [
-    ...currentSpecialties.map((s, i) => ({
-      id: `a${i}`,
-      text: s,
-      shade: i % SPECIALTY_GRADIENTS.length,
-    })),
-    ...currentSpecialties.map((s, i) => ({
-      id: `b${i}`,
-      text: s,
-      shade: i % SPECIALTY_GRADIENTS.length,
-    })),
-    ...currentSpecialties.map((s, i) => ({
-      id: `c${i}`,
-      text: s,
-      shade: i % SPECIALTY_GRADIENTS.length,
-    })),
-  ];
+  // Tripled for seamless infinite scroll — stable prefix keys prevent key collision across copies
+  const carouselItems = useMemo(
+    () =>
+      ["a", "b", "c"].flatMap((prefix) =>
+        currentSpecialties.map((s, i) => ({
+          id: `${prefix}${i}`,
+          text: s,
+          shade: i % SPECIALTY_GRADIENTS.length,
+        }))
+      ),
+    [currentSpecialties]
+  );
 
   return (
     <div className="min-h-screen bg-black text-white">
@@ -131,8 +121,13 @@ export function TeamPage() {
                     "relative overflow-hidden flex-shrink-0 text-left transition-all duration-500 ease-in-out",
                     idx === activeMember ? "flex-[3]" : "flex-1"
                   )}
-                  style={{ background: MEMBER_GRADIENTS[idx] }}
+                  style={{
+                    backgroundImage: `url(${MEMBER_PHOTOS[idx]})`,
+                    backgroundSize: "cover",
+                    backgroundPosition: "center top",
+                  }}
                 >
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-black/10" />
                   <div className="absolute bottom-5 left-5 right-3">
                     <p
                       className="text-white font-black uppercase leading-none whitespace-nowrap transition-all duration-500"
@@ -155,10 +150,6 @@ export function TeamPage() {
           </div>
         </div>
 
-        {/* Specialty carousel — full viewport width, no padding */}
-        {/* Card formula: width = (100vw - 48px) / 4, gap = 12px          */}
-        {/* One loop (8 items) = 8 × 25vw = 200vw → keyframe to -200vw    */}
-        {/* Edge slots show half a card; middle 3 slots are fully visible  */}
         <div className="mt-8 overflow-hidden w-full">
           <div
             key={activeMember}
