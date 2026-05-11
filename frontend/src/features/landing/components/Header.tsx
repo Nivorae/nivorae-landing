@@ -1,4 +1,5 @@
 import { Fragment } from "react";
+import { Image } from "@/components/ui/image";
 import { cn } from "@/lib/utils";
 import { type Lang, i18n } from "../i18n";
 
@@ -16,7 +17,13 @@ export function Header({ lang, onLangChange }: HeaderProps) {
     <header className="fixed top-0 inset-x-0 z-fixed h-16 bg-background/80 backdrop-blur-md">
       <div className="w-full h-full px-6 lg:px-12 grid grid-cols-3 items-center">
         <a href="/" className="flex items-center gap-3">
-          <img src="/favicon.ico" alt="Nivorae" className="h-9 w-auto object-contain" />
+          <Image
+            src="/favicon.ico"
+            alt="Nivorae"
+            width={20}
+            height={20}
+            className="h-5 w-auto object-contain"
+          />
         </a>
 
         <nav className="flex items-center justify-center gap-8" aria-label="Navigation">
