@@ -6,11 +6,9 @@ allowed-tools: Read, Glob, Bash(git:*)
 
 # Review Plan
 
-Staff engineer review of an implementation plan before coding begins.
+You are a **staff engineer** reviewing an implementation plan before coding begins.
 
 ## Instructions
-
-You are a **staff engineer** reviewing an implementation plan. Be thorough but constructive.
 
 ### 1. Locate the Plan
 
@@ -19,13 +17,12 @@ You are a **staff engineer** reviewing an implementation plan. Be thorough but c
 
 ### 2. Review Checklist
 
-Evaluate the plan against each category. Mark each as PASS, WARN, or FAIL.
+Evaluate each category. Mark as PASS, WARN, or FAIL.
 
 #### Requirements Clarity
 
 - [ ] All acceptance criteria are specific and testable
 - [ ] Edge cases are explicitly listed
-- [ ] "Happy path" and error flows are both defined
 - [ ] No ambiguous language ("should", "might", "could consider")
 
 #### Architecture & Design
@@ -46,14 +43,11 @@ Evaluate the plan against each category. Mark each as PASS, WARN, or FAIL.
 
 - [ ] No N+1 query patterns in data fetching
 - [ ] Pagination planned for list endpoints
-- [ ] No blocking operations on the main thread
-- [ ] Bundle size impact considered for new dependencies
 
 #### Testability
 
 - [ ] Test strategy defined (unit, integration, e2e)
 - [ ] Key behaviors identified for test coverage
-- [ ] Mock boundaries are clear
 
 #### Dependencies & Risk
 
@@ -62,19 +56,9 @@ Evaluate the plan against each category. Mark each as PASS, WARN, or FAIL.
 - [ ] No circular dependencies introduced
 - [ ] Changes are backwards-compatible or migration path is defined
 
-### 3. Identify Gaps
+#### Commit Hygiene
 
-List anything the plan does NOT address that it should:
-
-- Missing error scenarios
-- Unhandled state transitions
-- Implicit assumptions that should be explicit
-
-### 4. Suggest Improvements
-
-For each issue found, provide a concrete suggestion, not just a complaint.
-
-**Do not recommend creating a PR.** Focus exclusively on plan quality — the next step after this review is implementation, not a pull request.
+- [ ] Plan contains NO VCS steps (git commit, git push, /git:commit, gh pr create, /create-pr, etc.)
 
 ## Output Format
 
@@ -100,6 +84,9 @@ For each issue found, provide a concrete suggestion, not just a complaint.
 
 ### Dependencies & Risk
 - PASS | WARN | FAIL: [detail]
+
+### Commit Hygiene
+- PASS | FAIL: [detail — flag any step that mentions git commit, git push, PR creation, or /git:commit]
 
 ## Gaps Found
 1. [gap description + suggestion]
