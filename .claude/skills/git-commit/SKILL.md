@@ -30,6 +30,7 @@ Creates well-formatted commits and reviews commit messages for compliance with t
 
 ## Rules
 
+- **One line only** — no body, no context, no bullet points below the subject
 - **Imperative mood**: "add" not "added", "fix" not "fixed"
 - **First line < 72 chars**
 - **No scope in parentheses** — `feat:` never `feat(scope):`
@@ -62,7 +63,7 @@ Creates well-formatted commits and reviews commit messages for compliance with t
 
 To review an existing commit message or a proposed message for compliance:
 
-1. Check format matches `<type>: <description>` — reject any scoped variants
+1. Check format is exactly `<type>: <description>` — single line, no body — reject scoped variants and any multi-line messages
 2. Verify type is one of the 8 valid types
 3. Verify description uses imperative mood
 4. Verify total length < 72 characters
