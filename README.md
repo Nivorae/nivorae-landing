@@ -22,6 +22,23 @@ main ──► feature/*  ──/create-pr──►  develop  ──merge──�
 
 版本號以 `package.json` 為準；git tag、`package.json`、`CHANGELOG.md` 三者必須同步。
 
+## 規劃技能
+
+| 情境                            | 使用技能                     |
+| ------------------------------- | ---------------------------- |
+| 需要逐步拆解任務、有明確 spec   | `/superpowers:writing-plans` |
+| 快速規劃單一功能、不需完整 spec | `/plan`（Claude 官方）       |
+| 跨多檔案的大型功能              | `/ultraplan`（Claude 官方）  |
+
+### 標準審查流程
+
+計畫寫完後，**必須依序執行**：
+
+1. `/planning:review` — Staff engineer 視角審查計畫，輸出修改建議
+2. `/planning:apply-review` — 將審查意見套用回計畫文件
+
+> 兩步驟缺一不可；略過 review 直接實作視為流程違規。
+
 ## 樣式與字型
 
 - `frontend/src/styles/globals.css` — Tailwind 三層、reset、亮/暗色 tokens、基礎元素樣式。
