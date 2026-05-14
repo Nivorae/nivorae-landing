@@ -53,88 +53,100 @@
     box-sizing: border-box;
   }
 
-  /* Color scheme tokens */
+  /*
+   * Color scheme tokens — Day theme
+   * Three-color palette: white (#FFFFFF), black (#000000), oxblood (#6D001A)
+   * Page is mostly white; black for ink, oxblood as the single accent.
+   * Light gray (#F5F5F5) and mid gray (#737373) are derived neutral lifts.
+   */
   :root {
-    --background: 250 246 238;
-    --foreground: 26 18 4;
-    --card: 244 239 228;
-    --card-foreground: 26 18 4;
-    --popover: 244 239 228;
-    --popover-foreground: 26 18 4;
-    --primary: 68 88 255;
+    --background: 255 255 255;
+    --foreground: 0 0 0;
+    --card: 255 255 255;
+    --card-foreground: 0 0 0;
+    --popover: 255 255 255;
+    --popover-foreground: 0 0 0;
+    --primary: 0 0 0;
     --primary-foreground: 255 255 255;
-    --secondary: 238 232 218;
-    --secondary-foreground: 60 50 30;
-    --muted: 240 234 220;
-    --muted-foreground: 110 100 82;
-    --accent: 238 240 255;
-    --accent-foreground: 44 63 205;
-    --destructive: 220 53 69;
+    --secondary: 245 245 245;
+    --secondary-foreground: 0 0 0;
+    --muted: 245 245 245;
+    --muted-foreground: 115 115 115;
+    --accent: 109 0 26;
+    --accent-foreground: 255 255 255;
+    --destructive: 109 0 26;
     --destructive-foreground: 255 255 255;
-    --success: 40 167 69;
+    --success: 0 0 0;
     --success-foreground: 255 255 255;
-    --warning: 251 192 36;
-    --warning-foreground: 77 61 0;
-    --info: 48 129 238;
+    --warning: 109 0 26;
+    --warning-foreground: 255 255 255;
+    --info: 0 0 0;
     --info-foreground: 255 255 255;
-    --border: 218 210 194;
-    --input: 218 210 194;
-    --ring: 68 88 255;
-    --chart-1: 59 130 246;
-    --chart-2: 37 99 235;
-    --chart-3: 29 78 216;
-    --chart-4: 30 64 175;
-    --chart-5: 30 58 138;
-    --sidebar: 249 250 251;
-    --sidebar-foreground: 51 51 51;
-    --sidebar-primary: 59 130 246;
+    --border: 229 229 229;
+    --input: 229 229 229;
+    --ring: 0 0 0;
+    --chart-1: 0 0 0;
+    --chart-2: 115 115 115;
+    --chart-3: 229 229 229;
+    --chart-4: 109 0 26;
+    --chart-5: 175 175 175;
+    --sidebar: 255 255 255;
+    --sidebar-foreground: 0 0 0;
+    --sidebar-primary: 0 0 0;
     --sidebar-primary-foreground: 255 255 255;
-    --sidebar-accent: 239 246 255;
-    --sidebar-accent-foreground: 30 58 138;
-    --sidebar-border: 229 231 235;
-    --sidebar-ring: 59 130 246;
+    --sidebar-accent: 109 0 26;
+    --sidebar-accent-foreground: 255 255 255;
+    --sidebar-border: 229 229 229;
+    --sidebar-ring: 0 0 0;
     --radius: 0.5rem;
+    --team-overlay: 0 0 0;
   }
 
+  /*
+   * Night theme — inverted three-color palette
+   * Page mostly black; white for ink, oxblood (#6D001A) as the single accent.
+   * Dark gray (#171717) and mid gray (#A3A3A3) are derived neutral lifts.
+   */
   .dark {
-    --background: 23 23 23;
-    --foreground: 229 229 229;
-    --card: 38 38 38;
-    --card-foreground: 229 229 229;
-    --popover: 38 38 38;
-    --popover-foreground: 229 229 229;
-    --primary: 96 165 250;
-    --primary-foreground: 255 255 255;
-    --secondary: 53 54 55;
-    --secondary-foreground: 229 229 229;
-    --muted: 38 38 38;
+    --background: 0 0 0;
+    --foreground: 255 255 255;
+    --card: 0 0 0;
+    --card-foreground: 255 255 255;
+    --popover: 0 0 0;
+    --popover-foreground: 255 255 255;
+    --primary: 255 255 255;
+    --primary-foreground: 0 0 0;
+    --secondary: 23 23 23;
+    --secondary-foreground: 255 255 255;
+    --muted: 23 23 23;
     --muted-foreground: 163 163 163;
-    --accent: 30 58 138;
-    --accent-foreground: 191 219 254;
-    --destructive: 248 113 113;
-    --destructive-foreground: 23 23 23;
-    --success: 74 222 128;
-    --success-foreground: 21 37 26;
-    --warning: 251 191 36;
-    --warning-foreground: 67 56 24;
-    --info: 96 165 250;
-    --info-foreground: 26 32 44;
-    --border: 64 64 64;
-    --input: 64 64 64;
-    --ring: 96 165 250;
-    --chart-1: 96 165 250;
-    --chart-2: 59 130 246;
-    --chart-3: 37 99 235;
-    --chart-4: 29 78 216;
-    --chart-5: 30 64 175;
-    --sidebar: 23 23 23;
-    --sidebar-foreground: 229 229 229;
-    --sidebar-primary: 96 165 250;
-    --sidebar-primary-foreground: 255 255 255;
-    --sidebar-accent: 30 58 138;
-    --sidebar-accent-foreground: 191 219 254;
-    --sidebar-border: 64 64 64;
-    --sidebar-ring: 96 165 250;
+    --accent: 109 0 26;
+    --accent-foreground: 255 255 255;
+    --destructive: 109 0 26;
+    --destructive-foreground: 255 255 255;
+    --success: 255 255 255;
+    --success-foreground: 0 0 0;
+    --warning: 109 0 26;
+    --warning-foreground: 255 255 255;
+    --info: 255 255 255;
+    --info-foreground: 0 0 0;
+    --border: 38 38 38;
+    --input: 38 38 38;
+    --ring: 255 255 255;
+    --chart-1: 255 255 255;
+    --chart-2: 163 163 163;
+    --chart-3: 38 38 38;
+    --chart-4: 109 0 26;
+    --chart-5: 90 90 90;
+    --sidebar: 0 0 0;
+    --sidebar-foreground: 255 255 255;
+    --sidebar-primary: 255 255 255;
+    --sidebar-primary-foreground: 0 0 0;
+    --sidebar-accent: 109 0 26;
+    --sidebar-accent-foreground: 255 255 255;
+    --sidebar-border: 38 38 38;
+    --sidebar-ring: 255 255 255;
+    --team-overlay: 0 0 0;
 
     /* Dark mode shadows */
     --shadow-card: var(--shadow-dark-sm);
@@ -367,5 +379,28 @@
   }
   to {
     transform: translateX(-200vw);
+  }
+}
+
+/* fadeIn — used by PlansPage pricing section expansion panels */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* float — logo 3D tilt + vertical float for PlansPage hero */
+@keyframes float {
+  0%,
+  100% {
+    transform: perspective(800px) rotateX(20deg) rotateY(-20deg) translateY(0px);
+  }
+  50% {
+    transform: perspective(800px) rotateX(20deg) rotateY(-20deg) translateY(-14px);
   }
 }

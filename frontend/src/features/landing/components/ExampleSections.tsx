@@ -1,18 +1,17 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Globe,
   Smartphone,
   PenTool,
   Zap,
-  ArrowRight,
   Layers,
   Terminal,
-  ChevronLeft,
-  MoreHorizontal,
   Star,
   Image as ImageIcon,
+  X,
 } from "lucide-react";
+import { Image } from "@/components/ui/image";
 
 // ─── TiltCard ───────────────────────────────────────────────────────────────
 
@@ -52,134 +51,177 @@ function TiltCard({ children, className = "" }: { children: React.ReactNode; cla
 
 // ─── Hero ────────────────────────────────────────────────────────────────────
 
+const heroCardData = [
+  {
+    Icon: Globe,
+    title: "Web Development",
+    desc: "React & Next.js apps with native SEO and blazing performance.",
+  },
+  {
+    Icon: Smartphone,
+    title: "Mobile App",
+    desc: "Cross-platform iOS & Android with native-feel UX on both platforms.",
+  },
+  {
+    Icon: PenTool,
+    title: "UI/UX Design",
+    desc: "Intuitive interfaces that convert visitors into loyal customers.",
+  },
+  {
+    Icon: Zap,
+    title: "Performance",
+    desc: "100/100 Lighthouse scores. Speed that users and search engines love.",
+  },
+  {
+    Icon: Layers,
+    title: "Architecture",
+    desc: "Scalable, maintainable systems built to grow with your business.",
+  },
+  {
+    Icon: Terminal,
+    title: "Full Stack",
+    desc: "End-to-end ownership from database schema to production deploy.",
+  },
+];
+
+const CARD_WIDTH = 260;
+const CARD_HEIGHT = 280;
+const CARD_GAP = 24;
+const CARD_STRIDE = CARD_WIDTH + CARD_GAP;
+const TOTAL_CARDS = 10;
+const SCROLL_SPEED = 0.8;
+const ARC_PARABOLA = 0.00025;
+const ARC_ROTATION = 0.012;
+
 export function ExHero() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const cardEls = useRef<(HTMLDivElement | null)[]>(Array(TOTAL_CARDS).fill(null));
+  const rafRef = useRef<number>(0);
+
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return undefined;
+
+    let containerWidth = container.offsetWidth;
+    let cx = containerWidth / 2;
+    const positions = Array.from({ length: TOTAL_CARDS }, (_, i) => i * CARD_STRIDE);
+    let maxPosition = (TOTAL_CARDS - 1) * CARD_STRIDE;
+
+    const onResize = () => {
+      containerWidth = container.offsetWidth;
+      cx = containerWidth / 2;
+    };
+    window.addEventListener("resize", onResize);
+
+    const animate = () => {
+      for (let i = 0; i < TOTAL_CARDS; i += 1) {
+        positions[i] -= SCROLL_SPEED;
+        if (positions[i] <= -CARD_STRIDE) {
+          positions[i] = maxPosition + CARD_STRIDE;
+          maxPosition = positions[i];
+        }
+        const el = cardEls.current[i];
+        if (el) {
+          const x = positions[i];
+          const dx = x + CARD_WIDTH / 2 - cx;
+          const y = -(ARC_PARABOLA * dx * dx);
+          const rot = -(ARC_ROTATION * dx);
+          el.style.transform = `translateX(${x}px) translateY(${y}px) rotate(${rot}deg)`;
+        }
+      }
+      rafRef.current = requestAnimationFrame(animate);
+    };
+
+    rafRef.current = requestAnimationFrame(animate);
+    return () => {
+      cancelAnimationFrame(rafRef.current);
+      window.removeEventListener("resize", onResize);
+    };
+  }, []);
+
   return (
-    <section className="relative min-h-screen flex items-center pt-20 overflow-hidden bg-black text-white">
-      <div className="absolute rounded-full blur-[100px] bg-blue-500/30 pointer-events-none w-[600px] h-[600px] top-1/4 -left-64 opacity-50" />
-      <div className="absolute rounded-full blur-[100px] bg-purple-500/30 pointer-events-none w-[500px] h-[500px] bottom-0 right-0 opacity-50" />
-
-      <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center z-10">
-        <motion.div
-          initial={{ opacity: 0, x: -50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="space-y-8"
-        >
-          <div className="inline-block px-4 py-1.5 rounded-full border border-white/10 bg-white/5 text-xs font-semibold tracking-wider text-blue-300 uppercase">
-            Premium Digital Agency
-          </div>
-          <h1 className="text-5xl md:text-7xl font-bold leading-[1.1]">
-            打造卓越的
+    <section className="relative min-h-screen flex flex-col items-center pt-16 pb-8 px-4 bg-background text-foreground overflow-hidden mt-20">
+      <div className="relative text-center max-w-4xl mx-auto mb-6">
+        <div className="absolute -left-24 top-40 hidden lg:flex flex-col items-center rotate-[-5deg]">
+          <span className="font-serif italic text-xl text-muted-foreground mb-1">
+            Fast
             <br />
-            <span className="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
-              數位體驗
-            </span>
-          </h1>
-          <p className="text-lg text-gray-400 max-w-lg leading-relaxed">
-            從零到一的高效能 Web 與 App
-            開發。我們不只寫程式，我們為您建構可擴展、現代化且極具質感的數位產品。
-          </p>
-          <div className="flex flex-wrap gap-4">
-            <a
-              href="#contact"
-              className="px-8 py-4 rounded-full bg-white text-black hover:bg-gray-200 transition-colors font-semibold flex items-center gap-2"
-            >
-              立即諮詢 <ArrowRight size={18} />
-            </a>
-            <a
-              href="#portfolio"
-              className="px-8 py-4 rounded-full border border-white/10 bg-white/5 hover:bg-white/10 transition-colors font-semibold"
-            >
-              觀看案例
-            </a>
-          </div>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1, delay: 0.2 }}
-          className="relative lg:h-[600px] flex items-center justify-center p-8"
-        >
-          <TiltCard className="w-full max-w-md aspect-[4/5] rounded-2xl relative">
-            <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-gray-800 to-black p-[1px]">
-              <div className="absolute inset-0 rounded-2xl bg-black/80 backdrop-blur-3xl overflow-hidden flex flex-col">
-                <div className="h-12 border-b border-white/10 flex items-center px-4 gap-2">
-                  <div className="flex gap-1.5">
-                    <div className="w-3 h-3 rounded-full bg-red-500/80" />
-                    <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
-                    <div className="w-3 h-3 rounded-full bg-green-500/80" />
-                  </div>
-                  <div className="mx-auto text-xs text-gray-500 font-mono">src/App.tsx</div>
-                </div>
-                <div className="p-6 font-mono text-sm leading-loose text-gray-300 flex-1 overflow-hidden relative">
-                  <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-black to-transparent z-10" />
-                  <span className="text-blue-400">import</span> React{" "}
-                  <span className="text-blue-400">from</span>{" "}
-                  <span className="text-green-400">&apos;react&apos;</span>;
-                  <br />
-                  <span className="text-blue-400">import</span> {"{ "}motion{" }"}{" "}
-                  <span className="text-blue-400">from</span>{" "}
-                  <span className="text-green-400">&apos;motion/react&apos;</span>;
-                  <br />
-                  <br />
-                  <span className="text-purple-400">export default function</span>{" "}
-                  <span className="text-yellow-200">App</span>() {"{"}
-                  <br />
-                  &nbsp;&nbsp;<span className="text-purple-400">return</span> (
-                  <br />
-                  &nbsp;&nbsp;&nbsp;&nbsp;{"<"}
-                  <span className="text-blue-300">motion.main</span>
-                  <br />
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  <span className="text-blue-200">initial</span>={"{"}
-                  {"{"} <span className="text-gray-400">opacity</span>:{" "}
-                  <span className="text-yellow-400">0</span> {"}"}
-                  {"}"}
-                  <br />
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  <span className="text-blue-200">animate</span>={"{"}
-                  {"{"} <span className="text-gray-400">opacity</span>:{" "}
-                  <span className="text-yellow-400">1</span> {"}"}
-                  {"}"}
-                  <br />
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  <span className="text-blue-200">className</span>=
-                  <span className="text-green-400">&quot;bg-black&quot;</span>
-                  <br />
-                  &nbsp;&nbsp;&nbsp;&nbsp;{">"}
-                  <br />
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{"<"}
-                  <span className="text-blue-300">FutureExperience</span> /{">"}
-                  <br />
-                  &nbsp;&nbsp;&nbsp;&nbsp;{"</"}
-                  <span className="text-blue-300">motion.main</span>
-                  {">"}
-                  <br />
-                  &nbsp;&nbsp;);
-                  <br />
-                  {"}"}
-                  <br />
-                  <span className="animate-pulse">_</span>
-                </div>
-              </div>
-            </div>
-          </TiltCard>
-
-          <motion.div
-            animate={{ y: [-10, 10, -10] }}
-            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute top-1/4 -right-10 border border-white/10 bg-black/50 px-4 py-3 rounded-xl flex items-center gap-3 backdrop-blur-xl text-white"
+            Professional
+          </span>
+          <svg
+            width="60"
+            height="60"
+            viewBox="0 0 60 60"
+            fill="none"
+            className="text-muted-foreground stroke-current"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           >
-            <div className="w-10 h-10 rounded-full bg-blue-500/20 flex items-center justify-center text-blue-400">
-              <Zap size={20} />
+            <path d="M50 10 Q 10 15 15 50" />
+            <path d="M25 45 L 15 50 L 10 40" />
+          </svg>
+        </div>
+
+        <h1 className="text-[2.75rem] sm:text-6xl md:text-[5rem] leading-[1.05] font-bold text-foreground tracking-tight">
+          打造卓越的
+          <br />
+          數位體驗
+        </h1>
+
+        <div className="absolute -right-24 top-40 hidden lg:flex flex-col items-center rotate-[-5deg]">
+          <span className="font-serif italic text-xl text-muted-foreground mb-1">
+            Elevate
+            <br />
+            your brand
+          </span>
+          <svg
+            width="60"
+            height="60"
+            viewBox="0 0 60 60"
+            fill="none"
+            className="text-muted-foreground stroke-current"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <path d="M10 10 Q 50 15 45 50" />
+            <path d="M35 45 L 45 50 L 50 40" />
+          </svg>
+        </div>
+      </div>
+
+      <p className="text-center text-muted-foreground text-base md:text-lg max-w-[600px] mx-auto mb-6 leading-relaxed">
+        從零到一的高效能 Web 與 App 開發。
+        <br className="hidden md:block" />
+        我們不只寫程式，為您建構可擴展、
+        <br className="hidden md:block" />
+        現代化且極具質感的數位產品。
+      </p>
+
+      <div
+        ref={containerRef}
+        className="relative w-full max-w-[1400px] h-[400px] overflow-hidden mx-auto -mt-8"
+      >
+        {Array.from({ length: TOTAL_CARDS }, (_, i) => {
+          const { Icon, title, desc } = heroCardData[i % heroCardData.length];
+          return (
+            <div
+              key={i}
+              ref={(el) => {
+                cardEls.current[i] = el;
+              }}
+              className="absolute top-[100px] bg-card border border-border rounded-[32px] shadow-lg p-7 flex flex-col justify-start"
+              style={{ width: CARD_WIDTH, height: CARD_HEIGHT, willChange: "transform" }}
+            >
+              <div className="w-14 h-14 bg-accent text-accent-foreground rounded-2xl flex items-center justify-center mb-5 shadow-sm">
+                <Icon size={24} />
+              </div>
+              <h3 className="font-bold text-xl text-foreground mb-2">{title}</h3>
+              <p className="text-muted-foreground text-sm leading-relaxed">{desc}</p>
             </div>
-            <div>
-              <div className="text-sm font-bold">100 / 100</div>
-              <div className="text-xs text-gray-400">Lighthouse 效能</div>
-            </div>
-          </motion.div>
-        </motion.div>
+          );
+        })}
       </div>
     </section>
   );
@@ -207,20 +249,20 @@ export function ExServices() {
   ];
 
   return (
-    <section id="services" className="py-32 relative bg-black text-white">
+    <section id="services" className="py-32 relative bg-background text-foreground">
       <div className="max-w-7xl mx-auto px-6">
         <div className="mb-20">
           <h2 className="text-4xl font-bold mb-4">Service Scope</h2>
-          <p className="text-gray-400 text-lg">專注核心技術，提供全方位數位解決方案</p>
+          <p className="text-muted-foreground text-lg">專注核心技術，提供全方位數位解決方案</p>
         </div>
         <div className="grid md:grid-cols-3 gap-8">
           {services.map((s) => (
             <TiltCard key={s.title}>
-              <div className="border border-white/10 bg-white/5 rounded-3xl p-8 h-full relative group backdrop-blur-sm">
-                <div className="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-3xl" />
-                <div className="text-blue-400 mb-6">{s.icon}</div>
+              <div className="border border-border bg-card rounded-3xl p-8 h-full relative group backdrop-blur-sm">
+                <div className="absolute inset-0 bg-gradient-to-b from-foreground/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-3xl" />
+                <div className="text-accent-foreground mb-6">{s.icon}</div>
                 <h3 className="text-2xl font-semibold mb-4">{s.title}</h3>
-                <p className="text-gray-400 leading-relaxed group-hover:text-gray-300 transition-colors">
+                <p className="text-muted-foreground leading-relaxed group-hover:text-foreground transition-colors">
                   {s.desc}
                 </p>
               </div>
@@ -238,8 +280,9 @@ export function ExProcess() {
   return (
     <section
       id="process"
-      className="py-24 bg-[#0a0a0a] text-white flex justify-center border-y border-white/5 font-sans overflow-hidden"
+      className="py-24 bg-background text-foreground flex flex-col items-center justify-center border-y border-border/50 font-sans overflow-hidden"
     >
+      <h2 className="text-4xl font-bold mb-20 text-center text-foreground">我們的開發模式</h2>
       <div className="max-w-6xl w-full px-6 flex flex-col md:flex-row gap-12 lg:gap-20">
         {/* Left Panel */}
         <div className="bg-[#1d1d1f] rounded-[2rem] p-8 md:p-10 w-full md:w-[45%] flex flex-col justify-between relative shadow-2xl shrink-0 border border-white/[0.03]">
@@ -264,7 +307,7 @@ export function ExProcess() {
 
               <div className="flex flex-col items-center">
                 <span className="text-[#7cd5e4] font-bold text-[15px] mb-3 tracking-wide block relative -top-[18px] ml-6">
-                  nova
+                  Nivorae
                 </span>
                 <div className="border border-white/20 rounded-[1.5rem] p-2.5 flex flex-col gap-2 w-[130px] bg-[#2a2a2a] shadow-xl relative z-10">
                   <div className="bg-white rounded-xl py-2 flex flex-col items-center justify-center shadow-sm">
@@ -309,7 +352,7 @@ export function ExProcess() {
         <div className="w-full md:w-[55%] flex flex-col py-6 md:py-2">
           <div className="flex items-end gap-4 mb-10">
             <h2 className="text-[40px] font-bold text-[#7cd5e4] leading-none tracking-tight">
-              nova
+              Nivorae
             </h2>
             <span className="text-[13px] font-medium text-gray-300 mb-1">
               將需求拆解並自動化擴展的開發引擎
@@ -443,10 +486,10 @@ export function ExProcess() {
 
 export function ExTechStack() {
   return (
-    <section className="py-32 relative overflow-hidden bg-black text-white">
+    <section className="py-32 relative overflow-hidden bg-background text-foreground">
       <div className="max-w-7xl mx-auto px-6 text-center">
         <h2 className="text-4xl font-bold mb-4">Technical Stack</h2>
-        <p className="text-gray-400 text-lg mb-16">現代化技術棧，確保高效能與易維護性</p>
+        <p className="text-muted-foreground text-lg mb-16">現代化技術棧，確保高效能與易維護性</p>
 
         <div className="flex flex-wrap justify-center gap-4 mb-20">
           {[
@@ -462,22 +505,22 @@ export function ExTechStack() {
           ].map((tech) => (
             <div
               key={tech}
-              className="px-6 py-3 rounded-full border border-white/10 bg-white/5 text-sm font-medium tracking-wide"
+              className="px-6 py-3 rounded-full border border-border bg-card text-sm font-medium tracking-wide"
             >
               {tech}
             </div>
           ))}
         </div>
 
-        <div className="border border-white/10 bg-white/5 p-10 rounded-3xl max-w-3xl mx-auto relative overflow-hidden text-left backdrop-blur-sm">
-          <div className="absolute top-0 right-0 w-64 h-64 bg-blue-500/10 blur-[80px] rounded-full pointer-events-none" />
+        <div className="border border-border bg-card p-10 rounded-3xl max-w-3xl mx-auto relative overflow-hidden text-left backdrop-blur-sm">
+          <div className="absolute top-0 right-0 w-64 h-64 bg-accent/40 blur-[80px] rounded-full pointer-events-none" />
           <div className="relative z-10 flex flex-col md:flex-row gap-8 items-center">
-            <div className="w-16 h-16 rounded-2xl bg-white/5 flex items-center justify-center shrink-0 border border-white/10">
-              <Terminal className="text-blue-400" size={32} />
+            <div className="w-16 h-16 rounded-2xl bg-muted/40 flex items-center justify-center shrink-0 border border-border">
+              <Terminal className="text-accent-foreground" size={32} />
             </div>
             <div>
               <h4 className="text-2xl font-bold mb-2">產權完全移交，原始碼 100% 交付</h4>
-              <p className="text-gray-400 text-sm leading-relaxed">
+              <p className="text-muted-foreground text-sm leading-relaxed">
                 我們深知新創與企業的痛點。專案結案時，我們提供完整的原始碼、Git
                 權限、部署文件與架構說明，絕不綁架您的技術資產。您可以隨時交接給內部團隊接手。
               </p>
@@ -491,192 +534,269 @@ export function ExTechStack() {
 
 // ─── Portfolio ───────────────────────────────────────────────────────────────
 
+const portfolioProjects = [
+  {
+    id: 1,
+    color: "bg-[#ffa600]",
+    colorHex: "#ffa600",
+    image: "/feature_Scorder.png",
+    textColor: "text-white",
+    tagText: "上線 15%",
+    title: "Scorder 餐廳線上點餐系統",
+    tech: "React / TypeScript / Tailwind",
+    desc: "針對客戶端、廚房端、管理端進行開發，提供線上點餐、桌號管理、庫存管理、訂單追蹤等功能。",
+  },
+  {
+    id: 2,
+    color: "bg-[#1575ce]",
+    colorHex: "#1575ce",
+    image: "/feature_araS.png",
+    textColor: "text-white",
+    tagText: "互動 75%",
+    title: "araS 資產統計APP",
+    tech: "React / Next.js / Tailwind / PostgreSQL /Clerk",
+    desc: "累計資產統計視覺呈現，以簡單視覺化呈現資產統計數據，並呈現退休計畫。",
+  },
+  {
+    id: 3,
+    color: "bg-[#f3e45f]",
+    colorHex: "#f3e45f",
+    image: "/feature_U-turn.png",
+    textColor: "text-white",
+    tagText: "完成 100%",
+    title: "U TURN 羽球分組系統",
+    tech: "React / PostgreSQL / Clerk / Tailwind / Zeabur",
+    desc: "羽球分組系統，提供羽球分組、成員配對、會員機制功能。",
+  },
+];
+
 export function ExPortfolio() {
   const [activeIndex, setActiveIndex] = useState(0);
-
-  const projects = [
-    {
-      id: 1,
-      color: "bg-[#FFB1BA]",
-      textColor: "text-pink-900",
-      tagText: "上線 15%",
-      title: "FinTech 財務儀表板",
-      tech: "Next.js / Tailwind",
-      desc: "企業級即時財務數據中心。我們透過客製化的圖表與模組化 UI 提升內部決策效率。圖中展示深色模式下的核心總覽面板，處理百萬級數據渲染依然順暢。",
-    },
-    {
-      id: 2,
-      color: "bg-[#98FB98]",
-      textColor: "text-green-900",
-      tagText: "互動 75%",
-      title: "社群共創 APP",
-      tech: "React Native",
-      desc: "結合日曆與社交動態的跨平台應用程式。UI 介面會根據使用者的參與度與互動頻率，自動改變插圖與顏色風格，建立高黏著度的使用者體驗。",
-    },
-    {
-      id: 3,
-      color: "bg-[#FFDAB9]",
-      textColor: "text-orange-900",
-      tagText: "完成 100%",
-      title: "全球電商前端重構",
-      tech: "React / Redux",
-      desc: "整合多國金流與物流追蹤的現代化電商介面。優化結帳流程與動態商品展示，大幅降低購物車放棄率，並支援多語系無縫切換。",
-    },
-    {
-      id: 4,
-      color: "bg-[#87CEEB]",
-      textColor: "text-blue-900",
-      tagText: "效能 100%",
-      title: "數據監控系統",
-      tech: "Vue.js / ECharts",
-      desc: "為工廠打造的即時數據流監控面板。提供自定義警報與視覺化報表匯出功能。清爽的資訊層級設計，有效降低人員長時間監控的視覺疲勞。",
-    },
-  ];
-
-  const alignOffset = "max(1.5rem, calc(50vw - 40rem + 1.5rem))";
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+  const p = portfolioProjects[activeIndex];
+  const closeLightbox = () => setLightboxOpen(false);
 
   return (
     <section
       id="portfolio"
-      className="py-32 bg-[#111111] text-white overflow-hidden border-y border-white/5"
+      className="py-24 bg-background flex flex-col items-center text-foreground overflow-hidden border-y border-border/50"
     >
-      <div className="max-w-7xl mx-auto px-6">
-        <h2 className="text-4xl font-bold mb-16 text-center lg:text-left">Featured Projects</h2>
-      </div>
-
-      <div
-        className="w-full flex flex-col lg:flex-row items-center lg:items-start gap-12 lg:gap-20"
-        style={{ paddingLeft: alignOffset }}
-      >
-        {/* Left Side: Mobile Mockup */}
-        <div className="w-full max-w-[320px] shrink-0 relative pr-6 lg:pr-0">
-          <div className="relative aspect-[9/19.5] rounded-[3rem] border-[10px] border-[#1e1e1e] bg-[#0a0a0a] overflow-hidden shadow-2xl flex flex-col">
-            <div className="absolute top-0 inset-x-0 h-7 flex justify-center z-20">
-              <div className="w-28 h-full bg-[#1e1e1e] rounded-b-2xl" />
-            </div>
-
-            <div className="w-full flex-1 flex flex-col relative z-10 pt-10">
-              <div className="flex items-center justify-between px-6 mb-4">
-                <ChevronLeft size={24} className="text-gray-400" />
-                <span className="text-sm font-semibold">{projects[activeIndex].title}</span>
-                <MoreHorizontal size={24} className="text-gray-400" />
-              </div>
-
-              <div className="px-6 mb-2 flex items-center justify-between text-xs text-gray-500">
-                <span>2026年 12月</span>
-                <div className="flex gap-1 items-center">
-                  <div className="w-2 h-2 rounded-full bg-red-400" />
-                  <span>紀錄</span>
-                </div>
-              </div>
-
-              <motion.div
-                key={`phone-card-${activeIndex}`}
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.4 }}
-                className={`mx-5 h-48 rounded-[20px] ${projects[activeIndex].color} shadow-lg relative p-4 flex flex-col`}
+      {/* Lightbox */}
+      <AnimatePresence>
+        {lightboxOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.25 }}
+            className="fixed inset-0 z-50 bg-black/85 backdrop-blur-sm flex items-center justify-center cursor-pointer"
+            onClick={closeLightbox}
+          >
+            <motion.div
+              initial={{ scale: 0.88, opacity: 0, y: 20 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.88, opacity: 0, y: 20 }}
+              transition={{ type: "spring", stiffness: 320, damping: 28 }}
+              className="relative max-w-4xl w-full mx-6"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <img src={p.image} alt={p.title} className="w-full h-auto rounded-2xl shadow-2xl" />
+              <button
+                type="button"
+                onClick={closeLightbox}
+                className="absolute -top-4 -right-4 w-9 h-9 bg-white text-black rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform"
               >
-                <div className="flex justify-between items-start mb-auto">
-                  <span
-                    className={`text-xs font-bold ${projects[activeIndex].textColor} bg-white/30 px-2 py-1 rounded-full backdrop-blur-sm`}
-                  >
-                    {projects[activeIndex].tagText}
-                  </span>
-                </div>
-                <div className="flex justify-center items-end h-full gap-4 pb-2">
-                  <div className="w-12 h-12 bg-black/80 rounded-full flex items-center justify-center">
-                    <div className="w-4 h-4 bg-white rounded-full" />
-                  </div>
-                  <div className="w-16 h-16 bg-black/80 rounded-[40%] flex items-center justify-center">
-                    <div className="w-4 h-4 bg-white rounded-full" />
-                  </div>
-                </div>
-              </motion.div>
-
-              <div className="flex-1 mt-6 px-5 pb-8 overflow-hidden flex flex-col">
-                <div className="grid grid-cols-7 gap-1 mb-2 text-center text-[10px] text-gray-500">
-                  <span>日</span>
-                  <span>一</span>
-                  <span>二</span>
-                  <span>三</span>
-                  <span>四</span>
-                  <span>五</span>
-                  <span>六</span>
-                </div>
-                <div className="grid grid-cols-7 gap-1.5 flex-1 content-start">
-                  {Array.from({ length: 35 }, (_, i) => i + 1).map((day) => (
-                    <div
-                      key={day}
-                      className={`aspect-square rounded-lg flex items-center justify-center text-xs ${
-                        [13, 14, 15, 21].includes(day)
-                          ? "bg-white/20 text-white font-bold"
-                          : "bg-white/5 text-gray-600"
-                      }`}
-                    >
-                      {day <= 31 ? day : ""}
-                    </div>
-                  ))}
-                </div>
+                <X size={16} />
+              </button>
+              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/60 backdrop-blur-sm text-white text-sm px-4 py-1.5 rounded-full">
+                {p.title}
               </div>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
+      {/* Title */}
+      <motion.div
+        className="max-w-6xl w-full mx-auto px-6 mb-16"
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-80px" }}
+        transition={{ duration: 0.6 }}
+      >
+        <h2 className="text-4xl font-bold text-center">Featured Projects</h2>
+      </motion.div>
+
+      {/* Devices — vertical on mobile, horizontal bottom-aligned on lg+ */}
+      <motion.div
+        className="flex flex-col lg:flex-row items-center lg:items-end justify-center gap-10 px-6"
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-80px" }}
+        transition={{ duration: 0.6, delay: 0.1 }}
+      >
+        {/* Tablet */}
+        <div className="relative flex flex-col items-center">
           <div
-            className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[80%] blur-[80px] rounded-full -z-10 opacity-20 ${projects[activeIndex].color}`}
+            className="w-[280px] h-[400px] bg-black rounded-[36px] p-3.5 overflow-hidden relative z-10"
+            style={{ boxShadow: "0 50px 100px -20px rgba(0,0,0,0.3)" }}
+          >
+            <AnimatePresence mode="wait">
+              <motion.img
+                key={`tablet-${activeIndex}`}
+                src={p.image}
+                alt={`${p.title} tablet`}
+                className="w-full h-full object-cover object-top rounded-[24px] block"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.4 }}
+                draggable={false}
+                loading="lazy"
+                decoding="async"
+              />
+            </AnimatePresence>
+          </div>
+          {/* Ground shadow */}
+          <div
+            aria-hidden="true"
+            className="w-[260px] h-[25px] bg-black/[0.12] rounded-full blur-[30px] -mt-2 z-0"
           />
         </div>
 
-        {/* Right Side */}
-        <div className="flex-1 flex flex-col w-full min-w-0">
-          <div className="flex gap-4 overflow-x-auto pb-8 pt-4 snap-x hide-scrollbar pl-1 pr-6 lg:pr-12">
-            {projects.map((p, i) => (
-              <button
-                type="button"
-                key={p.id}
-                onClick={() => setActiveIndex(i)}
-                className={`relative w-[220px] h-[120px] shrink-0 rounded-2xl p-4 text-left transition-all duration-300 snap-center outline-none ${p.color} ${
-                  activeIndex === i
-                    ? "scale-105 shadow-[0_0_20px_rgba(255,255,255,0.15)] ring-2 ring-white z-10"
-                    : "scale-95 opacity-40 hover:opacity-80 grayscale-[30%]"
-                }`}
-              >
-                <div className="flex justify-between items-start mb-4">
-                  <span
-                    className={`text-xs font-bold ${p.textColor} bg-white/30 px-2 py-0.5 rounded-full backdrop-blur-sm`}
-                  >
-                    {p.tagText}
-                  </span>
-                </div>
-                <div className="absolute bottom-3 right-4 flex gap-2">
-                  <div className="w-8 h-8 bg-black/80 rounded-full" />
-                </div>
-              </button>
-            ))}
-          </div>
-
-          <div className="relative min-h-[150px] mt-4" style={{ paddingRight: alignOffset }}>
-            <AnimatePresence mode="wait">
+        {/* Phone — center */}
+        <div className="relative flex flex-col items-center">
+          <TiltCard>
+            <button
+              type="button"
+              onClick={() => setLightboxOpen(true)}
+              aria-label={`查看 ${p.title} 全圖`}
+              className="relative w-[150px] h-[310px] bg-black rounded-[30px] p-2 border border-gray-900 cursor-pointer block overflow-hidden group"
+              style={{ boxShadow: "0 50px 100px -20px rgba(0,0,0,0.3)" }}
+            >
+              {/* Dynamic Island */}
+              <div className="absolute top-4 left-1/2 -translate-x-1/2 w-10 h-3.5 bg-black rounded-full z-20 pointer-events-none" />
+              <div className="w-full h-full rounded-[22px] overflow-hidden">
+                <AnimatePresence mode="wait">
+                  <motion.img
+                    key={`phone-${activeIndex}`}
+                    src={p.image}
+                    alt={`${p.title} phone`}
+                    className="w-full h-full object-cover object-top block"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.4 }}
+                    draggable={false}
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </AnimatePresence>
+              </div>
+              {/* Hover hint */}
               <motion.div
-                key={activeIndex}
-                initial={{ opacity: 0, y: 15 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -15 }}
-                transition={{ duration: 0.3 }}
-                className="text-gray-300 space-y-4 absolute inset-0"
+                initial={{ opacity: 0 }}
+                whileHover={{ opacity: 1 }}
+                className="absolute inset-0 bg-black/30 flex items-center justify-center rounded-[30px] z-10 pointer-events-none"
               >
-                <div className="flex items-center gap-3 mb-2">
-                  <h3 className="text-2xl font-bold text-white">{projects[activeIndex].title}</h3>
-                  <span className="text-xs font-mono px-2 py-1 bg-white/10 rounded-md text-gray-400">
-                    {projects[activeIndex].tech}
-                  </span>
-                </div>
-                <p className="leading-relaxed text-sm md:text-base">{projects[activeIndex].desc}</p>
+                <span className="text-white text-[10px] font-medium bg-black/50 px-2.5 py-1.5 rounded-full backdrop-blur-sm">
+                  點擊查看全圖
+                </span>
               </motion.div>
-            </AnimatePresence>
-          </div>
+            </button>
+          </TiltCard>
+          {/* Ground shadow */}
+          <div
+            aria-hidden="true"
+            className="w-[130px] h-[25px] bg-black/[0.12] rounded-full blur-[30px] -mt-2 z-0"
+          />
         </div>
-      </div>
+
+        {/* Laptop */}
+        <div className="relative flex flex-col items-center">
+          <div className="w-[520px] relative z-10">
+            <div className="bg-black rounded-t-[22px] p-3.5 pb-0">
+              {/* Webcam dot */}
+              <div className="w-1.5 h-1.5 bg-gray-800 rounded-full mx-auto mb-2.5" />
+              <div className="w-full h-[320px] overflow-hidden">
+                <AnimatePresence mode="wait">
+                  <motion.img
+                    key={`laptop-${activeIndex}`}
+                    src={p.image}
+                    alt={`${p.title} laptop`}
+                    className="w-full h-full object-cover object-top block"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.4 }}
+                    draggable={false}
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </AnimatePresence>
+              </div>
+            </div>
+            {/* Laptop base */}
+            <div
+              className="h-3 rounded-b-[16px] relative"
+              style={{
+                width: "106%",
+                left: "-3%",
+                background: "linear-gradient(to bottom, #e5e7eb, #a1a1aa)",
+                boxShadow: "inset 0 -1px 3px rgba(0,0,0,0.1)",
+              }}
+            >
+              <div className="w-[100px] h-[5px] bg-[#71717a] mx-auto rounded-b-[10px]" />
+            </div>
+          </div>
+          {/* Ground shadow */}
+          <div
+            aria-hidden="true"
+            className="w-[540px] h-[25px] bg-black/[0.12] rounded-full blur-[30px] -mt-1 z-0"
+          />
+        </div>
+      </motion.div>
+
+      {/* Pill panel — project switcher */}
+      <motion.div
+        className="mt-10"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-80px" }}
+        transition={{ duration: 0.5, delay: 0.3 }}
+      >
+        <div className="flex flex-col items-center gap-3">
+          <div className="bg-white/50 backdrop-blur-md px-6 py-4 rounded-[2.5rem] shadow-xl border border-white/40 flex items-center gap-5">
+            <span className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-600 mr-2">
+              Projects
+            </span>
+            {portfolioProjects.map((proj, i) => {
+              const isActive = activeIndex === i;
+              return (
+                <motion.button
+                  key={proj.id}
+                  type="button"
+                  onClick={() => setActiveIndex(i)}
+                  aria-pressed={isActive}
+                  className={`relative w-12 h-12 rounded-full overflow-hidden outline-none border-[3px] ${
+                    isActive ? "border-black" : "border-transparent"
+                  }`}
+                  animate={{ y: isActive ? -5 : 0 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                >
+                  <img
+                    src={proj.image}
+                    alt={proj.title}
+                    className="w-full h-full object-cover"
+                    draggable={false}
+                  />
+                </motion.button>
+              );
+            })}
+          </div>
+          <p className="text-xs text-muted-foreground font-medium tracking-wide">{p.title}</p>
+        </div>
+      </motion.div>
     </section>
   );
 }
@@ -748,7 +868,7 @@ export function ExTestimonials() {
   const colors = testimonialColors;
 
   return (
-    <section className="py-32 bg-[#050505] text-white overflow-hidden flex flex-col items-center border-y border-white/5 relative">
+    <section className="py-32 bg-background text-foreground overflow-hidden flex flex-col items-center border-y border-border/50 relative">
       <div className="max-w-7xl mx-auto px-6 mb-20 w-full relative z-10">
         <h2 className="text-4xl font-bold text-center">Client Trust &amp; Feedback</h2>
       </div>
@@ -830,42 +950,75 @@ export function ExTestimonials() {
 
 export function ExContact() {
   return (
-    <section id="contact" className="py-32 relative bg-black text-white">
-      <div className="absolute rounded-full blur-[120px] bg-purple-600 pointer-events-none w-[800px] h-[800px] top-0 right-0 opacity-10" />
+    <section id="contact" className="py-32 relative bg-background text-foreground">
+      <div className="absolute rounded-full blur-[120px] bg-accent pointer-events-none w-[800px] h-[800px] top-0 right-0 opacity-30" />
 
       <div className="max-w-3xl mx-auto px-6 text-center relative z-10">
         <h2 className="text-5xl font-bold mb-6">準備好開始您的專案了嗎？</h2>
-        <p className="text-gray-400 text-lg mb-12">
+        <p className="text-muted-foreground text-lg mb-12">
           填寫簡短的需求表單，我們將在 24 小時內由資深技術經理與您聯繫，並提供初步報價區間。
         </p>
 
-        <form className="border border-white/10 bg-[#111] p-8 rounded-3xl text-left space-y-6">
+        <form className="border border-border bg-card p-8 rounded-3xl text-left space-y-6">
           <div className="grid grid-cols-2 gap-6">
             <div className="space-y-2">
               <label
                 htmlFor="contact-name"
-                className="flex flex-col gap-2 text-xs font-bold text-gray-400 uppercase tracking-wider"
+                className="flex flex-col gap-2 text-xs font-bold text-muted-foreground uppercase tracking-wider"
               >
                 姓名 / 聯絡人
                 <input
                   id="contact-name"
                   type="text"
-                  className="w-full bg-black border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-blue-500 transition-colors font-normal normal-case tracking-normal"
+                  className="w-full bg-background border border-border rounded-lg px-4 py-3 text-foreground focus:outline-none focus:border-ring transition-colors font-normal normal-case tracking-normal"
                   placeholder="John Doe"
+                  required
                 />
               </label>
             </div>
             <div className="space-y-2">
               <label
                 htmlFor="contact-email"
-                className="flex flex-col gap-2 text-xs font-bold text-gray-400 uppercase tracking-wider"
+                className="flex flex-col gap-2 text-xs font-bold text-muted-foreground uppercase tracking-wider"
               >
                 聯絡信箱
                 <input
                   id="contact-email"
                   type="email"
-                  className="w-full bg-black border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-blue-500 transition-colors font-normal normal-case tracking-normal"
+                  className="w-full bg-background border border-border rounded-lg px-4 py-3 text-foreground focus:outline-none focus:border-ring transition-colors font-normal normal-case tracking-normal"
                   placeholder="john@example.com"
+                  required
+                />
+              </label>
+            </div>
+          </div>
+          <div className="grid grid-cols-2 gap-6">
+            <div className="space-y-2">
+              <label
+                htmlFor="contact-date"
+                className="flex flex-col gap-2 text-xs font-bold text-muted-foreground uppercase tracking-wider"
+              >
+                專案完成日期
+                <input
+                  id="contact-date"
+                  type="date"
+                  className="w-full bg-background border border-border rounded-lg px-4 py-3 text-foreground focus:outline-none focus:border-ring transition-colors font-normal normal-case tracking-normal"
+                  placeholder="2026/01/01"
+                  required
+                />
+              </label>
+            </div>
+            <div className="space-y-2">
+              <label
+                htmlFor="contact-line"
+                className="flex flex-col gap-2 text-xs font-bold text-muted-foreground uppercase tracking-wider"
+              >
+                Line名稱
+                <input
+                  id="contact-line"
+                  type="text"
+                  className="w-full bg-background border border-border rounded-lg px-4 py-3 text-foreground focus:outline-none focus:border-ring transition-colors font-normal normal-case tracking-normal"
+                  placeholder="@yourlineid"
                 />
               </label>
             </div>
@@ -874,12 +1027,13 @@ export function ExContact() {
           <div className="space-y-2">
             <label
               htmlFor="contact-type"
-              className="flex flex-col gap-2 text-xs font-bold text-gray-400 uppercase tracking-wider"
+              className="flex flex-col gap-2 text-xs font-bold text-muted-foreground uppercase tracking-wider"
             >
               專案類型
               <select
                 id="contact-type"
-                className="w-full bg-black border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-blue-500 transition-colors appearance-none font-normal normal-case tracking-normal"
+                className="w-full bg-background border border-border rounded-lg px-4 py-3 text-foreground focus:outline-none focus:border-ring transition-colors appearance-none font-normal normal-case tracking-normal"
+                required
               >
                 <option>Web 網站 / 系統開發</option>
                 <option>iOS / Android App 開發</option>
@@ -891,7 +1045,7 @@ export function ExContact() {
 
           <button
             type="button"
-            className="w-full bg-white text-black font-bold text-lg py-4 rounded-xl hover:bg-gray-200 transition-transform active:scale-[0.98]"
+            className="w-full bg-foreground text-background font-bold text-lg py-4 rounded-xl hover:opacity-90 transition-transform active:scale-[0.98]"
           >
             送出諮詢需求
           </button>
@@ -905,17 +1059,17 @@ export function ExContact() {
 
 export function ExAppShowcase() {
   return (
-    <section className="py-24 relative bg-[#0a0a0a] overflow-hidden flex justify-center items-center min-h-[700px] border-t border-white/5 select-none">
+    <section className="py-24 relative bg-background overflow-hidden flex justify-center items-center min-h-[700px] border-t border-border/50 select-none">
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[60%] w-[150%] -rotate-[10deg] z-0 whitespace-nowrap opacity-60 mix-blend-screen pointer-events-none">
         <motion.div
           animate={{ x: ["0%", "-50%"] }}
           transition={{ repeat: Infinity, ease: "linear", duration: 20 }}
           className="text-[#E9FF42] font-display text-[80px] md:text-[120px] font-bold tracking-tight flex gap-8"
         >
-          <span>NOVA TECH</span>
-          <span>NOVA TECH</span>
-          <span>NOVA TECH</span>
-          <span>NOVA TECH</span>
+          <span>Nivorae</span>
+          <span>Nivorae</span>
+          <span>Nivorae</span>
+          <span>Nivorae</span>
         </motion.div>
       </div>
 
@@ -925,7 +1079,7 @@ export function ExAppShowcase() {
           initial={{ rotate: -12, x: -90, y: 20 }}
           animate={{ y: [20, 0, 20] }}
           transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute z-20 w-[270px] h-[550px] rounded-[45px] border-[12px] border-[#222] bg-[#DAB6FC] shadow-[0_20px_50px_rgba(0,0,0,0.5)] flex flex-col px-6 pt-4 pb-8 text-black"
+          className="absolute z-20 w-[270px] h-[550px] rounded-[45px] border-[12px] border-[#222] bg-[#6D001A] shadow-[0_20px_50px_rgba(0,0,0,0.5)] flex flex-col px-6 pt-4 pb-8 text-black"
         >
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-24 h-6 bg-[#222] rounded-b-[18px] z-30" />
 
@@ -1041,10 +1195,10 @@ export function ExAppShowcase() {
           className="text-transparent font-display text-[80px] md:text-[120px] font-bold tracking-tight flex gap-8"
           style={{ WebkitTextStroke: "2px #E9FF42" }}
         >
-          <span>NOVA TECH</span>
-          <span>NOVA TECH</span>
-          <span>NOVA TECH</span>
-          <span>NOVA TECH</span>
+          <span>NIVORAE</span>
+          <span>NIVORAE</span>
+          <span>NIVORAE</span>
+          <span>NIVORAE</span>
         </motion.div>
       </div>
     </section>
@@ -1055,37 +1209,61 @@ export function ExAppShowcase() {
 
 export function ExFooter() {
   return (
-    <footer className="border-t border-white/10 bg-[#020202] pt-20 pb-10 text-white">
+    <footer className="border-t border-border bg-background pt-20 pb-10 text-foreground">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid md:grid-cols-4 gap-12 mb-16">
           <div className="col-span-2">
             <div className="flex items-center gap-2 mb-6">
-              <div className="w-8 h-8 rounded bg-white text-black flex items-center justify-center font-bold text-xl">
-                N
-              </div>
-              <span className="font-display font-semibold tracking-wide text-xl">Nova Tech</span>
+              <Image
+                src="/favicon.ico"
+                alt="Nivorae"
+                width={20}
+                height={20}
+                className="h-5 w-auto object-contain"
+              />
+              <span className="font-display font-semibold tracking-wide text-xl">Nivorae</span>
             </div>
-            <p className="text-gray-400 text-sm leading-relaxed max-w-sm mb-6">
+            <p className="text-muted-foreground text-sm leading-relaxed max-w-sm mb-6">
               專注於現代化技術的接案開發代理商。我們幫助企業與新創打造極具競爭力的數位產品。
             </p>
           </div>
 
           <div>
             <h4 className="font-bold mb-4">Services</h4>
-            <ul className="space-y-2 text-sm text-gray-400">
+            <ul className="space-y-2 text-sm text-muted-foreground">
               <li>
-                <a href="#services" className="hover:text-white transition-colors">
+                <a href="#services" className="hover:text-foreground transition-colors">
                   Web 應用開發
                 </a>
               </li>
               <li>
-                <a href="#services" className="hover:text-white transition-colors">
-                  iOS/Android App
+                <a href="#services" className="hover:text-foreground transition-colors">
+                  UI/UX 設計
                 </a>
               </li>
               <li>
-                <a href="#services" className="hover:text-white transition-colors">
-                  UI/UX 設計
+                <a href="#services" className="hover:text-foreground transition-colors">
+                  電商網站架設
+                </a>
+              </li>
+              <li>
+                <a href="#services" className="hover:text-foreground transition-colors">
+                  自動化 / 整合案件
+                </a>
+              </li>
+              <li>
+                <a href="#services" className="hover:text-foreground transition-colors">
+                  爬蟲 / 資料服務
+                </a>
+              </li>
+              <li>
+                <a href="#services" className="hover:text-foreground transition-colors">
+                  落地頁 / 小型網站
+                </a>
+              </li>
+              <li>
+                <a href="#services" className="hover:text-foreground transition-colors">
+                  技術諮詢
                 </a>
               </li>
             </ul>
@@ -1093,14 +1271,14 @@ export function ExFooter() {
 
           <div>
             <h4 className="font-bold mb-4">Company</h4>
-            <ul className="space-y-2 text-sm text-gray-400">
+            <ul className="space-y-2 text-sm text-muted-foreground">
               <li>
-                <a href="#portfolio" className="hover:text-white transition-colors">
+                <a href="#portfolio" className="hover:text-foreground transition-colors">
                   關於我們
                 </a>
               </li>
               <li>
-                <a href="#contact" className="hover:text-white transition-colors">
+                <a href="#contact" className="hover:text-foreground transition-colors">
                   隱私權政策
                 </a>
               </li>

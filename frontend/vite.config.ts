@@ -23,6 +23,7 @@ function buildCSP(isDev: boolean): string {
     "style-src 'self' 'unsafe-inline'",
     "img-src 'self' data: https:",
     "font-src 'self' data:",
+    "media-src 'self' http://8.209.221.1:32721",
     `connect-src ${connectSrc}`,
     "object-src 'none'",
     "frame-ancestors 'none'",

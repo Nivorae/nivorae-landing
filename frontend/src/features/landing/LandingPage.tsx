@@ -1,12 +1,11 @@
 import { useState } from "react";
 import { type Lang } from "./i18n";
+import { useTheme } from "@/core/theme/useTheme";
 import { Header } from "./components/Header";
 import { HeroSection } from "./components/HeroSection";
 import {
   ExHero,
-  ExServices,
   ExProcess,
-  ExTechStack,
   ExPortfolio,
   ExTestimonials,
   ExContact,
@@ -14,8 +13,12 @@ import {
   ExFooter,
 } from "./components/ExampleSections";
 
+const VIDEO_DARK = "http://8.209.221.1:32721/nivorae/video/background_video.mp4";
+const VIDEO_LIGHT = "http://8.209.221.1:32721/nivorae/video/background_video_white.mp4";
+
 export function LandingPage() {
   const [lang, setLang] = useState<Lang>("zh");
+  const { resolvedTheme } = useTheme();
 
   return (
     <>
@@ -25,7 +28,7 @@ export function LandingPage() {
         </a>
 
         <video
-          src="/videos/background_video.mp4"
+          src={resolvedTheme === "dark" ? VIDEO_DARK : VIDEO_LIGHT}
           autoPlay
           muted
           loop
@@ -33,7 +36,7 @@ export function LandingPage() {
           className="absolute inset-0 w-full h-full object-cover"
         />
 
-        <div className="absolute inset-0 bg-black/70" />
+        <div className="absolute inset-0 hidden dark:block dark:bg-black/70" />
 
         <Header lang={lang} onLangChange={setLang} />
 
@@ -43,9 +46,7 @@ export function LandingPage() {
       </div>
 
       <ExHero />
-      <ExServices />
       <ExProcess />
-      <ExTechStack />
       <ExPortfolio />
       <ExTestimonials />
       <ExContact />

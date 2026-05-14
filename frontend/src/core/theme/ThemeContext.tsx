@@ -122,22 +122,26 @@ export function ThemeProvider({ children, defaultTheme = "system" }: ThemeProvid
   }, [theme]);
 
   // Set theme and persist to localStorage
-  const setTheme = useCallback((newTheme: Theme) => {
-    try {
-      localStorage.setItem(STORAGE_KEY, newTheme);
-    } catch {
-      // localStorage not available
-    }
+  const setTheme = useCallback(
+    (newTheme: Theme) => {
+      if (newTheme === theme) return;
 
-    setThemeState(newTheme);
+      try {
+        localStorage.setItem(STORAGE_KEY, newTheme);
+      } catch {
+        // localStorage not available
+      }
 
-    // Resolve the actual theme
-    if (newTheme === "system") {
-      setResolvedTheme(getSystemTheme());
-    } else {
-      setResolvedTheme(newTheme);
-    }
-  }, []);
+      setThemeState(newTheme);
+
+      if (newTheme === "system") {
+        setResolvedTheme(getSystemTheme());
+      } else {
+        setResolvedTheme(newTheme);
+      }
+    },
+    [theme]
+  );
 
   // Toggle between light and dark
   const toggleTheme = useCallback(() => {
