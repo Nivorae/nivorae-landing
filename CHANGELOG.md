@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.2.0
+
+- Added plans page with pricing tiers and portfolio sections
+- Added team photo cards to portfolio
+- Added landing page content sections below hero
+- Added testimonials section with snap-scroll layout
+- Added real member photos in team cards
+- Fixed `useEffect` replacing broken IIFE in `ExHero` animation loop
+- Updated `README` with planning skills and review workflow
+- Added commit hygiene check and `apply-review` command
+- Changed CI job to grant `contents: write` permission for auto-fix push
+- Changed header logo shrunk and page title updated
+- Changed `git-commit` tooling to enforce one-line rule
+- Changed testimonials section removed
+
 ## 0.1.2
 
 - Added redesigned landing page with video background and static 3D card display
