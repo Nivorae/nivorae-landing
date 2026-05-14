@@ -98,9 +98,7 @@ export function ExHero() {
   const cardEls = useRef<(HTMLDivElement | null)[]>(Array(TOTAL_CARDS).fill(null));
   const rafRef = useRef<number>(0);
 
-  
-        
-        (() => {
+  useEffect(() => {
     const container = containerRef.current;
     if (!container) return undefined;
 
