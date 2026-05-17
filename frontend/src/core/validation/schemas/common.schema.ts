@@ -59,11 +59,6 @@ export const paginationSchema = z.object({
 });
 
 /**
- * Sort order schema
- */
-export const sortOrderSchema = z.enum(["asc", "desc"]).optional();
-
-/**
  * Date range schema
  */
 export const dateRangeSchema = z

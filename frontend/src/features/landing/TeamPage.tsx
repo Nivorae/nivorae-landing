@@ -15,7 +15,12 @@ const SPECIALTY_SURFACES = [
 
 const PHOTO_OVERLAY_STYLE = {
   background:
-    "linear-gradient(to top, rgb(var(--team-overlay) / 0.82) 0%, rgb(var(--team-overlay) / 0.25) 55%, rgb(var(--team-overlay) / 0.08) 100%)",
+    "linear-gradient(to top, oklch(var(--team-overlay) / 0.82) 0%, oklch(var(--team-overlay) / 0.25) 55%, oklch(var(--team-overlay) / 0.08) 100%)",
+};
+
+const HERO_GRADIENT_STYLE = {
+  background:
+    "radial-gradient(ellipse at 50% 55%, oklch(var(--card)) 0%, oklch(var(--background)) 70%)",
 };
 
 export function TeamPage() {
@@ -23,19 +28,17 @@ export function TeamPage() {
   const [activeMember, setActiveMember] = useState<number>(0);
   const t = teamI18n[lang];
 
-  const currentSpecialties = t.team.members[activeMember].specialties;
   // Tripled for seamless infinite scroll — stable prefix keys prevent key collision across copies.
-  const carouselItems = useMemo(
-    () =>
-      ["a", "b", "c"].flatMap((prefix) =>
-        currentSpecialties.map((s, i) => ({
-          id: `${prefix}${i}`,
-          text: s,
-          shade: i % SPECIALTY_SURFACES.length,
-        }))
-      ),
-    [currentSpecialties]
-  );
+  const carouselItems = useMemo(() => {
+    const { specialties } = teamI18n[lang].team.members[activeMember];
+    return ["a", "b", "c"].flatMap((prefix) =>
+      specialties.map((s, i) => ({
+        id: `${prefix}${i}`,
+        text: s,
+        shade: i % SPECIALTY_SURFACES.length,
+      }))
+    );
+  }, [lang, activeMember]);
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -44,17 +47,13 @@ export function TeamPage() {
       {/* Hero */}
       <section
         className="relative w-full flex items-center justify-center overflow-hidden pt-16"
-        style={{
-          minHeight: "58vh",
-          background:
-            "radial-gradient(ellipse at 50% 55%, rgb(var(--card)) 0%, rgb(var(--background)) 70%)",
-        }}
+        style={{ minHeight: "58vh", ...HERO_GRADIENT_STYLE }}
       >
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
           {[280, 380, 480, 600].map((size) => (
             <div
               key={size}
-              className="absolute rounded-full border border-border/60"
+              className="absolute rounded-full border border-foreground/30"
               style={{ width: size, height: size }}
             />
           ))}
