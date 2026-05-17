@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.1
+
+- Fixed `TeamPage` OKLCH rendering, dark mode circles, and schema cleanup
+- Improved color tokens by migrating from RGB to OKLCH
+- Changed CI action SHA pins, `axios` upgrade, ReDoS patch, and `sortBy` enum constraint
+
 ## 0.2.0
 
 - Added plans page with pricing tiers and portfolio sections
