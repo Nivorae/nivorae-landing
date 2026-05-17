@@ -1,5 +1,10 @@
 export type { ApiResponse, ApiError, User } from "./types/api";
-export { paginationSchema, searchSchema, timestampSchema } from "./schemas/common";
+export {
+  paginationSchema,
+  searchSchema,
+  timestampSchema,
+  ALLOWED_SORT_FIELDS,
+} from "./schemas/common";
 export {
   createUserSchema,
   updateUserSchema,

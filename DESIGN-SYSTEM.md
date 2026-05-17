@@ -105,25 +105,47 @@ Fluid variants: `text-fluid-display-xl`, `text-fluid-h1`, etc.
 
 ## Colors
 
-### Semantic Colors (use these, not raw values)
+### Palette
 
-| Name                 | Light Mode | Tailwind                             |
-| -------------------- | ---------- | ------------------------------------ |
-| Background           | #FFFFFF    | `bg-background`                      |
-| Foreground           | #333333    | `text-foreground`                    |
-| Card                 | #FFFFFF    | `bg-card`                            |
-| Card Foreground      | #333333    | `text-card-foreground`               |
-| Primary              | #3B82F6    | `bg-primary`, `text-primary`         |
-| Primary Foreground   | #FFFFFF    | `text-primary-foreground`            |
-| Secondary            | #F3F4F6    | `bg-secondary`                       |
-| Secondary Foreground | #4B5563    | `text-secondary-foreground`          |
-| Muted                | #F9FAFB    | `bg-muted`                           |
-| Muted Foreground     | #6B7280    | `text-muted-foreground`              |
-| Accent               | #EFF6FF    | `bg-accent`                          |
-| Destructive          | #DC3545    | `bg-destructive`, `text-destructive` |
-| Success              | #28A745    | `bg-success`, `text-success`         |
-| Warning              | #FBC024    | `bg-warning`, `text-warning`         |
-| Border               | #E5E7EB    | `border-border`                      |
+Three-color brand system: near-white / near-black / oxblood. All neutrals carry a chroma 0.002–0.008 tint toward hue 15° (the oxblood hue) so they read as ink-on-paper rather than cold screen gray. Colors stored as OKLCH "L C H" channels in CSS vars — no wrapper — so Tailwind opacity modifiers work (`bg-background/50` → `oklch(L C H / 0.5)`).
+
+| Role       | OKLCH (L C H)      | Approx hex | Notes                        |
+| ---------- | ------------------ | ---------- | ---------------------------- |
+| Near-white | `99.1% 0.003 15`   | ~#fafafa   | Background, card surfaces    |
+| Near-black | `4% 0.008 15`      | ~#0a0908   | Foreground, primary text     |
+| Oxblood    | `24.8% 0.131 15.3` | #6D001A    | Accent, destructive, warning |
+| Light gray | `96.9% 0.002 15`   | ~#F5F5F5   | Secondary, muted surfaces    |
+| Mid gray   | `50.1% 0 0`        | ~#737373   | Muted foreground (light)     |
+| Dark gray  | `9.7% 0.003 15`    | ~#171717   | Secondary surface (dark)     |
+
+### Semantic Tokens (use these, not raw values)
+
+| Token              | Light (OKLCH)      | Dark (OKLCH)       | Tailwind                             |
+| ------------------ | ------------------ | ------------------ | ------------------------------------ |
+| Background         | `99.1% 0.003 15`   | `4% 0.008 15`      | `bg-background`                      |
+| Foreground         | `4% 0.008 15`      | `99.1% 0.003 15`   | `text-foreground`                    |
+| Card / Popover     | `99.1% 0.003 15`   | `4% 0.008 15`      | `bg-card`, `bg-popover`              |
+| Primary            | `4% 0.008 15`      | `99.1% 0.003 15`   | `bg-primary`, `text-primary`         |
+| Primary Foreground | `99.1% 0.003 15`   | `4% 0.008 15`      | `text-primary-foreground`            |
+| Secondary          | `96.9% 0.002 15`   | `9.7% 0.003 15`    | `bg-secondary`                       |
+| Muted              | `96.9% 0.002 15`   | `9.7% 0.003 15`    | `bg-muted`                           |
+| Muted Foreground   | `50.1% 0 0`        | `68% 0 0`          | `text-muted-foreground`              |
+| Accent             | `24.8% 0.131 15.3` | `24.8% 0.131 15.3` | `bg-accent`, `text-accent`           |
+| Destructive        | `24.8% 0.131 15.3` | `24.8% 0.131 15.3` | `bg-destructive`, `text-destructive` |
+| Warning            | `24.8% 0.131 15.3` | `24.8% 0.131 15.3` | `bg-warning`, `text-warning`         |
+| Success            | `4% 0.008 15`      | `99.1% 0.003 15`   | `bg-success`, `text-success`         |
+| Border             | `91.8% 0.001 15`   | `17.1% 0.002 15`   | `border-border`                      |
+| Ring               | `4% 0.008 15`      | `99.1% 0.003 15`   | focus ring                           |
+
+### Opacity Modifiers
+
+Because vars store bare OKLCH channels, Tailwind opacity modifiers work natively:
+
+```
+bg-background/80   → oklch(99.1% 0.003 15 / 0.8)
+text-foreground/60 → oklch(4% 0.008 15 / 0.6)
+bg-accent/10       → oklch(24.8% 0.131 15.3 / 0.1)
+```
 
 ---
 
@@ -174,9 +196,7 @@ Fluid variants: `text-fluid-display-xl`, `text-fluid-h1`, etc.
 ### Card Component
 
 ```tsx
-<div className="p-6 bg-card rounded-lg shadow-sm border border-border">
-  {/* content */}
-</div>
+<div className="p-6 bg-card rounded-lg shadow-sm border border-border">{/* content */}</div>
 ```
 
 ### Responsive Grid
