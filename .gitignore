@@ -62,3 +62,6 @@ backend/prisma/migrations/*.sql
 
 # Large media assets (serve via CDN or storage)
 frontend/public/videos/
+
+# gstack security reports and session data (stay local)
+.gstack/
