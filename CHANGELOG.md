@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.2.2
+
+- Added redesigned landing process section with interactive step flow
+- Changed `playwright-mcp` ignored and `ExHero` position tracking simplified
+- Added image-backed cards to specialty carousel
+- Added interactive QA page with infinite scroll and card deck
+
 ## 0.2.1
 
 - Fixed `TeamPage` OKLCH rendering, dark mode circles, and schema cleanup
