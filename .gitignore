@@ -40,6 +40,7 @@ docs/*
 /playwright-report/
 /blob-report/
 /playwright/.cache/
+.playwright-mcp
 
 # Environment files (keep .env.example)
 .env

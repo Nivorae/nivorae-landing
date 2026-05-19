@@ -6,13 +6,6 @@ import { teamI18n } from "./teamI18n";
 
 const MEMBER_PHOTOS = ["/Juliana.png", "/James.png", "/Max.png"];
 
-const SPECIALTY_SURFACES = [
-  "bg-muted text-foreground",
-  "bg-accent text-accent-foreground",
-  "bg-foreground text-background",
-  "bg-accent text-accent-foreground",
-];
-
 const PHOTO_OVERLAY_STYLE = {
   background:
     "linear-gradient(to top, oklch(var(--team-overlay) / 0.82) 0%, oklch(var(--team-overlay) / 0.25) 55%, oklch(var(--team-overlay) / 0.08) 100%)",
@@ -34,11 +27,13 @@ export function TeamPage() {
     return ["a", "b", "c"].flatMap((prefix) =>
       specialties.map((s, i) => ({
         id: `${prefix}${i}`,
-        text: s,
-        shade: i % SPECIALTY_SURFACES.length,
+        text: s.text,
+        image: s.image,
       }))
     );
   }, [lang, activeMember]);
+
+  const [isCarouselPaused, setIsCarouselPaused] = useState(false);
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -70,13 +65,6 @@ export function TeamPage() {
       <section className="bg-background py-12 lg:py-16">
         <div className="px-6 lg:px-16">
           <div className="max-w-7xl mx-auto">
-            <h2
-              className="font-black uppercase text-foreground mb-8 leading-none"
-              style={{ fontSize: "clamp(2.5rem, 8vw, 6rem)", letterSpacing: "-0.01em" }}
-            >
-              {t.team.heading}
-            </h2>
-
             <div className="flex gap-1" style={{ height: 480 }}>
               {t.team.members.map((member, idx) => (
                 <button
@@ -116,30 +104,39 @@ export function TeamPage() {
           </div>
         </div>
 
-        <div className="mt-8 overflow-hidden w-full">
+        <div className="mt-24 overflow-hidden w-full">
           <div
             key={activeMember}
             className="flex"
             style={{
-              gap: "12px",
+              gap: "16px",
               animation: "nivorae-specialty-scroll 24s linear infinite",
-              animationDelay: "-1.5s",
+              animationDelay: "-4.5s",
+              animationPlayState: isCarouselPaused ? "paused" : "running",
             }}
+            onMouseEnter={() => setIsCarouselPaused(true)}
+            onMouseLeave={() => setIsCarouselPaused(false)}
           >
             {carouselItems.map((item) => (
               <div
                 key={item.id}
-                className={cn(
-                  "flex-shrink-0 flex flex-col justify-end overflow-hidden",
-                  SPECIALTY_SURFACES[item.shade]
-                )}
+                className="flex-shrink-0 flex flex-col justify-end overflow-hidden relative"
                 style={{
+                  backgroundImage: `url(${item.image})`,
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
                   width: "calc((100vw - 48px) / 4)",
                   height: "380px",
                   borderRadius: "calc((100vw - 48px) / 8)",
                 }}
               >
-                <p className="font-bold text-center text-xs uppercase tracking-widest px-4 pb-7 leading-snug">
+                <div
+                  className="absolute inset-0"
+                  style={{
+                    background: "linear-gradient(to top, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0) 60%)",
+                  }}
+                />
+                <p className="relative font-bold text-center text-[30px] uppercase tracking-widest px-4 pb-7 leading-snug text-white">
                   {item.text}
                 </p>
               </div>
