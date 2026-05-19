@@ -10,8 +10,15 @@ import {
   Star,
   Image as ImageIcon,
   X,
+  ListChecks,
+  ClipboardList,
+  FileSignature,
+  Hammer,
+  Package,
+  ShieldCheck,
 } from "lucide-react";
 import { Image } from "@/components/ui/image";
+import { cn } from "@/lib/utils";
 
 // ─── TiltCard ───────────────────────────────────────────────────────────────
 
@@ -274,205 +281,522 @@ export function ExServices() {
 
 // ─── Process ─────────────────────────────────────────────────────────────────
 
+const ILLUSTRATION_COLORS = {
+  accent: "#4E000A",
+  accentBorder: "#7a1422",
+  blockBg: "#252527",
+  blockBorder: "#3a3a3c",
+  lineGray: "#4a4a4c",
+  highlight: "#7cd5e4",
+  windowChrome: "#1d1d1f",
+  cardBg: "#2a2a2c",
+  layerBg: "#1a1a1c",
+  altBg: "#222224",
+} as const;
+
+const processSteps = [
+  {
+    Icon: ListChecks,
+    title: "核心功能確認",
+    items: ["會員系統", "電商網站", "登入系統", "後台管理", "金流系統", "資料庫系統"],
+  },
+  {
+    Icon: ClipboardList,
+    title: "專案細節確認",
+    items: [
+      "UI/UX 風格",
+      "客戶提供既有資料",
+      "修改次數",
+      "匯報機制",
+      "第三方服務費用",
+      "交付時間",
+      "驗收",
+    ],
+  },
+  {
+    Icon: FileSignature,
+    title: "確認合作",
+    items: ["合作確認文件", "合約簽約"],
+  },
+  {
+    Icon: Hammer,
+    title: "專案開發",
+    items: ["團隊專案開發", "進度回報", "專案上架"],
+  },
+  {
+    Icon: Package,
+    title: "權益與交付物",
+    items: ["專案原始碼", "部署檔案", "資料庫結構", "管理者帳密"],
+  },
+  {
+    Icon: ShieldCheck,
+    title: "結案與保固",
+    items: ["教育訓練", "後續一個月保固"],
+  },
+];
+
+function IllustrationModules() {
+  return (
+    <svg viewBox="0 0 200 100" className="w-4/5 h-4/5" xmlns="http://www.w3.org/2000/svg">
+      {[
+        [40, 18],
+        [85, 18],
+        [130, 18],
+        [40, 55],
+        [130, 55],
+      ].map(([x, y]) => (
+        <rect
+          key={`${x}-${y}`}
+          x={x}
+          y={y}
+          width="32"
+          height="28"
+          rx="5"
+          fill={ILLUSTRATION_COLORS.blockBg}
+          stroke={ILLUSTRATION_COLORS.blockBorder}
+          strokeWidth="1"
+        />
+      ))}
+      <rect
+        x="85"
+        y="55"
+        width="32"
+        height="28"
+        rx="5"
+        fill={ILLUSTRATION_COLORS.accent}
+        stroke={ILLUSTRATION_COLORS.accentBorder}
+        strokeWidth="1"
+      />
+      <circle cx="101" cy="69" r="5" fill="#fff" opacity="0.85" />
+    </svg>
+  );
+}
+
+function IllustrationChecklist() {
+  return (
+    <svg viewBox="0 0 200 100" className="w-3/4 h-4/5" xmlns="http://www.w3.org/2000/svg">
+      <rect
+        x="40"
+        y="10"
+        width="120"
+        height="80"
+        rx="6"
+        fill={ILLUSTRATION_COLORS.blockBg}
+        stroke={ILLUSTRATION_COLORS.blockBorder}
+        strokeWidth="1"
+      />
+      <rect
+        x="52"
+        y="20"
+        width="40"
+        height="4"
+        rx="2"
+        fill={ILLUSTRATION_COLORS.accent}
+        opacity="0.7"
+      />
+      {[36, 50, 64, 78].map((y, i) => (
+        <g key={y}>
+          <rect
+            x="52"
+            y={y - 4}
+            width="8"
+            height="8"
+            rx="1.5"
+            fill={i < 2 ? ILLUSTRATION_COLORS.accent : "none"}
+            stroke={ILLUSTRATION_COLORS.accent}
+            strokeOpacity={i < 2 ? "1" : "0.6"}
+            strokeWidth="1"
+          />
+          {i < 2 && (
+            <path
+              d={`M 54 ${y} l 2 2 l 4 -4`}
+              stroke="white"
+              strokeWidth="1.2"
+              fill="none"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          )}
+          <line
+            x1="66"
+            y1={y}
+            x2={148 - i * 8}
+            y2={y}
+            stroke={ILLUSTRATION_COLORS.lineGray}
+            strokeWidth="1.5"
+          />
+        </g>
+      ))}
+    </svg>
+  );
+}
+
+function IllustrationContract() {
+  return (
+    <svg viewBox="0 0 200 100" className="w-3/4 h-4/5" xmlns="http://www.w3.org/2000/svg">
+      <rect
+        x="55"
+        y="6"
+        width="90"
+        height="88"
+        rx="5"
+        fill={ILLUSTRATION_COLORS.blockBg}
+        stroke={ILLUSTRATION_COLORS.blockBorder}
+        strokeWidth="1"
+      />
+      <rect x="65" y="16" width="42" height="4" rx="2" fill={ILLUSTRATION_COLORS.lineGray} />
+      <line
+        x1="65"
+        y1="30"
+        x2="135"
+        y2="30"
+        stroke={ILLUSTRATION_COLORS.blockBorder}
+        strokeWidth="1.5"
+      />
+      <line
+        x1="65"
+        y1="38"
+        x2="130"
+        y2="38"
+        stroke={ILLUSTRATION_COLORS.blockBorder}
+        strokeWidth="1.5"
+      />
+      <line
+        x1="65"
+        y1="46"
+        x2="120"
+        y2="46"
+        stroke={ILLUSTRATION_COLORS.blockBorder}
+        strokeWidth="1.5"
+      />
+      <line
+        x1="65"
+        y1="54"
+        x2="128"
+        y2="54"
+        stroke={ILLUSTRATION_COLORS.blockBorder}
+        strokeWidth="1.5"
+      />
+      <line
+        x1="65"
+        y1="80"
+        x2="135"
+        y2="80"
+        stroke={ILLUSTRATION_COLORS.lineGray}
+        strokeWidth="1"
+        strokeDasharray="2 2"
+      />
+      <path
+        d="M 70 76 Q 78 66 86 76 T 102 76 T 118 74 L 128 70"
+        stroke={ILLUSTRATION_COLORS.accent}
+        strokeWidth="2"
+        fill="none"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
+
+function IllustrationCode() {
+  return (
+    <svg viewBox="0 0 200 100" className="w-[88%] h-4/5" xmlns="http://www.w3.org/2000/svg">
+      <rect
+        x="20"
+        y="10"
+        width="160"
+        height="80"
+        rx="6"
+        fill={ILLUSTRATION_COLORS.blockBg}
+        stroke={ILLUSTRATION_COLORS.blockBorder}
+        strokeWidth="1"
+      />
+      <rect x="20" y="10" width="160" height="16" rx="6" fill={ILLUSTRATION_COLORS.windowChrome} />
+      <rect x="20" y="20" width="160" height="6" fill={ILLUSTRATION_COLORS.windowChrome} />
+      <circle cx="32" cy="18" r="2.5" fill={ILLUSTRATION_COLORS.accent} />
+      <circle cx="42" cy="18" r="2.5" fill={ILLUSTRATION_COLORS.lineGray} />
+      <circle cx="52" cy="18" r="2.5" fill={ILLUSTRATION_COLORS.lineGray} />
+      <line
+        x1="32"
+        y1="40"
+        x2="100"
+        y2="40"
+        stroke={ILLUSTRATION_COLORS.accent}
+        strokeWidth="2"
+        strokeLinecap="round"
+      />
+      <line
+        x1="40"
+        y1="50"
+        x2="155"
+        y2="50"
+        stroke={ILLUSTRATION_COLORS.lineGray}
+        strokeWidth="2"
+        strokeLinecap="round"
+      />
+      <line
+        x1="40"
+        y1="60"
+        x2="130"
+        y2="60"
+        stroke={ILLUSTRATION_COLORS.lineGray}
+        strokeWidth="2"
+        strokeLinecap="round"
+      />
+      <line
+        x1="48"
+        y1="70"
+        x2="145"
+        y2="70"
+        stroke={ILLUSTRATION_COLORS.lineGray}
+        strokeWidth="2"
+        strokeLinecap="round"
+      />
+      <line
+        x1="40"
+        y1="80"
+        x2="95"
+        y2="80"
+        stroke={ILLUSTRATION_COLORS.highlight}
+        strokeWidth="2"
+        strokeLinecap="round"
+        opacity="0.6"
+      />
+    </svg>
+  );
+}
+
+function IllustrationDelivery() {
+  return (
+    <svg viewBox="0 0 200 100" className="w-3/4 h-4/5" xmlns="http://www.w3.org/2000/svg">
+      <rect
+        x="45"
+        y="20"
+        width="90"
+        height="68"
+        rx="5"
+        fill={ILLUSTRATION_COLORS.layerBg}
+        stroke={ILLUSTRATION_COLORS.blockBorder}
+        strokeWidth="1"
+      />
+      <rect
+        x="55"
+        y="28"
+        width="90"
+        height="64"
+        rx="5"
+        fill={ILLUSTRATION_COLORS.altBg}
+        stroke={ILLUSTRATION_COLORS.blockBorder}
+        strokeWidth="1"
+      />
+      <path
+        d="M 65 38 L 88 38 L 94 44 L 155 44 L 155 92 L 65 92 Z"
+        fill={ILLUSTRATION_COLORS.cardBg}
+        stroke={ILLUSTRATION_COLORS.accent}
+        strokeOpacity="0.5"
+        strokeWidth="1.5"
+      />
+      <line
+        x1="76"
+        y1="58"
+        x2="142"
+        y2="58"
+        stroke={ILLUSTRATION_COLORS.lineGray}
+        strokeWidth="1.5"
+        strokeLinecap="round"
+      />
+      <line
+        x1="76"
+        y1="68"
+        x2="130"
+        y2="68"
+        stroke={ILLUSTRATION_COLORS.lineGray}
+        strokeWidth="1.5"
+        strokeLinecap="round"
+      />
+      <line
+        x1="76"
+        y1="78"
+        x2="138"
+        y2="78"
+        stroke={ILLUSTRATION_COLORS.lineGray}
+        strokeWidth="1.5"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
+
+function IllustrationWarranty() {
+  return (
+    <svg viewBox="0 0 200 100" className="w-3/5 h-[90%]" xmlns="http://www.w3.org/2000/svg">
+      <path
+        d="M 100 8 L 138 22 L 138 52 Q 138 78 100 94 Q 62 78 62 52 L 62 22 Z"
+        fill={ILLUSTRATION_COLORS.blockBg}
+        stroke={ILLUSTRATION_COLORS.accent}
+        strokeWidth="2"
+      />
+      <path
+        d="M 100 8 L 138 22 L 138 30 L 62 30 L 62 22 Z"
+        fill={ILLUSTRATION_COLORS.accent}
+        fillOpacity="0.4"
+      />
+      <path
+        d="M 78 52 L 92 66 L 122 36"
+        stroke={ILLUSTRATION_COLORS.highlight}
+        strokeWidth="4.5"
+        fill="none"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+const stepIllustrations: React.FC[] = [
+  IllustrationModules,
+  IllustrationChecklist,
+  IllustrationContract,
+  IllustrationCode,
+  IllustrationDelivery,
+  IllustrationWarranty,
+];
+
 export function ExProcess() {
+  const [activeStep, setActiveStep] = useState(0);
+  const active = processSteps[activeStep];
+  const ActiveIcon = active.Icon;
+  const ActiveIllustration = stepIllustrations[activeStep];
+
   return (
     <section
       id="process"
       className="py-24 bg-background text-foreground flex flex-col items-center justify-center border-y border-border/50 font-sans overflow-hidden"
     >
       <h2 className="text-4xl font-bold mb-20 text-center text-foreground">我們的開發模式</h2>
-      <div className="max-w-6xl w-full px-6 flex flex-col md:flex-row gap-12 lg:gap-20">
-        {/* Left Panel */}
-        <div className="bg-[#1d1d1f] rounded-[2rem] p-8 md:p-10 w-full md:w-[45%] flex flex-col justify-between relative shadow-2xl shrink-0 border border-white/[0.03]">
-          <div className="relative pt-12 pb-8 flex items-start gap-2">
-            <div className="relative w-[160px] h-[200px] shrink-0 z-10 left-10">
-              <div className="absolute inset-0 bg-white/[0.02] border border-white/10 rounded-2xl transform -translate-x-10 -translate-y-6 scale-[0.85] backdrop-blur-sm" />
-              <div className="absolute inset-0 bg-white/[0.04] border border-white/20 rounded-2xl transform -translate-x-5 -translate-y-3 scale-[0.92] backdrop-blur-md" />
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-500/80 to-indigo-600/80 rounded-2xl shadow-[0_10px_30px_rgba(0,0,0,0.5)] overflow-hidden border border-white/20">
-                <div className="w-full h-full opacity-60 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-400 via-indigo-900 to-black mix-blend-overlay" />
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-14 h-14 bg-black/40 rounded-full flex items-center justify-center backdrop-blur-md border border-white/10 shadow-lg">
-                    <Smartphone size={28} className="text-white" />
-                  </div>
-                </div>
+      <div className="max-w-6xl w-full px-6 flex flex-col md:flex-row gap-12 lg:gap-20 items-stretch">
+        <div className="bg-[#1d1d1f] rounded-[2rem] p-8 md:p-10 w-full md:w-[45%] flex flex-col relative shadow-2xl shrink-0 border border-white/[0.03] overflow-hidden">
+          <div
+            aria-hidden="true"
+            className="absolute top-0 right-0 w-64 h-64 bg-[#4E000A]/15 blur-[80px] rounded-full pointer-events-none"
+          />
+
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeStep}
+              initial={{ opacity: 0, scale: 0.96, y: 10 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.96, y: -10 }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
+              className="relative flex-1 flex flex-col gap-6"
+            >
+              <div className="relative flex-1 flex items-center justify-center bg-gradient-to-br from-[#161618] via-[#1a1a1c] to-[#1d1d1f] rounded-[1.5rem] border border-white/[0.04] min-h-[280px] py-6">
+                <ActiveIllustration />
               </div>
-            </div>
 
-            <div className="relative flex-1 mt-[-20px] ml-6">
-              <div className="absolute -left-12 top-0 w-[120px] h-[30px] border-t border-r border-dashed border-gray-400/50 rounded-tr-[10px]" />
-              <div className="absolute right-0 top-[29px] w-6 border-t border-dashed border-gray-400/50" />
-              <div className="absolute right-0 top-[24px] text-gray-500 text-xs">→</div>
-
-              <div className="flex flex-col items-center">
-                <span className="text-[#7cd5e4] font-bold text-[15px] mb-3 tracking-wide block relative -top-[18px] ml-6">
-                  Nivorae
+              <div className="flex flex-col gap-2">
+                <span className="inline-flex w-fit items-center px-2.5 py-1 rounded-md bg-[#4E000A] text-white text-[11px] font-bold tracking-[0.25em]">
+                  STEP {String(activeStep + 1).padStart(2, "0")}
                 </span>
-                <div className="border border-white/20 rounded-[1.5rem] p-2.5 flex flex-col gap-2 w-[130px] bg-[#2a2a2a] shadow-xl relative z-10">
-                  <div className="bg-white rounded-xl py-2 flex flex-col items-center justify-center shadow-sm">
-                    <Layers size={16} className="text-gray-400 mb-1" />
-                    <span className="text-[10px] font-bold text-gray-800 tracking-wide">
-                      Architecture
-                    </span>
-                  </div>
-                  <div className="bg-white rounded-xl py-2 flex flex-col items-center justify-center shadow-sm">
-                    <PenTool size={16} className="text-gray-400 mb-1" />
-                    <span className="text-[10px] font-bold text-gray-800 tracking-wide">
-                      UI/UX Design
-                    </span>
-                  </div>
-                  <div className="bg-white rounded-xl py-2 flex flex-col items-center justify-center shadow-sm">
-                    <Terminal size={16} className="text-gray-400 mb-1" />
-                    <span className="text-[10px] font-bold text-gray-800 tracking-wide">
-                      Development
-                    </span>
-                  </div>
-                </div>
-                <div className="bg-[#7cd5e4] text-[#111] px-4 py-1 rounded-[10px] text-[11px] font-extrabold tracking-wide mt-[-10px] z-20">
-                  Dev Team
-                </div>
+                <h3 className="text-white text-2xl md:text-[26px] font-bold leading-tight">
+                  {active.title}
+                </h3>
               </div>
-            </div>
-          </div>
-
-          <div className="mt-6 md:mt-12">
-            <p className="text-gray-300 text-[13px] leading-[1.8] font-medium tracking-wide">
-              Nova-Flow 是我們將複雜專案解構的標準化引擎，
-              <br />
-              提取核心的業務 <span className="text-white">Specs</span> 與{" "}
-              <span className="text-white">Design</span> 成分，
-              <br />
-              基於其組合為您打造全新架構、介面及終端產品體驗。
-            </p>
-          </div>
+            </motion.div>
+          </AnimatePresence>
         </div>
 
-        {/* Right Panel */}
-        <div className="w-full md:w-[55%] flex flex-col py-6 md:py-2">
-          <div className="flex items-end gap-4 mb-10">
-            <h2 className="text-[40px] font-bold text-[#7cd5e4] leading-none tracking-tight">
+        <div className="w-full md:w-[55%] flex flex-col">
+          <div className="flex items-end gap-4 mb-8">
+            <h2 className="text-[40px] font-bold text-white leading-none tracking-tight">
               Nivorae
             </h2>
-            <span className="text-[13px] font-medium text-gray-300 mb-1">
-              將需求拆解並自動化擴展的開發引擎
+            <span className="text-[13px] font-medium text-white mb-1">
+              從需求釐清到驗收保固的六步驟協作流程
             </span>
           </div>
 
-          <div className="relative pl-[96px] flex-1 flex flex-col mt-4">
-            <div className="absolute left-[47px] top-6 bottom-4 w-px border-l-[1.5px] border-dashed border-gray-600/50" />
+          <div
+            role="tablist"
+            aria-label="開發流程步驟"
+            className="grid grid-cols-3 lg:grid-cols-6 gap-2 mb-6"
+          >
+            {processSteps.map((step, i) => {
+              const isActive = i === activeStep;
+              return (
+                <button
+                  key={step.title}
+                  type="button"
+                  role="tab"
+                  aria-selected={isActive}
+                  aria-controls="process-step-panel"
+                  onClick={() => setActiveStep(i)}
+                  className={cn(
+                    "relative flex flex-col items-center justify-center gap-1 px-2 py-3 rounded-xl border transition-all duration-200",
+                    isActive
+                      ? "bg-[#4E000A] border-[#4E000A] text-white shadow-lg shadow-[#4E000A]/40 scale-[1.02]"
+                      : "bg-[#1d1d1f] border-white/[0.06] text-gray-300 hover:border-[#4E000A]/60 hover:text-white hover:-translate-y-0.5"
+                  )}
+                >
+                  <span
+                    className={cn(
+                      "text-[10px] font-bold tracking-[0.15em]",
+                      isActive ? "text-white/70" : "text-gray-500"
+                    )}
+                  >
+                    STEP {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <span className="text-[12px] font-bold leading-tight text-center">
+                    {step.title}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
 
-            {/* Input Row */}
-            <div className="relative mb-12">
-              <div className="absolute -left-[96px] top-4 w-[84px] bg-white text-black py-2 rounded-xl text-[14px] font-semibold text-center shadow-md">
-                Input
-              </div>
-              <div className="flex flex-wrap items-end gap-x-5 gap-y-6 h-full pl-6">
-                <div className="flex items-end gap-3">
-                  <div className="w-[110px] h-[110px] rounded-[14px] bg-gray-800 overflow-hidden relative shadow-lg">
-                    <div className="w-full h-full bg-gradient-to-br from-gray-700 to-gray-900" />
+          <div
+            id="process-step-panel"
+            role="tabpanel"
+            aria-live="polite"
+            className="flex-1 bg-[#1d1d1f] border border-white/[0.05] rounded-[20px] p-6 md:p-8 shadow-xl min-h-[260px]"
+          >
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeStep}
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -12 }}
+                transition={{ duration: 0.25, ease: "easeOut" }}
+              >
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="w-14 h-14 rounded-2xl bg-[#4E000A]/15 text-white border border-[#4E000A]/40 flex items-center justify-center shrink-0">
+                    <ActiveIcon className="w-6 h-6" />
                   </div>
-                  <div className="flex flex-col items-center">
-                    <div className="w-[50px] h-[50px] rounded-[10px] bg-white overflow-hidden mb-2 relative shadow-md p-1">
-                      <div className="w-full h-full bg-gray-300 rounded-[6px]" />
-                    </div>
-                    <span className="text-[11px] text-gray-400 font-medium tracking-wide">
-                      spec A
+                  <div>
+                    <span className="block text-[11px] font-bold tracking-[0.2em] uppercase text-white">
+                      Step {String(activeStep + 1).padStart(2, "0")} / 06
                     </span>
+                    <h3 className="text-2xl font-bold text-white leading-tight mt-1">
+                      {active.title}
+                    </h3>
                   </div>
                 </div>
 
-                <div className="h-[1.5px] w-6 bg-gray-600 mb-9 relative">
-                  <div className="absolute right-0 top-1/2 -translate-y-[45%] w-2 h-2 bg-gray-600 rounded-full" />
-                </div>
-
-                <div className="flex items-end gap-3">
-                  <div className="w-[96px] h-[96px] rounded-[14px] bg-gray-800 overflow-hidden relative shadow-lg mb-1">
-                    <div className="absolute inset-0 bg-gradient-to-tr from-purple-500 to-pink-500" />
-                  </div>
-                  <div className="flex flex-col items-center">
-                    <div className="w-[44px] h-[44px] rounded-[10px] bg-[#1d1d1f] overflow-hidden mb-2 relative shadow-md">
-                      <div className="absolute inset-0 bg-gradient-to-tr from-purple-500 to-pink-500 opacity-90 scale-90 rounded-[6px] m-auto" />
-                    </div>
-                    <span className="text-[11px] text-gray-400 font-medium tracking-wide">
-                      design B
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Voice Cue Row */}
-            <div className="relative mb-14">
-              <div className="absolute -left-[96px] top-1 w-[84px] bg-white/[0.12] text-gray-300 py-[6px] rounded-[10px] text-[12px] font-medium text-center backdrop-blur-sm">
-                Voice Cue
-              </div>
-              <div className="pl-6 text-[13px] tracking-wide">
-                <span className="text-gray-400">我希望打造一個在這個 </span>
-                <span className="text-yellow-500/90 font-medium">產業中</span>
-                <span className="text-gray-400"> 具備高度視覺衝擊且 </span>
-                <span className="text-yellow-500/90 font-medium">效能極佳的專案</span>
-                <span className="text-gray-400">。</span>
-              </div>
-            </div>
-
-            {/* Trigger Row */}
-            <div className="relative mb-14">
-              <div className="absolute -left-[96px] top-1/2 -translate-y-1/2 w-[84px] bg-white text-black py-2 rounded-xl text-[14px] font-semibold text-center shadow-md">
-                Trigger
-              </div>
-              <div className="pl-6 flex flex-col gap-3">
-                <div className="bg-[#1d1d1f] rounded-[14px] px-5 py-[14px] flex items-center gap-3">
-                  <div className="text-gray-300">
-                    <Layers size={18} />
-                  </div>
-                  <span className="text-[13px] font-bold text-white tracking-wide">
-                    Dev Team{" "}
-                    <span className="font-normal text-gray-400 ml-2">
-                      基於拆解的規格元件進行敏捷開發作業
-                    </span>
-                  </span>
-                </div>
-                <div className="grid grid-cols-3 gap-2 sm:gap-3">
-                  <div className="bg-[#1d1d1f] rounded-[14px] p-4 flex flex-col justify-center items-center text-center">
-                    <span className="text-[#7cd5e4] font-medium text-[13px] mb-1">Frontend</span>
-                    <span className="text-gray-500 text-[11px]">React / UI 實作</span>
-                  </div>
-                  <div className="bg-[#1d1d1f] rounded-[14px] p-4 flex flex-col justify-center items-center text-center">
-                    <span className="text-[#7cd5e4] font-medium text-[13px] mb-1">Backend</span>
-                    <span className="text-gray-500 text-[11px]">架構與資料庫</span>
-                  </div>
-                  <div className="bg-[#1d1d1f] rounded-[14px] p-4 flex flex-col justify-center items-center text-center">
-                    <span className="text-[#7cd5e4] font-medium text-[13px] mb-1">Testing</span>
-                    <span className="text-gray-500 text-[11px]">品質與效能驗證</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Output Row */}
-            <div className="relative">
-              <div className="absolute -left-[96px] top-1 w-[84px] bg-[#7cd5e4] text-[#111] py-2 rounded-xl text-[14px] font-semibold text-center shadow-md">
-                Output
-              </div>
-              <div className="pl-6">
-                <div className="bg-[#1d1d1f] rounded-[14px] px-5 py-[14px] mb-5">
-                  <span className="text-[13px] text-gray-300 tracking-wide font-medium">
-                    Nova_Tech 經過嚴密建置所交付的全新數位資產
-                  </span>
-                </div>
-                <div className="flex flex-wrap gap-x-6 gap-y-3 text-[14px] font-medium text-gray-500 pl-3">
-                  <span className="hover:text-white transition-colors cursor-pointer">Web App</span>
-                  <span className="hover:text-white transition-colors cursor-pointer">
-                    iOS / Android
-                  </span>
-                  <span className="hover:text-white transition-colors cursor-pointer">
-                    Source Code
-                  </span>
-                  <span className="hover:text-white transition-colors cursor-pointer">
-                    Handover
-                  </span>
-                </div>
-              </div>
-            </div>
+                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-3">
+                  {active.items.map((item) => (
+                    <li
+                      key={item}
+                      className="flex items-start gap-2.5 text-[14px] text-white tracking-wide"
+                    >
+                      <span
+                        aria-hidden="true"
+                        className="mt-1.5 w-1.5 h-1.5 rounded-full bg-white shrink-0"
+                      />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </motion.div>
+            </AnimatePresence>
           </div>
         </div>
       </div>
