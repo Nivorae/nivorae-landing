@@ -105,7 +105,6 @@ export function ExHero() {
     let containerWidth = container.offsetWidth;
     let cx = containerWidth / 2;
     const positions = Array.from({ length: TOTAL_CARDS }, (_, i) => i * CARD_STRIDE);
-    let maxPosition = (TOTAL_CARDS - 1) * CARD_STRIDE;
 
     const onResize = () => {
       containerWidth = container.offsetWidth;
@@ -117,8 +116,7 @@ export function ExHero() {
       for (let i = 0; i < TOTAL_CARDS; i += 1) {
         positions[i] -= SCROLL_SPEED;
         if (positions[i] <= -CARD_STRIDE) {
-          positions[i] = maxPosition + CARD_STRIDE;
-          maxPosition = positions[i];
+          positions[i] = Math.max(...positions) + CARD_STRIDE;
         }
         const el = cardEls.current[i];
         if (el) {
