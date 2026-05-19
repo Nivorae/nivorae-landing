@@ -418,3 +418,15 @@
     transform: perspective(800px) rotateX(20deg) rotateY(-20deg) translateY(-14px);
   }
 }
+
+/* qa-card-from-deck — answer card pulled from deck for QAPage */
+@keyframes qa-card-from-deck {
+  from {
+    opacity: 0.6;
+    transform: translateY(22px) scale(0.94) rotate(-1.8deg);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1) rotate(0deg);
+  }
+}

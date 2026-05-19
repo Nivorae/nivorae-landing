@@ -1,0 +1,130 @@
+{
+  "zh": {
+    "heroEyebrow": "新創公司 × 網頁開發",
+    "heroTitle": "常見問題",
+    "heroSubtitle": "關於我們的服務、流程與合作方式，這裡有你需要的答案",
+    "sectionHeading": "您想了解什麼？",
+    "items": [
+      {
+        "id": "services",
+        "icon": "Globe",
+        "tag": "服務範圍",
+        "question": "你們提供哪些網頁開發服務？",
+        "answer": "我們提供全端網頁開發，涵蓋企業品牌官網、SaaS 產品前後端開發、電商平台、行動裝置優先的 RWD 設計，以及第三方 API 串接（金流、CRM、行銷工具等）。從設計稿到正式上線，我們提供一站式服務，確保每個環節都達到最高品質標準。"
+      },
+      {
+        "id": "timeline",
+        "icon": "Clock",
+        "tag": "開發時程",
+        "question": "一個專案的開發時間大約多久？",
+        "answer": "依專案規模而異。基礎品牌官網約 2–4 週；含後台的中型 SaaS 或電商通常需 6–12 週；大型客製化系統則依需求評估。我們在簽約前會提供詳細的時程規劃，確保進度完全透明，並設置明確的里程碑與驗收點。"
+      },
+      {
+        "id": "pricing",
+        "icon": "CreditCard",
+        "tag": "費用計算",
+        "question": "費用如何計算？有固定方案嗎？",
+        "answer": "我們提供兩種合作模式：固定報價（適合需求明確的專案）與時薪制（適合需求持續演進的新創）。初次諮詢完全免費，確認需求後我們在 3 個工作天內提供詳細估價單，費用涵蓋設計、開發、測試及部署，無任何隱藏費用。"
+      },
+      {
+        "id": "workflow",
+        "icon": "GitBranch",
+        "tag": "合作流程",
+        "question": "如何開始合作？流程是什麼？",
+        "answer": "合作流程分為四步驟：①免費需求諮詢（約 30–60 分鐘視訊）→ ②提案與報價（3 個工作天內）→ ③簽約啟動開發 → ④驗收上線，並附上 30 天免費 Bug 修復保固。全程透過專案管理工具保持進度透明，確保你對每個階段都瞭若指掌。"
+      },
+      {
+        "id": "maintenance",
+        "icon": "Wrench",
+        "tag": "售後維護",
+        "question": "上線後有提供維護和更新服務嗎？",
+        "answer": "有的。我們提供三種維護方案：月費維護（含效能監控、安全更新、定期備份）、按需計費（適合偶爾有小更新需求）、以及功能擴展（重新需求訪談後評估）。上線後 30 天內的 Bug 修復完全免費。"
+      },
+      {
+        "id": "techstack",
+        "icon": "Code2",
+        "tag": "技術棧",
+        "question": "你們使用什麼技術開發？",
+        "answer": "前端採用 React / Next.js + TypeScript，後端使用 Node.js / Express 或 Python，資料庫依需求選用 PostgreSQL 或 MongoDB，部署採用 Vercel、AWS 或 GCP。所有程式碼透過 Git 進行版本控制，專案完成後程式碼所有權完整移轉給客戶。"
+      },
+      {
+        "id": "design",
+        "icon": "Palette",
+        "tag": "設計修改",
+        "question": "開發中可以修改設計或需求嗎？",
+        "answer": "可以，但建議在設計稿確認前完成主要修改，以避免工期延誤。開發階段的小幅調整（色彩、文字、排版）通常可彈性配合；若涉及功能性需求變更，我們會重新評估時程與費用，並在雙方同意後執行，確保專案品質不受影響。"
+      },
+      {
+        "id": "security",
+        "icon": "ShieldCheck",
+        "tag": "資料安全",
+        "question": "資料隱私和安全如何保障？",
+        "answer": "我們遵循 OWASP Top 10 安全規範開發，確保防範常見網路攻擊（XSS、SQL Injection 等）。所有敏感資料透過 HTTPS 加密傳輸，環境變數與金鑰絕不出現在原始碼中。專案交付後，您擁有所有原始碼、資料庫及帳號的完整控制權，完全的數位主權屬於您。"
+      }
+    ]
+  },
+  "en": {
+    "heroEyebrow": "Startups × Web Dev",
+    "heroTitle": "FAQ",
+    "heroSubtitle": "Answers to your questions about our services, process, and collaboration",
+    "sectionHeading": "What would you like to know?",
+    "items": [
+      {
+        "id": "services",
+        "icon": "Globe",
+        "tag": "Services",
+        "question": "What web development services do you offer?",
+        "answer": "We provide full-stack web development including corporate brand websites, SaaS product development, e-commerce platforms, mobile-first RWD design, and third-party API integrations (payment gateways, CRMs, marketing tools, and more). From design mockups to live deployment, we offer an end-to-end service with uncompromising quality at every step."
+      },
+      {
+        "id": "timeline",
+        "icon": "Clock",
+        "tag": "Timeline",
+        "question": "How long does a project typically take?",
+        "answer": "It depends on scope. A basic brand website takes 2–4 weeks; a mid-size SaaS or e-commerce platform with an admin panel typically takes 6–12 weeks; large custom systems are evaluated case-by-case. We provide a detailed timeline before signing, with clear milestones and checkpoints to keep everything fully transparent."
+      },
+      {
+        "id": "pricing",
+        "icon": "CreditCard",
+        "tag": "Pricing",
+        "question": "How is pricing calculated? Are there fixed packages?",
+        "answer": "We offer two models: fixed-price quotes (best for well-defined projects) and hourly billing (ideal for evolving startup requirements). Initial consultations are completely free. After confirming requirements, we deliver a detailed quote within 3 business days — covering design, development, testing, and deployment with no hidden fees."
+      },
+      {
+        "id": "workflow",
+        "icon": "GitBranch",
+        "tag": "Workflow",
+        "question": "How do we get started? What's the process?",
+        "answer": "Our process unfolds in four steps: ① Free consultation (30–60 min video call) → ② Proposal and quote (within 3 business days) → ③ Contract signing and development kickoff → ④ Final review, launch, and a 30-day free bug fix warranty. Progress is tracked transparently via project management tools throughout."
+      },
+      {
+        "id": "maintenance",
+        "icon": "Wrench",
+        "tag": "Maintenance",
+        "question": "Do you offer maintenance and updates after launch?",
+        "answer": "Yes. We offer three maintenance options: monthly retainer (includes performance monitoring, security updates, and regular backups), on-demand billing (pay-as-you-go for occasional updates), and feature expansion (re-scoped after a new requirements session). Bug fixes within 30 days of launch are always free."
+      },
+      {
+        "id": "techstack",
+        "icon": "Code2",
+        "tag": "Tech Stack",
+        "question": "What technologies do you build with?",
+        "answer": "Frontend: React / Next.js + TypeScript. Backend: Node.js / Express or Python. Databases: PostgreSQL or MongoDB depending on requirements. Deployment: Vercel, AWS, or GCP. All code is version-controlled via Git, and upon project completion full source code ownership is transferred to you."
+      },
+      {
+        "id": "design",
+        "icon": "Palette",
+        "tag": "Design Changes",
+        "question": "Can we change the design or requirements during development?",
+        "answer": "Yes — though we recommend finalizing major changes before the design is approved to avoid delays. Minor adjustments (colors, copy, layout tweaks) during development are usually flexible. Functional requirement changes are re-evaluated for timeline and cost, and only proceed once both parties agree, ensuring project quality is never compromised."
+      },
+      {
+        "id": "security",
+        "icon": "ShieldCheck",
+        "tag": "Data Security",
+        "question": "How do you protect our data and privacy?",
+        "answer": "We develop to OWASP Top 10 standards, protecting against common attacks (XSS, SQL Injection, and more). All sensitive data is encrypted in transit via HTTPS, and credentials or API keys never appear in source code. Upon delivery, you retain full ownership of all source code, databases, and accounts — your digital sovereignty is absolute."
+      }
+    ]
+  }
+}
