@@ -45,13 +45,13 @@ export function LandingPage() {
         </main>
       </div>
 
-      <ExHero />
-      <ExProcess />
-      <ExPortfolio />
-      <ExTestimonials />
-      <ExContact />
+      <ExHero lang={lang} />
+      <ExProcess lang={lang} />
+      <ExPortfolio lang={lang} />
+      <ExTestimonials lang={lang} />
+      <ExContact lang={lang} />
       <ExAppShowcase />
-      <ExFooter />
+      <ExFooter lang={lang} />
     </>
   );
 }

@@ -1,33 +1,9 @@
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
-import {
-  Clock,
-  Code2,
-  CreditCard,
-  GitBranch,
-  Globe,
-  Palette,
-  ShieldCheck,
-  Wrench,
-} from "lucide-react";
-import type { LucideProps } from "lucide-react";
-import type { ComponentType } from "react";
 import { cn } from "@/lib/utils";
 import { type Lang } from "./i18n";
 import { Header } from "./components/Header";
+import { ICON_MAP } from "./iconMap";
 import qaDataRaw from "./qaData.json";
-
-type LucideIcon = ComponentType<LucideProps>;
-
-const ICON_MAP: Record<string, LucideIcon> = {
-  Globe,
-  Clock,
-  CreditCard,
-  GitBranch,
-  Wrench,
-  Code2,
-  Palette,
-  ShieldCheck,
-};
 
 const HERO_GRADIENT = {
   background:

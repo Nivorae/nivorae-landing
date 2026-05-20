@@ -1,0 +1,45 @@
+import {
+  Clock,
+  ClipboardList,
+  Code2,
+  CreditCard,
+  FileSignature,
+  GitBranch,
+  Globe,
+  Hammer,
+  Layers,
+  ListChecks,
+  Package,
+  Palette,
+  PenTool,
+  ShieldCheck,
+  Smartphone,
+  Terminal,
+  Wrench,
+  Zap,
+  type LucideProps,
+} from "lucide-react";
+import type { ComponentType } from "react";
+
+export type LucideIcon = ComponentType<LucideProps>;
+
+export const ICON_MAP: Record<string, LucideIcon> = {
+  Clock,
+  ClipboardList,
+  Code2,
+  CreditCard,
+  FileSignature,
+  GitBranch,
+  Globe,
+  Hammer,
+  Layers,
+  ListChecks,
+  Package,
+  Palette,
+  PenTool,
+  ShieldCheck,
+  Smartphone,
+  Terminal,
+  Wrench,
+  Zap,
+};
