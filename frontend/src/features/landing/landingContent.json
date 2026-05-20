@@ -1,0 +1,710 @@
+{
+  "_version": "1.0.0",
+  "_note": "Single source of truth for all landing page copy. Edit here to update any text on the site.",
+
+  "nav": {
+    "zh": {
+      "home": "首頁",
+      "plans": "方案",
+      "team": "團隊介紹",
+      "qa": "常見問題"
+    },
+    "en": {
+      "home": "Home",
+      "plans": "Plans",
+      "team": "Our Team",
+      "qa": "Q&A"
+    }
+  },
+
+  "theme": {
+    "zh": { "light": "日", "dark": "夜", "label": "主題切換" },
+    "en": { "light": "Day", "dark": "Night", "label": "Theme" }
+  },
+
+  "lang": {
+    "zh": { "zh": "中文", "en": "EN" },
+    "en": { "zh": "中文", "en": "EN" }
+  },
+
+  "hero": {
+    "zh": {
+      "badge": "三位工程師，無限可能",
+      "name": "Nivorae",
+      "tagline": "打造屬於您的數位未來",
+      "desc": "我們是由三位工程師組成的軟體開發團隊，專精客製化網站與行動應用程式開發，將您的創意轉化為高品質的數位產品。",
+      "scrollHint": "向下探索"
+    },
+    "en": {
+      "badge": "Three Engineers, Infinite Possibilities",
+      "name": "Nivorae",
+      "tagline": "Build Your Digital Future",
+      "desc": "We are a software development team of three engineers, specializing in custom website and mobile app development — turning your ideas into high-quality digital products.",
+      "scrollHint": "Scroll to explore"
+    }
+  },
+
+  "exHero": {
+    "zh": {
+      "headline": "打造卓越的\n數位體驗",
+      "subtitle": "從零到一的高效能 Web 與 App 開發。\n我們不只寫程式，為您建構可擴展、\n現代化且極具質感的數位產品。",
+      "annotationLeft": "Fast\nProfessional",
+      "annotationRight": "Elevate\nyour brand"
+    },
+    "en": {
+      "headline": "Crafting Exceptional\nDigital Experiences",
+      "subtitle": "High-performance Web & App development from zero to one.\nWe don't just write code — we build scalable,\nmodern digital products with exceptional craft.",
+      "annotationLeft": "Fast\nProfessional",
+      "annotationRight": "Elevate\nyour brand"
+    },
+    "cards": [
+      {
+        "icon": "Globe",
+        "title": "Web Development",
+        "desc": "React & Next.js apps with native SEO and blazing performance."
+      },
+      {
+        "icon": "Smartphone",
+        "title": "Mobile App",
+        "desc": "Cross-platform iOS & Android with native-feel UX on both platforms."
+      },
+      {
+        "icon": "PenTool",
+        "title": "UI/UX Design",
+        "desc": "Intuitive interfaces that convert visitors into loyal customers."
+      },
+      {
+        "icon": "Zap",
+        "title": "Performance",
+        "desc": "100/100 Lighthouse scores. Speed that users and search engines love."
+      },
+      {
+        "icon": "Layers",
+        "title": "Architecture",
+        "desc": "Scalable, maintainable systems built to grow with your business."
+      },
+      {
+        "icon": "Terminal",
+        "title": "Full Stack",
+        "desc": "End-to-end ownership from database schema to production deploy."
+      }
+    ]
+  },
+
+  "exProcess": {
+    "zh": {
+      "title": "我們的開發模式",
+      "brandName": "Nivorae",
+      "subtitle": "從需求釐清到驗收保固的六步驟協作流程"
+    },
+    "en": {
+      "title": "Our Development Process",
+      "brandName": "Nivorae",
+      "subtitle": "Six-step collaborative flow from requirements to delivery"
+    },
+    "steps": [
+      {
+        "icon": "ListChecks",
+        "zh": {
+          "title": "核心功能確認",
+          "items": ["會員系統", "電商網站", "登入系統", "後台管理", "金流系統", "資料庫系統"]
+        },
+        "en": {
+          "title": "Core Feature Scoping",
+          "items": [
+            "Membership system",
+            "E-commerce",
+            "Login system",
+            "Admin panel",
+            "Payment gateway",
+            "Database system"
+          ]
+        }
+      },
+      {
+        "icon": "ClipboardList",
+        "zh": {
+          "title": "專案細節確認",
+          "items": [
+            "UI/UX 風格",
+            "客戶提供既有資料",
+            "修改次數",
+            "匯報機制",
+            "第三方服務費用",
+            "交付時間",
+            "驗收"
+          ]
+        },
+        "en": {
+          "title": "Project Detail Alignment",
+          "items": [
+            "UI/UX style",
+            "Client-provided assets",
+            "Revision rounds",
+            "Reporting cadence",
+            "Third-party costs",
+            "Delivery timeline",
+            "Acceptance criteria"
+          ]
+        }
+      },
+      {
+        "icon": "FileSignature",
+        "zh": { "title": "確認合作", "items": ["合作確認文件", "合約簽約"] },
+        "en": {
+          "title": "Confirm Partnership",
+          "items": ["Collaboration agreement", "Contract signing"]
+        }
+      },
+      {
+        "icon": "Hammer",
+        "zh": { "title": "專案開發", "items": ["團隊專案開發", "進度回報", "專案上架"] },
+        "en": {
+          "title": "Development",
+          "items": ["Team development", "Progress reporting", "Deployment"]
+        }
+      },
+      {
+        "icon": "Package",
+        "zh": {
+          "title": "權益與交付物",
+          "items": ["專案原始碼", "部署檔案", "資料庫結構", "管理者帳密"]
+        },
+        "en": {
+          "title": "Handoff & Deliverables",
+          "items": ["Project source code", "Deploy files", "Database schema", "Admin credentials"]
+        }
+      },
+      {
+        "icon": "ShieldCheck",
+        "zh": { "title": "結案與保固", "items": ["教育訓練", "後續一個月保固"] },
+        "en": {
+          "title": "Closing & Warranty",
+          "items": ["Knowledge transfer", "One-month post-launch warranty"]
+        }
+      }
+    ]
+  },
+
+  "exPortfolio": {
+    "zh": { "title": "精選作品" },
+    "en": { "title": "Featured Projects" },
+    "projects": [
+      {
+        "id": 1,
+        "color": "#ffa600",
+        "image": "/feature_Scorder.png",
+        "tagText": "上線 15%",
+        "zh": {
+          "title": "Scorder 餐廳線上點餐系統",
+          "tech": "React / TypeScript / Tailwind",
+          "desc": "針對客戶端、廚房端、管理端進行開發，提供線上點餐、桌號管理、庫存管理、訂單追蹤等功能。"
+        },
+        "en": {
+          "title": "Scorder Restaurant Ordering System",
+          "tech": "React / TypeScript / Tailwind",
+          "desc": "Three-role architecture (customer, kitchen, admin) — fully digitizing the paper-based ordering flow."
+        }
+      },
+      {
+        "id": 2,
+        "color": "#1575ce",
+        "image": "/feature_araS.png",
+        "tagText": "互動 75%",
+        "zh": {
+          "title": "araS 資產統計APP",
+          "tech": "React / Next.js / Tailwind / PostgreSQL / Clerk",
+          "desc": "累計資產統計視覺呈現，以簡單視覺化呈現資產統計數據，並呈現退休計畫。"
+        },
+        "en": {
+          "title": "araS Asset Dashboard App",
+          "tech": "React / Next.js / Tailwind / PostgreSQL / Clerk",
+          "desc": "Personal finance dashboard — visualize asset allocation and retirement progress at a glance."
+        }
+      },
+      {
+        "id": 3,
+        "color": "#f3e45f",
+        "image": "/feature_U-turn.png",
+        "tagText": "完成 100%",
+        "zh": {
+          "title": "U TURN 羽球分組系統",
+          "tech": "React / PostgreSQL / Clerk / Tailwind / Zeabur",
+          "desc": "羽球分組系統，提供羽球分組、成員配對、會員機制功能。"
+        },
+        "en": {
+          "title": "U TURN Badminton Grouping System",
+          "tech": "React / PostgreSQL / Clerk / Tailwind / Zeabur",
+          "desc": "Community-driven tournament platform — smart pairing and membership system from idea to launch."
+        }
+      }
+    ]
+  },
+
+  "exTestimonials": {
+    "zh": { "title": "我們相信的事" },
+    "en": { "title": "What We Believe" },
+    "row1": [
+      {
+        "zh": {
+          "name": "程式碼品質",
+          "text": "好的程式碼，是留給下一位工程師的禮物",
+          "subText": "Good code is a gift to the next engineer."
+        },
+        "en": {
+          "name": "Code Quality",
+          "text": "Good code is a gift to the next engineer.",
+          "subText": ""
+        },
+        "avatarColor": "#A259FF"
+      },
+      {
+        "zh": {
+          "name": "透明溝通",
+          "text": "進度出問題，第一時間告訴你，不是最後一秒",
+          "subText": "Bad news first. Always."
+        },
+        "en": { "name": "Clear Communication", "text": "Bad news first. Always.", "subText": "" },
+        "avatarColor": "#00E5B1"
+      },
+      {
+        "zh": {
+          "name": "合約誠信",
+          "text": "我們不簽讓客戶看不懂的合約",
+          "subText": "No jargon. No surprises in the fine print."
+        },
+        "en": {
+          "name": "Contract Integrity",
+          "text": "We don't sign contracts you can't understand.",
+          "subText": ""
+        },
+        "avatarColor": "#0A6CFF"
+      }
+    ],
+    "row2": [
+      {
+        "zh": {
+          "name": "產品思維",
+          "text": "動工前，先問清楚：這解決了什麼問題？",
+          "subText": "We ask 'why' before 'how'."
+        },
+        "en": {
+          "name": "Product Thinking",
+          "text": "Before we build, we ask: what problem does this solve?",
+          "subText": ""
+        },
+        "avatarColor": "#FF3B30"
+      },
+      {
+        "zh": {
+          "name": "務實交付",
+          "text": "快速交付，從不等於粗糙交付",
+          "subText": "Speed without quality isn't speed."
+        },
+        "en": {
+          "name": "Pragmatic Delivery",
+          "text": "Fast delivery never means sloppy delivery.",
+          "subText": ""
+        },
+        "avatarColor": "#FFD100"
+      },
+      {
+        "zh": {
+          "name": "客戶自主",
+          "text": "好的合作，是讓你不再需要我們",
+          "subText": "We build for your independence, not your dependency."
+        },
+        "en": {
+          "name": "Client Independence",
+          "text": "Good collaboration ends with you not needing us.",
+          "subText": ""
+        },
+        "avatarColor": "#A259FF"
+      }
+    ]
+  },
+
+  "exContact": {
+    "zh": {
+      "title": "準備好開始您的專案了嗎？",
+      "desc": "填寫簡短的需求表單，我們將在 24 小時內由資深技術經理與您聯繫，並提供初步報價區間。",
+      "form": {
+        "name": { "label": "姓名 / 聯絡人", "placeholder": "John Doe" },
+        "email": { "label": "聯絡信箱", "placeholder": "john@example.com" },
+        "date": { "label": "專案完成日期", "placeholder": "2026/01/01" },
+        "line": { "label": "Line名稱", "placeholder": "@yourlineid" },
+        "type": {
+          "label": "專案類型",
+          "options": ["Web 網站 / 系統開發", "iOS / Android App 開發", "UI/UX 設計", "其他技術諮詢"]
+        },
+        "submit": "送出諮詢需求"
+      }
+    },
+    "en": {
+      "title": "Ready to Start Your Project?",
+      "desc": "Fill in the form and we'll reach out within 24 hours with an initial quote range.",
+      "form": {
+        "name": { "label": "Name / Contact", "placeholder": "John Doe" },
+        "email": { "label": "Email", "placeholder": "john@example.com" },
+        "date": { "label": "Target Completion Date", "placeholder": "2026/01/01" },
+        "line": { "label": "Line ID", "placeholder": "@yourlineid" },
+        "type": {
+          "label": "Project Type",
+          "options": [
+            "Web / System Development",
+            "iOS / Android App",
+            "UI/UX Design",
+            "Tech Consulting"
+          ]
+        },
+        "submit": "Submit Inquiry"
+      }
+    }
+  },
+
+  "exFooter": {
+    "zh": {
+      "tagline": "專注於現代化技術的接案開發代理商。我們幫助企業與新創打造極具競爭力的數位產品。",
+      "servicesHeading": "Services",
+      "services": [
+        { "label": "Web 應用開發", "href": "#services" },
+        { "label": "UI/UX 設計", "href": "#services" },
+        { "label": "電商網站架設", "href": "#services" },
+        { "label": "自動化 / 整合案件", "href": "#services" },
+        { "label": "爬蟲 / 資料服務", "href": "#services" },
+        { "label": "落地頁 / 小型網站", "href": "#services" },
+        { "label": "技術諮詢", "href": "#services" }
+      ],
+      "companyHeading": "Company",
+      "company": [
+        { "label": "關於我們", "href": "/team" },
+        { "label": "隱私權政策", "href": "/privacy" }
+      ]
+    },
+    "en": {
+      "tagline": "A modern-stack development agency helping startups and businesses build competitive digital products.",
+      "servicesHeading": "Services",
+      "services": [
+        { "label": "Web App Development", "href": "#services" },
+        { "label": "UI/UX Design", "href": "#services" },
+        { "label": "E-commerce", "href": "#services" },
+        { "label": "Automation / Integration", "href": "#services" },
+        { "label": "Web Scraping / Data", "href": "#services" },
+        { "label": "Landing Pages", "href": "#services" },
+        { "label": "Tech Consulting", "href": "#services" }
+      ],
+      "companyHeading": "Company",
+      "company": [
+        { "label": "About Us", "href": "/team" },
+        { "label": "Privacy Policy", "href": "/privacy" }
+      ]
+    }
+  },
+
+  "plans": {
+    "zh": {
+      "plansHero": {
+        "badge": "Nivorae · 服務方案",
+        "title": "選擇最適合\n您的方案",
+        "desc": "無論您是需要品牌官網、後台管理系統，還是完整的客製化開發，我們都有對應的解決方案。"
+      },
+      "pricing": {
+        "heading": "費用一覽",
+        "recommended": "推薦方案",
+        "cta": "立即諮詢",
+        "startingFrom": "起"
+      },
+      "items": [
+        {
+          "id": "admin",
+          "title": "後台管理網站",
+          "en": "ADMIN PANEL",
+          "price": "NT$60,000",
+          "highlight": false,
+          "includes": ["登入權限控管", "數據總覽儀表板", "內容管理系統 (CMS)", "基礎資安防護"],
+          "deliverables": ["後台原始碼", "資料庫建置檔", "API 串接文件", "系統操作手冊"]
+        },
+        {
+          "id": "basic",
+          "title": "品牌官網基本款",
+          "en": "BASIC WEBSITE",
+          "price": "NT$30,000",
+          "highlight": true,
+          "includes": ["首頁與 4 個內容頁", "RWD 響應式設計", "基礎 SEO", "聯絡 CTA"],
+          "deliverables": ["PHP 原始碼", "前台頁面", "部署檔案", "驗收清單"]
+        },
+        {
+          "id": "custom",
+          "title": "客製系統開發",
+          "en": "CUSTOM SYSTEM",
+          "price": "NT$120,000",
+          "highlight": false,
+          "includes": [
+            "需求訪談與 SA/SD",
+            "客製化 UI/UX 設計",
+            "第三方金流/API 串接",
+            "複雜業務邏輯實作"
+          ],
+          "deliverables": ["完整前後端系統", "系統架構圖", "單元測試報告", "原始碼與版權移轉"]
+        }
+      ],
+      "grid": {
+        "heading": "我們提供\n多元服務",
+        "items": [
+          { "title": "前端開發", "desc": "React、Vue、Next.js 現代框架，打造流暢的使用者體驗。" },
+          { "title": "後端開發", "desc": "Node.js、Python、Go 強健後端，建構穩固的系統架構。" },
+          { "title": "雲端服務", "desc": "AWS、GCP 雲端部署，確保服務高可用性與擴展性。" },
+          { "title": "行動應用", "desc": "React Native、Flutter 跨平台開發，一份代碼多平台上架。" },
+          { "title": "系統整合", "desc": "第三方 API、金流、身分驗證等服務整合串接。" },
+          { "title": "技術顧問", "desc": "技術選型、架構設計、代碼審查等專業諮詢服務。" },
+          { "title": "UI/UX 設計", "desc": "從原型設計到視覺規範，打造美觀且易用的介面體驗。" }
+        ]
+      }
+    },
+    "en": {
+      "plansHero": {
+        "badge": "Nivorae · Pricing Plans",
+        "title": "Pick a plan\nthat's right for you",
+        "desc": "Whether you need a brand website, an admin panel, or a fully custom system — we have a solution for you."
+      },
+      "pricing": {
+        "heading": "PRICING",
+        "recommended": "Recommended",
+        "cta": "Get in Touch",
+        "startingFrom": "from"
+      },
+      "items": [
+        {
+          "id": "basic",
+          "title": "Basic Website",
+          "en": "BASIC WEBSITE",
+          "price": "NT$30,000",
+          "highlight": false,
+          "includes": ["Home + 4 content pages", "Responsive design", "Basic SEO", "Contact CTA"],
+          "deliverables": [
+            "PHP source code",
+            "Frontend pages",
+            "Deploy files",
+            "Acceptance checklist"
+          ]
+        },
+        {
+          "id": "admin",
+          "title": "Admin Panel",
+          "en": "ADMIN PANEL",
+          "price": "NT$60,000",
+          "highlight": true,
+          "includes": [
+            "Login & access control",
+            "Data overview dashboard",
+            "Content management (CMS)",
+            "Basic security"
+          ],
+          "deliverables": [
+            "Backend source code",
+            "Database setup file",
+            "API integration docs",
+            "System manual"
+          ]
+        },
+        {
+          "id": "custom",
+          "title": "Custom System",
+          "en": "CUSTOM SYSTEM",
+          "price": "NT$120,000",
+          "highlight": false,
+          "includes": [
+            "Requirements & SA/SD",
+            "Custom UI/UX design",
+            "Payment/API integration",
+            "Complex business logic"
+          ],
+          "deliverables": [
+            "Full frontend + backend",
+            "System architecture diagram",
+            "Unit test report",
+            "Source code & IP transfer"
+          ]
+        }
+      ],
+      "grid": {
+        "heading": "WE PROVIDE\nVARIOUS SERVICES",
+        "items": [
+          {
+            "title": "Frontend",
+            "desc": "React, Vue, Next.js modern frameworks for smooth user experiences."
+          },
+          {
+            "title": "Backend",
+            "desc": "Node.js, Python, Go for robust and scalable system architecture."
+          },
+          {
+            "title": "Cloud",
+            "desc": "AWS, GCP deployments ensuring high availability and scalability."
+          },
+          {
+            "title": "Mobile",
+            "desc": "React Native & Flutter cross-platform development solutions."
+          },
+          {
+            "title": "Integration",
+            "desc": "Third-party APIs, payment gateways, and auth service connections."
+          },
+          {
+            "title": "Consulting",
+            "desc": "Tech selection, architecture design, and code review expertise."
+          },
+          {
+            "title": "UI/UX Design",
+            "desc": "From prototyping to visual specs, crafting beautiful interfaces."
+          }
+        ]
+      }
+    }
+  },
+
+  "team": {
+    "zh": {
+      "heroTitle": "專業團隊",
+      "teamHeading": "PROFESSIONAL TEAM",
+      "servicesHeading": "我們提供\n多元服務",
+      "services": [
+        {
+          "num": "01",
+          "title": "網站開發",
+          "desc": "我們提供高品質客製化網站開發，從 UI/UX 設計到後端系統架構，全方位打造您的數位門面，確保卓越的使用者體驗與系統效能。"
+        },
+        {
+          "num": "02",
+          "title": "行動應用",
+          "desc": "React Native 與 Flutter 跨平台行動應用開發，一次開發同時覆蓋 iOS 與 Android，快速推進您的行動策略。"
+        },
+        {
+          "num": "03",
+          "title": "系統整合",
+          "desc": "串接第三方 API、金流系統、身分驗證等多元服務整合，確保您的業務流程無縫銜接、穩定運作。"
+        },
+        {
+          "num": "04",
+          "title": "技術顧問",
+          "desc": "提供技術選型、架構設計與代碼審查等專業顧問服務，協助您做出最優的技術決策，加速產品落地。"
+        }
+      ],
+      "members": [
+        {
+          "name": "Juliana",
+          "role": "UI/UX Designer",
+          "specialties": [
+            { "text": "UIUX 設計", "image": "/team/網頁設計.png" },
+            { "text": "前端開發", "image": "/team/前端開發.png" },
+            { "text": "品牌視覺", "image": "/team/美感設計.png" },
+            { "text": "互動設計", "image": "/team/前端設計.png" },
+            { "text": "原型設計", "image": "/team/專案管理.png" },
+            { "text": "使用者研究", "image": "/team/行銷企劃.png" },
+            { "text": "動態設計", "image": "/team/美感設計.png" },
+            { "text": "設計系統", "image": "/team/前端設計.png" }
+          ]
+        },
+        {
+          "name": "James",
+          "role": "Backend Engineer",
+          "specialties": [
+            { "text": "後端 API", "image": "/team/後端開發.png" },
+            { "text": "資料庫設計", "image": "/team/資料處理管理.png" },
+            { "text": "雲端部署", "image": "/team/自動化流程.png" },
+            { "text": "系統架構", "image": "/team/後端開發.png" },
+            { "text": "微服務", "image": "/team/API串接.png" },
+            { "text": "資安防護", "image": "/team/網路爬蟲.png" },
+            { "text": "DevOps", "image": "/team/自動化流程.png" },
+            { "text": "效能優化", "image": "/team/數據分析.png" }
+          ]
+        },
+        {
+          "name": "Max",
+          "role": "Frontend Engineer",
+          "specialties": [
+            { "text": "SPA 開發", "image": "/team/前端開發.png" },
+            { "text": "前端架構", "image": "/team/前端設計.png" },
+            { "text": "響應式佈局", "image": "/team/網頁設計.png" },
+            { "text": "動畫設計", "image": "/team/美感設計.png" },
+            { "text": "狀態管理", "image": "/team/數據分析.png" },
+            { "text": "元件設計", "image": "/team/前端設計.png" },
+            { "text": "跨平台開發", "image": "/team/前端開發.png" },
+            { "text": "TypeScript", "image": "/team/後端開發.png" }
+          ]
+        }
+      ]
+    },
+    "en": {
+      "heroTitle": "ABOUT US",
+      "teamHeading": "PROFESSIONAL TEAM",
+      "servicesHeading": "WE PROVIDE\nVARIOUS SERVICES",
+      "services": [
+        {
+          "num": "01",
+          "title": "Web Development",
+          "desc": "High-quality custom web development — from UI/UX design to backend architecture, crafting your digital presence with exceptional user experience and performance."
+        },
+        {
+          "num": "02",
+          "title": "Mobile App",
+          "desc": "Cross-platform mobile development with React Native & Flutter, covering iOS and Android from a single codebase to accelerate your mobile strategy."
+        },
+        {
+          "num": "03",
+          "title": "System Integration",
+          "desc": "Seamlessly connect third-party APIs, payment gateways, and authentication services to streamline your business workflows and ensure reliable operations."
+        },
+        {
+          "num": "04",
+          "title": "Tech Consulting",
+          "desc": "Expert guidance on tech stack selection, architecture design, and code review to help you make the best technical decisions and ship products faster."
+        }
+      ],
+      "members": [
+        {
+          "name": "Juliana",
+          "role": "UI/UX Designer",
+          "specialties": [
+            { "text": "UIUX Design", "image": "/team/網頁設計.png" },
+            { "text": "Frontend Dev", "image": "/team/前端開發.png" },
+            { "text": "Brand Identity", "image": "/team/美感設計.png" },
+            { "text": "Interaction", "image": "/team/前端設計.png" },
+            { "text": "Prototyping", "image": "/team/專案管理.png" },
+            { "text": "User Research", "image": "/team/行銷企劃.png" },
+            { "text": "Motion Design", "image": "/team/美感設計.png" },
+            { "text": "Design System", "image": "/team/前端設計.png" }
+          ]
+        },
+        {
+          "name": "James",
+          "role": "Backend Engineer",
+          "specialties": [
+            { "text": "Backend API", "image": "/team/後端開發.png" },
+            { "text": "Database", "image": "/team/資料處理管理.png" },
+            { "text": "Cloud Deploy", "image": "/team/自動化流程.png" },
+            { "text": "Architecture", "image": "/team/後端開發.png" },
+            { "text": "Microservices", "image": "/team/API串接.png" },
+            { "text": "Security", "image": "/team/網路爬蟲.png" },
+            { "text": "DevOps", "image": "/team/自動化流程.png" },
+            { "text": "Performance", "image": "/team/數據分析.png" }
+          ]
+        },
+        {
+          "name": "Max",
+          "role": "Frontend Engineer",
+          "specialties": [
+            { "text": "SPA Dev", "image": "/team/前端開發.png" },
+            { "text": "Frontend Arch", "image": "/team/前端設計.png" },
+            { "text": "Responsive", "image": "/team/網頁設計.png" },
+            { "text": "Animation", "image": "/team/美感設計.png" },
+            { "text": "State Mgmt", "image": "/team/數據分析.png" },
+            { "text": "Component Design", "image": "/team/前端設計.png" },
+            { "text": "Cross-Platform", "image": "/team/前端開發.png" },
+            { "text": "TypeScript", "image": "/team/後端開發.png" }
+          ]
+        }
+      ]
+    }
+  }
+}
