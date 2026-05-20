@@ -1426,7 +1426,7 @@ export function ExFooter({ lang }: { lang: Lang }) {
   return (
     <footer className="border-t border-border bg-background pt-20 pb-10 text-foreground">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="grid md:grid-cols-4 gap-12 mb-16">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-12 mb-16">
           <div className="col-span-2">
             <div className="flex items-center gap-2 mb-6">
               <Image
