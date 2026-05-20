@@ -877,9 +877,9 @@ export function ExPortfolio({ lang }: { lang: Lang }) {
         <h2 className="text-4xl font-bold text-center">{content.exPortfolio[lang].title}</h2>
       </motion.div>
 
-      {/* Devices — vertical on mobile, horizontal bottom-aligned on lg+ */}
+      {/* Devices — vertical on mobile, horizontal bottom-aligned on md+ */}
       <motion.div
-        className="flex flex-col lg:flex-row items-center lg:items-end justify-center gap-10 px-6"
+        className="flex flex-col md:flex-row items-center md:items-end justify-center gap-10 px-6"
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-80px" }}
@@ -963,7 +963,7 @@ export function ExPortfolio({ lang }: { lang: Lang }) {
         </div>
 
         {/* Laptop */}
-        <div className="relative flex flex-col items-center">
+        <div className="hidden lg:flex flex-col items-center">
           <div className="w-[520px] relative z-10">
             <div className="bg-black rounded-t-[22px] p-3.5 pb-0">
               {/* Webcam dot */}
