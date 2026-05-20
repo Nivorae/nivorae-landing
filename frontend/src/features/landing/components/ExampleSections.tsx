@@ -4,21 +4,17 @@ import {
   Globe,
   Smartphone,
   PenTool,
-  Zap,
-  Layers,
   Terminal,
   Star,
   Image as ImageIcon,
   X,
   ListChecks,
-  ClipboardList,
-  FileSignature,
-  Hammer,
-  Package,
-  ShieldCheck,
 } from "lucide-react";
 import { Image } from "@/components/ui/image";
 import { cn } from "@/lib/utils";
+import content from "../landingContent.json";
+import type { Lang } from "../i18n";
+import { ICON_MAP } from "../iconMap";
 
 // ─── TiltCard ───────────────────────────────────────────────────────────────
 
@@ -58,38 +54,11 @@ function TiltCard({ children, className = "" }: { children: React.ReactNode; cla
 
 // ─── Hero ────────────────────────────────────────────────────────────────────
 
-const heroCardData = [
-  {
-    Icon: Globe,
-    title: "Web Development",
-    desc: "React & Next.js apps with native SEO and blazing performance.",
-  },
-  {
-    Icon: Smartphone,
-    title: "Mobile App",
-    desc: "Cross-platform iOS & Android with native-feel UX on both platforms.",
-  },
-  {
-    Icon: PenTool,
-    title: "UI/UX Design",
-    desc: "Intuitive interfaces that convert visitors into loyal customers.",
-  },
-  {
-    Icon: Zap,
-    title: "Performance",
-    desc: "100/100 Lighthouse scores. Speed that users and search engines love.",
-  },
-  {
-    Icon: Layers,
-    title: "Architecture",
-    desc: "Scalable, maintainable systems built to grow with your business.",
-  },
-  {
-    Icon: Terminal,
-    title: "Full Stack",
-    desc: "End-to-end ownership from database schema to production deploy.",
-  },
-];
+const heroCardData = content.exHero.cards.map((c) => ({
+  Icon: ICON_MAP[c.icon] ?? Globe,
+  title: c.title,
+  desc: c.desc,
+}));
 
 const CARD_WIDTH = 260;
 const CARD_HEIGHT = 280;
@@ -100,7 +69,7 @@ const SCROLL_SPEED = 0.8;
 const ARC_PARABOLA = 0.00025;
 const ARC_ROTATION = 0.012;
 
-export function ExHero() {
+export function ExHero({ lang }: { lang: Lang }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const cardEls = useRef<(HTMLDivElement | null)[]>(Array(TOTAL_CARDS).fill(null));
   const rafRef = useRef<number>(0);
@@ -149,9 +118,12 @@ export function ExHero() {
       <div className="relative text-center max-w-4xl mx-auto mb-6">
         <div className="absolute -left-24 top-40 hidden lg:flex flex-col items-center rotate-[-5deg]">
           <span className="font-serif italic text-xl text-muted-foreground mb-1">
-            Fast
-            <br />
-            Professional
+            {content.exHero[lang].annotationLeft.split("\n").map((line, i, arr) => (
+              <span key={line}>
+                {line}
+                {i < arr.length - 1 && <br />}
+              </span>
+            ))}
           </span>
           <svg
             width="60"
@@ -169,16 +141,22 @@ export function ExHero() {
         </div>
 
         <h1 className="text-[2.75rem] sm:text-6xl md:text-[5rem] leading-[1.05] font-bold text-foreground tracking-tight">
-          打造卓越的
-          <br />
-          數位體驗
+          {content.exHero[lang].headline.split("\n").map((line, i, arr) => (
+            <span key={line}>
+              {line}
+              {i < arr.length - 1 && <br />}
+            </span>
+          ))}
         </h1>
 
         <div className="absolute -right-24 top-40 hidden lg:flex flex-col items-center rotate-[-5deg]">
           <span className="font-serif italic text-xl text-muted-foreground mb-1">
-            Elevate
-            <br />
-            your brand
+            {content.exHero[lang].annotationRight.split("\n").map((line, i, arr) => (
+              <span key={line}>
+                {line}
+                {i < arr.length - 1 && <br />}
+              </span>
+            ))}
           </span>
           <svg
             width="60"
@@ -197,11 +175,12 @@ export function ExHero() {
       </div>
 
       <p className="text-center text-muted-foreground text-base md:text-lg max-w-[600px] mx-auto mb-6 leading-relaxed">
-        從零到一的高效能 Web 與 App 開發。
-        <br className="hidden md:block" />
-        我們不只寫程式，為您建構可擴展、
-        <br className="hidden md:block" />
-        現代化且極具質感的數位產品。
+        {content.exHero[lang].subtitle.split("\n").map((line, i, arr) => (
+          <span key={line}>
+            {line}
+            {i < arr.length - 1 && <br className="hidden md:block" />}
+          </span>
+        ))}
       </p>
 
       <div
@@ -293,47 +272,6 @@ const ILLUSTRATION_COLORS = {
   layerBg: "#1a1a1c",
   altBg: "#222224",
 } as const;
-
-const processSteps = [
-  {
-    Icon: ListChecks,
-    title: "核心功能確認",
-    items: ["會員系統", "電商網站", "登入系統", "後台管理", "金流系統", "資料庫系統"],
-  },
-  {
-    Icon: ClipboardList,
-    title: "專案細節確認",
-    items: [
-      "UI/UX 風格",
-      "客戶提供既有資料",
-      "修改次數",
-      "匯報機制",
-      "第三方服務費用",
-      "交付時間",
-      "驗收",
-    ],
-  },
-  {
-    Icon: FileSignature,
-    title: "確認合作",
-    items: ["合作確認文件", "合約簽約"],
-  },
-  {
-    Icon: Hammer,
-    title: "專案開發",
-    items: ["團隊專案開發", "進度回報", "專案上架"],
-  },
-  {
-    Icon: Package,
-    title: "權益與交付物",
-    items: ["專案原始碼", "部署檔案", "資料庫結構", "管理者帳密"],
-  },
-  {
-    Icon: ShieldCheck,
-    title: "結案與保固",
-    items: ["教育訓練", "後續一個月保固"],
-  },
-];
 
 function IllustrationModules() {
   return (
@@ -661,7 +599,13 @@ const stepIllustrations: React.FC[] = [
   IllustrationWarranty,
 ];
 
-export function ExProcess() {
+const PROCESS_STEPS = {
+  zh: content.exProcess.steps.map((s) => ({ Icon: ICON_MAP[s.icon] ?? ListChecks, ...s.zh })),
+  en: content.exProcess.steps.map((s) => ({ Icon: ICON_MAP[s.icon] ?? ListChecks, ...s.en })),
+};
+
+export function ExProcess({ lang }: { lang: Lang }) {
+  const processSteps = PROCESS_STEPS[lang];
   const [activeStep, setActiveStep] = useState(0);
   const active = processSteps[activeStep];
   const ActiveIcon = active.Icon;
@@ -672,7 +616,9 @@ export function ExProcess() {
       id="process"
       className="py-24 bg-background text-foreground flex flex-col items-center justify-center border-y border-border/50 font-sans overflow-hidden"
     >
-      <h2 className="text-4xl font-bold mb-20 text-center text-foreground">我們的開發模式</h2>
+      <h2 className="text-4xl font-bold mb-20 text-center text-foreground">
+        {content.exProcess[lang].title}
+      </h2>
       <div className="max-w-6xl w-full px-6 flex flex-col md:flex-row gap-12 lg:gap-20 items-stretch">
         <div className="bg-[#1d1d1f] rounded-[2rem] p-8 md:p-10 w-full md:w-[45%] flex flex-col relative shadow-2xl shrink-0 border border-white/[0.03] overflow-hidden">
           <div
@@ -708,10 +654,10 @@ export function ExProcess() {
         <div className="w-full md:w-[55%] flex flex-col">
           <div className="flex items-end gap-4 mb-8">
             <h2 className="text-[40px] font-bold text-white leading-none tracking-tight">
-              Nivorae
+              {content.exProcess[lang].brandName}
             </h2>
             <span className="text-[13px] font-medium text-white mb-1">
-              從需求釐清到驗收保固的六步驟協作流程
+              {content.exProcess[lang].subtitle}
             </span>
           </div>
 
@@ -856,43 +802,25 @@ export function ExTechStack() {
 
 // ─── Portfolio ───────────────────────────────────────────────────────────────
 
-const portfolioProjects = [
-  {
-    id: 1,
-    color: "bg-[#ffa600]",
-    colorHex: "#ffa600",
-    image: "/feature_Scorder.png",
-    textColor: "text-white",
-    tagText: "上線 15%",
-    title: "Scorder 餐廳線上點餐系統",
-    tech: "React / TypeScript / Tailwind",
-    desc: "針對客戶端、廚房端、管理端進行開發，提供線上點餐、桌號管理、庫存管理、訂單追蹤等功能。",
-  },
-  {
-    id: 2,
-    color: "bg-[#1575ce]",
-    colorHex: "#1575ce",
-    image: "/feature_araS.png",
-    textColor: "text-white",
-    tagText: "互動 75%",
-    title: "araS 資產統計APP",
-    tech: "React / Next.js / Tailwind / PostgreSQL /Clerk",
-    desc: "累計資產統計視覺呈現，以簡單視覺化呈現資產統計數據，並呈現退休計畫。",
-  },
-  {
-    id: 3,
-    color: "bg-[#f3e45f]",
-    colorHex: "#f3e45f",
-    image: "/feature_U-turn.png",
-    textColor: "text-white",
-    tagText: "完成 100%",
-    title: "U TURN 羽球分組系統",
-    tech: "React / PostgreSQL / Clerk / Tailwind / Zeabur",
-    desc: "羽球分組系統，提供羽球分組、成員配對、會員機制功能。",
-  },
-];
+const PORTFOLIO_PROJECTS = {
+  zh: content.exPortfolio.projects.map((proj) => ({
+    id: proj.id,
+    colorHex: proj.color,
+    image: proj.image,
+    tagText: proj.tagText,
+    ...proj.zh,
+  })),
+  en: content.exPortfolio.projects.map((proj) => ({
+    id: proj.id,
+    colorHex: proj.color,
+    image: proj.image,
+    tagText: proj.tagText,
+    ...proj.en,
+  })),
+};
 
-export function ExPortfolio() {
+export function ExPortfolio({ lang }: { lang: Lang }) {
+  const portfolioProjects = PORTFOLIO_PROJECTS[lang];
   const [activeIndex, setActiveIndex] = useState(0);
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const p = portfolioProjects[activeIndex];
@@ -946,7 +874,7 @@ export function ExPortfolio() {
         viewport={{ once: true, margin: "-80px" }}
         transition={{ duration: 0.6 }}
       >
-        <h2 className="text-4xl font-bold text-center">Featured Projects</h2>
+        <h2 className="text-4xl font-bold text-center">{content.exPortfolio[lang].title}</h2>
       </motion.div>
 
       {/* Devices — vertical on mobile, horizontal bottom-aligned on lg+ */}
@@ -1186,13 +1114,13 @@ function MarqueeRow({
   );
 }
 
-export function ExTestimonials() {
+export function ExTestimonials({ lang }: { lang: Lang }) {
   const colors = testimonialColors;
 
   return (
     <section className="py-32 bg-background text-foreground overflow-hidden flex flex-col items-center border-y border-border/50 relative">
       <div className="max-w-7xl mx-auto px-6 mb-20 w-full relative z-10">
-        <h2 className="text-4xl font-bold text-center">Client Trust &amp; Feedback</h2>
+        <h2 className="text-4xl font-bold text-center">{content.exTestimonials[lang].title}</h2>
       </div>
 
       <div className="flex flex-col w-full gap-6 items-center relative z-10 overflow-hidden">
@@ -1201,32 +1129,15 @@ export function ExTestimonials() {
             className="h-[90px] rounded-full shrink-0 w-[400px]"
             style={{ backgroundColor: colors.red }}
           />
-          <FeedbackCard
-            name="Joe Sparano"
-            text="好的設計是顯而易見的。優秀的設計是透明的。"
-            subText="Good design is obvious. Great design is transparent."
-            avatarBg={colors.purple}
-          />
-          <div
-            className="h-[90px] w-[90px] rounded-full shrink-0"
-            style={{ backgroundColor: colors.purple }}
-          />
-          <FeedbackCard
-            name="Martin LeBlanc"
-            text="UI 就像個笑話。如果你需要解釋它，那就是不夠好。"
-            subText="User interface is like a joke. If you have to explain it, it's not that good."
-            avatarBg={colors.green}
-          />
-          <div
-            className="h-[90px] rounded-full shrink-0 w-[200px]"
-            style={{ backgroundColor: colors.yellow }}
-          />
-          <FeedbackCard
-            name="Paul Rand"
-            text="設計是靜默的品牌推廣大使。"
-            subText="Design is the silent ambassador of your brand."
-            avatarBg={colors.blue}
-          />
+          {content.exTestimonials.row1.map((t) => (
+            <FeedbackCard
+              key={t[lang].name}
+              name={t[lang].name}
+              text={t[lang].text}
+              subText={t[lang].subText}
+              avatarBg={t.avatarColor}
+            />
+          ))}
         </MarqueeRow>
 
         <MarqueeRow direction="right" speed={55}>
@@ -1238,30 +1149,15 @@ export function ExTestimonials() {
             className="h-[90px] rounded-full shrink-0 w-[240px]"
             style={{ backgroundColor: colors.blue }}
           />
-          <FeedbackCard
-            name="Steve Jobs"
-            text="設計不只關乎外表和感覺。設計是它如何運作。"
-            subText="Design is not just what it looks like and feels like. Design is how it works."
-            avatarBg={colors.red}
-          />
-          <div
-            className="h-[90px] w-[90px] rounded-full shrink-0"
-            style={{ backgroundColor: colors.blue }}
-          />
-          <div
-            className="h-[90px] rounded-full shrink-0 w-[300px]"
-            style={{ backgroundColor: colors.red }}
-          />
-          <FeedbackCard
-            name="Ivan Chermayeff"
-            text="設計是為了解決問題而生的藝術。"
-            subText="Design is directed toward human beings."
-            avatarBg={colors.purple}
-          />
-          <div
-            className="h-[90px] rounded-full shrink-0 w-[120px]"
-            style={{ backgroundColor: colors.green }}
-          />
+          {content.exTestimonials.row2.map((t) => (
+            <FeedbackCard
+              key={t[lang].name}
+              name={t[lang].name}
+              text={t[lang].text}
+              subText={t[lang].subText}
+              avatarBg={t.avatarColor}
+            />
+          ))}
         </MarqueeRow>
       </div>
     </section>
@@ -1270,16 +1166,14 @@ export function ExTestimonials() {
 
 // ─── Contact ─────────────────────────────────────────────────────────────────
 
-export function ExContact() {
+export function ExContact({ lang }: { lang: Lang }) {
   return (
     <section id="contact" className="py-32 relative bg-background text-foreground">
       <div className="absolute rounded-full blur-[120px] bg-accent pointer-events-none w-[800px] h-[800px] top-0 right-0 opacity-30" />
 
       <div className="max-w-3xl mx-auto px-6 text-center relative z-10">
-        <h2 className="text-5xl font-bold mb-6">準備好開始您的專案了嗎？</h2>
-        <p className="text-muted-foreground text-lg mb-12">
-          填寫簡短的需求表單，我們將在 24 小時內由資深技術經理與您聯繫，並提供初步報價區間。
-        </p>
+        <h2 className="text-5xl font-bold mb-6">{content.exContact[lang].title}</h2>
+        <p className="text-muted-foreground text-lg mb-12">{content.exContact[lang].desc}</p>
 
         <form className="border border-border bg-card p-8 rounded-3xl text-left space-y-6">
           <div className="grid grid-cols-2 gap-6">
@@ -1288,12 +1182,12 @@ export function ExContact() {
                 htmlFor="contact-name"
                 className="flex flex-col gap-2 text-xs font-bold text-muted-foreground uppercase tracking-wider"
               >
-                姓名 / 聯絡人
+                {content.exContact[lang].form.name.label}
                 <input
                   id="contact-name"
                   type="text"
                   className="w-full bg-background border border-border rounded-lg px-4 py-3 text-foreground focus:outline-none focus:border-ring transition-colors font-normal normal-case tracking-normal"
-                  placeholder="John Doe"
+                  placeholder={content.exContact[lang].form.name.placeholder}
                   required
                 />
               </label>
@@ -1303,12 +1197,12 @@ export function ExContact() {
                 htmlFor="contact-email"
                 className="flex flex-col gap-2 text-xs font-bold text-muted-foreground uppercase tracking-wider"
               >
-                聯絡信箱
+                {content.exContact[lang].form.email.label}
                 <input
                   id="contact-email"
                   type="email"
                   className="w-full bg-background border border-border rounded-lg px-4 py-3 text-foreground focus:outline-none focus:border-ring transition-colors font-normal normal-case tracking-normal"
-                  placeholder="john@example.com"
+                  placeholder={content.exContact[lang].form.email.placeholder}
                   required
                 />
               </label>
@@ -1320,12 +1214,12 @@ export function ExContact() {
                 htmlFor="contact-date"
                 className="flex flex-col gap-2 text-xs font-bold text-muted-foreground uppercase tracking-wider"
               >
-                專案完成日期
+                {content.exContact[lang].form.date.label}
                 <input
                   id="contact-date"
                   type="date"
                   className="w-full bg-background border border-border rounded-lg px-4 py-3 text-foreground focus:outline-none focus:border-ring transition-colors font-normal normal-case tracking-normal"
-                  placeholder="2026/01/01"
+                  placeholder={content.exContact[lang].form.date.placeholder}
                   required
                 />
               </label>
@@ -1335,12 +1229,12 @@ export function ExContact() {
                 htmlFor="contact-line"
                 className="flex flex-col gap-2 text-xs font-bold text-muted-foreground uppercase tracking-wider"
               >
-                Line名稱
+                {content.exContact[lang].form.line.label}
                 <input
                   id="contact-line"
                   type="text"
                   className="w-full bg-background border border-border rounded-lg px-4 py-3 text-foreground focus:outline-none focus:border-ring transition-colors font-normal normal-case tracking-normal"
-                  placeholder="@yourlineid"
+                  placeholder={content.exContact[lang].form.line.placeholder}
                 />
               </label>
             </div>
@@ -1351,16 +1245,15 @@ export function ExContact() {
               htmlFor="contact-type"
               className="flex flex-col gap-2 text-xs font-bold text-muted-foreground uppercase tracking-wider"
             >
-              專案類型
+              {content.exContact[lang].form.type.label}
               <select
                 id="contact-type"
                 className="w-full bg-background border border-border rounded-lg px-4 py-3 text-foreground focus:outline-none focus:border-ring transition-colors appearance-none font-normal normal-case tracking-normal"
                 required
               >
-                <option>Web 網站 / 系統開發</option>
-                <option>iOS / Android App 開發</option>
-                <option>UI/UX 設計</option>
-                <option>其他技術諮詢</option>
+                {content.exContact[lang].form.type.options.map((opt) => (
+                  <option key={opt}>{opt}</option>
+                ))}
               </select>
             </label>
           </div>
@@ -1369,7 +1262,7 @@ export function ExContact() {
             type="button"
             className="w-full bg-foreground text-background font-bold text-lg py-4 rounded-xl hover:opacity-90 transition-transform active:scale-[0.98]"
           >
-            送出諮詢需求
+            {content.exContact[lang].form.submit}
           </button>
         </form>
       </div>
@@ -1529,7 +1422,7 @@ export function ExAppShowcase() {
 
 // ─── Footer ──────────────────────────────────────────────────────────────────
 
-export function ExFooter() {
+export function ExFooter({ lang }: { lang: Lang }) {
   return (
     <footer className="border-t border-border bg-background pt-20 pb-10 text-foreground">
       <div className="max-w-7xl mx-auto px-6">
@@ -1546,64 +1439,33 @@ export function ExFooter() {
               <span className="font-display font-semibold tracking-wide text-xl">Nivorae</span>
             </div>
             <p className="text-muted-foreground text-sm leading-relaxed max-w-sm mb-6">
-              專注於現代化技術的接案開發代理商。我們幫助企業與新創打造極具競爭力的數位產品。
+              {content.exFooter[lang].tagline}
             </p>
           </div>
 
           <div>
-            <h4 className="font-bold mb-4">Services</h4>
+            <h4 className="font-bold mb-4">{content.exFooter[lang].servicesHeading}</h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
-              <li>
-                <a href="#services" className="hover:text-foreground transition-colors">
-                  Web 應用開發
-                </a>
-              </li>
-              <li>
-                <a href="#services" className="hover:text-foreground transition-colors">
-                  UI/UX 設計
-                </a>
-              </li>
-              <li>
-                <a href="#services" className="hover:text-foreground transition-colors">
-                  電商網站架設
-                </a>
-              </li>
-              <li>
-                <a href="#services" className="hover:text-foreground transition-colors">
-                  自動化 / 整合案件
-                </a>
-              </li>
-              <li>
-                <a href="#services" className="hover:text-foreground transition-colors">
-                  爬蟲 / 資料服務
-                </a>
-              </li>
-              <li>
-                <a href="#services" className="hover:text-foreground transition-colors">
-                  落地頁 / 小型網站
-                </a>
-              </li>
-              <li>
-                <a href="#services" className="hover:text-foreground transition-colors">
-                  技術諮詢
-                </a>
-              </li>
+              {content.exFooter[lang].services.map((s) => (
+                <li key={s.label}>
+                  <a href={s.href} className="hover:text-foreground transition-colors">
+                    {s.label}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
 
           <div>
-            <h4 className="font-bold mb-4">Company</h4>
+            <h4 className="font-bold mb-4">{content.exFooter[lang].companyHeading}</h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
-              <li>
-                <a href="#portfolio" className="hover:text-foreground transition-colors">
-                  關於我們
-                </a>
-              </li>
-              <li>
-                <a href="#contact" className="hover:text-foreground transition-colors">
-                  隱私權政策
-                </a>
-              </li>
+              {content.exFooter[lang].company.map((c) => (
+                <li key={c.label}>
+                  <a href={c.href} className="hover:text-foreground transition-colors">
+                    {c.label}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
         </div>
