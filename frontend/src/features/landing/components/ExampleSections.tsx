@@ -664,7 +664,7 @@ export function ExProcess({ lang }: { lang: Lang }) {
           <div
             role="tablist"
             aria-label="開發流程步驟"
-            className="grid grid-cols-3 lg:grid-cols-6 gap-2 mb-6"
+            className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2 mb-6"
           >
             {processSteps.map((step, i) => {
               const isActive = i === activeStep;
