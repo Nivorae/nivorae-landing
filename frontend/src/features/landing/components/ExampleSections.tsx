@@ -1176,7 +1176,7 @@ export function ExContact({ lang }: { lang: Lang }) {
         <p className="text-muted-foreground text-lg mb-12">{content.exContact[lang].desc}</p>
 
         <form className="border border-border bg-card p-8 rounded-3xl text-left space-y-6">
-          <div className="grid grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             <div className="space-y-2">
               <label
                 htmlFor="contact-name"
@@ -1208,7 +1208,7 @@ export function ExContact({ lang }: { lang: Lang }) {
               </label>
             </div>
           </div>
-          <div className="grid grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             <div className="space-y-2">
               <label
                 htmlFor="contact-date"
