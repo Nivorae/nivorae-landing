@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -32,6 +32,18 @@ export function Header({ lang, onLangChange }: HeaderProps) {
   const isActive = (href: string) => (href === "/" ? pathname === "/" : pathname.startsWith(href));
 
   const closeMenu = () => setMenuOpen(false);
+
+  useEffect(() => {
+    if (!menuOpen) return undefined;
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") closeMenu();
+    };
+    document.addEventListener("keydown", onKeyDown);
+    const cleanup = () => {
+      document.removeEventListener("keydown", onKeyDown);
+    };
+    return cleanup;
+  }, [menuOpen]);
 
   return (
     <>
@@ -153,7 +165,10 @@ export function Header({ lang, onLangChange }: HeaderProps) {
                     {idx > 0 && <span className="text-border select-none mx-1">|</span>}
                     <button
                       type="button"
-                      onClick={() => onLangChange(code)}
+                      onClick={() => {
+                        onLangChange(code);
+                        closeMenu();
+                      }}
                       className={cn(
                         "text-sm text-muted-foreground hover:text-foreground transition-colors px-1 py-0.5",
                         lang === code && "font-semibold text-foreground"
