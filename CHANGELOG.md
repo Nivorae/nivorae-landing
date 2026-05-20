@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.3
+
+- Added 404 not found and privacy policy pages
+- Added `i18n` support to all example sections
+- Improved landing copy centralization into `JSON` and extracted `iconMap`
+
 ## 0.2.2
 
 - Added redesigned landing process section with interactive step flow
