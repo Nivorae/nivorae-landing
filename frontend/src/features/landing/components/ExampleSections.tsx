@@ -1279,7 +1279,7 @@ export function ExAppShowcase() {
         <motion.div
           animate={{ x: ["0%", "-50%"] }}
           transition={{ repeat: Infinity, ease: "linear", duration: 20 }}
-          className="text-[#E9FF42] font-display text-[80px] md:text-[120px] font-bold tracking-tight flex gap-8"
+          className="text-[#E9FF42] font-display text-[80px] lg:text-[120px] font-bold tracking-tight flex gap-8"
         >
           <span>Nivorae</span>
           <span>Nivorae</span>
@@ -1288,7 +1288,7 @@ export function ExAppShowcase() {
         </motion.div>
       </div>
 
-      <div className="relative w-full max-w-4xl h-[550px] flex justify-center items-center scale-75 sm:scale-90 md:scale-100">
+      <div className="relative w-full max-w-4xl h-[550px] flex justify-center items-center scale-75 sm:scale-90 lg:scale-100">
         {/* Left Phone */}
         <motion.div
           initial={{ rotate: -12, x: -90, y: 20 }}
@@ -1407,7 +1407,7 @@ export function ExAppShowcase() {
         <motion.div
           animate={{ x: ["-50%", "0%"] }}
           transition={{ repeat: Infinity, ease: "linear", duration: 25 }}
-          className="text-transparent font-display text-[80px] md:text-[120px] font-bold tracking-tight flex gap-8"
+          className="text-transparent font-display text-[80px] lg:text-[120px] font-bold tracking-tight flex gap-8"
           style={{ WebkitTextStroke: "2px #E9FF42" }}
         >
           <span>NIVORAE</span>
