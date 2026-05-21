@@ -35,7 +35,7 @@ const policy = {
       },
       {
         heading: "七、第三方服務供應商",
-        body: "本網站託管於 Vercel 平台（vercel.com）。當您提交聯絡表單時，資料可能透過 Vercel 的伺服器基礎設施傳輸或暫存。此外，後續溝通可能透過 LINE 通訊平台進行。\n\n上述第三方服務供應商依各自之隱私權政策處理資料；您的個人資料不會被用於各平台之廣告或分析用途。我們僅選用具備合理資安保護措施之供應商。",
+        body: "本網站託管於 Zeabur 平台（zeabur.com）。當您提交聯絡表單時，資料可能透過 Zeabur 的伺服器基礎設施傳輸或暫存。此外，後續溝通可能透過 LINE 通訊平台進行。\n\n上述第三方服務供應商依各自之隱私權政策處理資料；您的個人資料不會被用於各平台之廣告或分析用途。我們僅選用具備合理資安保護措施之供應商。",
       },
       {
         heading: "八、聯絡我們",
@@ -79,7 +79,7 @@ const policy = {
       },
       {
         heading: "7. Third-Party Service Providers",
-        body: "This website is hosted on Vercel (vercel.com). When you submit the contact form, your data may be transmitted or temporarily stored through Vercel's server infrastructure. Follow-up communication may also take place via the LINE messaging platform.\n\nThese third-party providers handle data under their own privacy policies. Your personal data will not be used for advertising or analytics on any third-party platform. We work only with providers that maintain reasonable data security standards.",
+        body: "This website is hosted on Zeabur (zeabur.com). When you submit the contact form, your data may be transmitted or temporarily stored through Zeabur's server infrastructure. Follow-up communication may also take place via the LINE messaging platform.\n\nThese third-party providers handle data under their own privacy policies. Your personal data will not be used for advertising or analytics on any third-party platform. We work only with providers that maintain reasonable data security standards.",
       },
       {
         heading: "8. Contact Us",
