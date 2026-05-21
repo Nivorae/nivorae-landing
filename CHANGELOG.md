@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.8
+
+- Changed `Zeabur` two-service deploy configuration and dropped `Prisma` migrations
+
 ## 0.2.7
 
 - Fixed `LINE` field label to use display name in `PrivacyPage` and contact form
