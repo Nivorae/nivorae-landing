@@ -332,7 +332,7 @@
         "name": { "label": "姓名 / 聯絡人", "placeholder": "John Doe" },
         "email": { "label": "聯絡信箱", "placeholder": "john@example.com" },
         "date": { "label": "專案完成日期", "placeholder": "2026/01/01" },
-        "line": { "label": "LINE 帳號", "placeholder": "Your LINE ID" },
+        "line": { "label": "LINE 名稱", "placeholder": "Your LINE Name" },
         "type": {
           "label": "專案類型",
           "options": ["Web 網站 / 系統開發", "iOS / Android App 開發", "UI/UX 設計", "其他技術諮詢"]
