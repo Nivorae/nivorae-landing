@@ -256,7 +256,7 @@
           "text": "Good code is a gift to the next engineer.",
           "subText": ""
         },
-        "avatarColor": "#A259FF"
+        "avatarColor": "#4E000A"
       },
       {
         "zh": {
@@ -265,7 +265,7 @@
           "subText": "Bad news first. Always."
         },
         "en": { "name": "Clear Communication", "text": "Bad news first. Always.", "subText": "" },
-        "avatarColor": "#00E5B1"
+        "avatarColor": "#4E000A"
       },
       {
         "zh": {
@@ -278,7 +278,7 @@
           "text": "We don't sign contracts you can't understand.",
           "subText": ""
         },
-        "avatarColor": "#0A6CFF"
+        "avatarColor": "#e0e0e0"
       }
     ],
     "row2": [
@@ -293,7 +293,7 @@
           "text": "Before we build, we ask: what problem does this solve?",
           "subText": ""
         },
-        "avatarColor": "#FF3B30"
+        "avatarColor": "#4E000A"
       },
       {
         "zh": {
@@ -306,7 +306,7 @@
           "text": "Fast delivery never means sloppy delivery.",
           "subText": ""
         },
-        "avatarColor": "#FFD100"
+        "avatarColor": "#e0e0e0"
       },
       {
         "zh": {
@@ -319,7 +319,7 @@
           "text": "Good collaboration ends with you not needing us.",
           "subText": ""
         },
-        "avatarColor": "#A259FF"
+        "avatarColor": "#4E000A"
       }
     ]
   },
@@ -332,7 +332,7 @@
         "name": { "label": "姓名 / 聯絡人", "placeholder": "John Doe" },
         "email": { "label": "聯絡信箱", "placeholder": "john@example.com" },
         "date": { "label": "專案完成日期", "placeholder": "2026/01/01" },
-        "line": { "label": "Line名稱", "placeholder": "@yourlineid" },
+        "line": { "label": "Line名稱", "placeholder": "Your Line Name" },
         "type": {
           "label": "專案類型",
           "options": ["Web 網站 / 系統開發", "iOS / Android App 開發", "UI/UX 設計", "其他技術諮詢"]
@@ -347,7 +347,7 @@
         "name": { "label": "Name / Contact", "placeholder": "John Doe" },
         "email": { "label": "Email", "placeholder": "john@example.com" },
         "date": { "label": "Target Completion Date", "placeholder": "2026/01/01" },
-        "line": { "label": "Line ID", "placeholder": "@yourlineid" },
+        "line": { "label": "Line ID", "placeholder": "Your Line Name" },
         "type": {
           "label": "Project Type",
           "options": [
@@ -367,13 +367,13 @@
       "tagline": "專注於現代化技術的接案開發代理商。我們幫助企業與新創打造極具競爭力的數位產品。",
       "servicesHeading": "Services",
       "services": [
-        { "label": "Web 應用開發", "href": "#services" },
-        { "label": "UI/UX 設計", "href": "#services" },
-        { "label": "電商網站架設", "href": "#services" },
-        { "label": "自動化 / 整合案件", "href": "#services" },
-        { "label": "爬蟲 / 資料服務", "href": "#services" },
-        { "label": "落地頁 / 小型網站", "href": "#services" },
-        { "label": "技術諮詢", "href": "#services" }
+        { "label": "Web 應用開發", "href": "/plans" },
+        { "label": "UI/UX 設計", "href": "/plans" },
+        { "label": "電商網站架設", "href": "/plans" },
+        { "label": "自動化 / 整合案件", "href": "/plans" },
+        { "label": "爬蟲 / 資料服務", "href": "/plans" },
+        { "label": "落地頁 / 小型網站", "href": "/plans" },
+        { "label": "技術諮詢", "href": "/plans" }
       ],
       "companyHeading": "Company",
       "company": [
@@ -385,13 +385,13 @@
       "tagline": "A modern-stack development agency helping startups and businesses build competitive digital products.",
       "servicesHeading": "Services",
       "services": [
-        { "label": "Web App Development", "href": "#services" },
-        { "label": "UI/UX Design", "href": "#services" },
-        { "label": "E-commerce", "href": "#services" },
-        { "label": "Automation / Integration", "href": "#services" },
-        { "label": "Web Scraping / Data", "href": "#services" },
-        { "label": "Landing Pages", "href": "#services" },
-        { "label": "Tech Consulting", "href": "#services" }
+        { "label": "Web App Development", "href": "/plans" },
+        { "label": "UI/UX Design", "href": "/plans" },
+        { "label": "E-commerce", "href": "/plans" },
+        { "label": "Automation / Integration", "href": "/plans" },
+        { "label": "Web Scraping / Data", "href": "/plans" },
+        { "label": "Landing Pages", "href": "/plans" },
+        { "label": "Tech Consulting", "href": "/plans" }
       ],
       "companyHeading": "Company",
       "company": [
@@ -416,22 +416,22 @@
       },
       "items": [
         {
-          "id": "admin",
-          "title": "後台管理網站",
-          "en": "ADMIN PANEL",
-          "price": "NT$60,000",
-          "highlight": false,
-          "includes": ["登入權限控管", "數據總覽儀表板", "內容管理系統 (CMS)", "基礎資安防護"],
-          "deliverables": ["後台原始碼", "資料庫建置檔", "API 串接文件", "系統操作手冊"]
-        },
-        {
           "id": "basic",
           "title": "品牌官網基本款",
           "en": "BASIC WEBSITE",
           "price": "NT$30,000",
-          "highlight": true,
+          "highlight": false,
           "includes": ["首頁與 4 個內容頁", "RWD 響應式設計", "基礎 SEO", "聯絡 CTA"],
           "deliverables": ["PHP 原始碼", "前台頁面", "部署檔案", "驗收清單"]
+        },
+        {
+          "id": "admin",
+          "title": "後台管理網站",
+          "en": "ADMIN PANEL",
+          "price": "NT$60,000",
+          "highlight": true,
+          "includes": ["登入權限控管", "數據總覽儀表板", "內容管理系統 (CMS)", "基礎資安防護"],
+          "deliverables": ["後台原始碼", "資料庫建置檔", "API 串接文件", "系統操作手冊"]
         },
         {
           "id": "custom",
@@ -448,16 +448,33 @@
           "deliverables": ["完整前後端系統", "系統架構圖", "單元測試報告", "原始碼與版權移轉"]
         }
       ],
-      "grid": {
-        "heading": "我們提供\n多元服務",
-        "items": [
-          { "title": "前端開發", "desc": "React、Vue、Next.js 現代框架，打造流暢的使用者體驗。" },
-          { "title": "後端開發", "desc": "Node.js、Python、Go 強健後端，建構穩固的系統架構。" },
-          { "title": "雲端服務", "desc": "AWS、GCP 雲端部署，確保服務高可用性與擴展性。" },
-          { "title": "行動應用", "desc": "React Native、Flutter 跨平台開發，一份代碼多平台上架。" },
-          { "title": "系統整合", "desc": "第三方 API、金流、身分驗證等服務整合串接。" },
-          { "title": "技術顧問", "desc": "技術選型、架構設計、代碼審查等專業諮詢服務。" },
-          { "title": "UI/UX 設計", "desc": "從原型設計到視覺規範，打造美觀且易用的介面體驗。" }
+      "process": {
+        "heading": "合作\n流程",
+        "steps": [
+          {
+            "num": "01",
+            "title": "需求確認",
+            "desc": "深入了解您的需求，鎖定範圍，提供固定報價。沒有模糊地帶，沒有隱藏費用。"
+          },
+          {
+            "num": "02",
+            "title": "開發進行",
+            "desc": "每週進度更新，範圍不異動，費用不追加。您隨時掌握最新進度。"
+          },
+          {
+            "num": "03",
+            "title": "完整移交",
+            "desc": "原始碼、技術文件、IP 全數移交，第一天起完全屬於您。"
+          }
+        ],
+        "whyUs": [
+          { "title": "程式碼完全屬於你", "desc": "每個專案包含完整 IP 移交，無訂閱、無綁定。" },
+          { "title": "固定報價", "desc": "開工前報好總額，不會有讓您意外的追加帳單。" },
+          {
+            "title": "資深工程師全程主導",
+            "desc": "從評估到交付，同一批工程師負責到底，不轉包新人。"
+          },
+          { "title": "個資法合規架構", "desc": "所有系統預設符合台灣個人資料保護法規範。" }
         ]
       }
     },
@@ -527,36 +544,41 @@
           ]
         }
       ],
-      "grid": {
-        "heading": "WE PROVIDE\nVARIOUS SERVICES",
-        "items": [
+      "process": {
+        "heading": "HOW IT\nWORKS",
+        "steps": [
           {
-            "title": "Frontend",
-            "desc": "React, Vue, Next.js modern frameworks for smooth user experiences."
+            "num": "01",
+            "title": "Scope",
+            "desc": "We learn your requirements, lock scope, and give you a fixed price. No ambiguity, no hidden costs."
           },
           {
-            "title": "Backend",
-            "desc": "Node.js, Python, Go for robust and scalable system architecture."
+            "num": "02",
+            "title": "Build",
+            "desc": "Weekly progress updates. Scope stays locked. Budget stays fixed. You always know where things stand."
           },
           {
-            "title": "Cloud",
-            "desc": "AWS, GCP deployments ensuring high availability and scalability."
+            "num": "03",
+            "title": "Deliver",
+            "desc": "Source code, documentation, and full IP transfer. All yours from day one."
+          }
+        ],
+        "whyUs": [
+          {
+            "title": "You own the code",
+            "desc": "Every project includes a full IP transfer. No subscriptions, no lock-in."
           },
           {
-            "title": "Mobile",
-            "desc": "React Native & Flutter cross-platform development solutions."
+            "title": "Fixed price",
+            "desc": "Quoted before we start. You will never see an invoice that surprises you."
           },
           {
-            "title": "Integration",
-            "desc": "Third-party APIs, payment gateways, and auth service connections."
+            "title": "Senior-led",
+            "desc": "The engineers who scope your project build it. No junior hand-offs."
           },
           {
-            "title": "Consulting",
-            "desc": "Tech selection, architecture design, and code review expertise."
-          },
-          {
-            "title": "UI/UX Design",
-            "desc": "From prototyping to visual specs, crafting beautiful interfaces."
+            "title": "PDPA-compliant",
+            "desc": "Architecture that meets Taiwan's Personal Data Protection Act by default."
           }
         ]
       }

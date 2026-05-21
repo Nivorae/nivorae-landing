@@ -117,14 +117,19 @@ export function ExHero({ lang }: { lang: Lang }) {
     <section className="relative min-h-screen flex flex-col items-center pt-16 pb-8 px-4 bg-background text-foreground overflow-hidden mt-20">
       <div className="relative text-center max-w-4xl mx-auto mb-6">
         <div className="absolute -left-24 top-40 hidden lg:flex flex-col items-center rotate-[-5deg]">
-          <span className="font-serif italic text-xl text-muted-foreground mb-1">
+          <motion.span
+            className="font-serif italic text-xl text-muted-foreground mb-1"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.7, delay: 0.5 }}
+          >
             {content.exHero[lang].annotationLeft.split("\n").map((line, i, arr) => (
               <span key={line}>
                 {line}
                 {i < arr.length - 1 && <br />}
               </span>
             ))}
-          </span>
+          </motion.span>
           <svg
             width="60"
             height="60"
@@ -135,8 +140,18 @@ export function ExHero({ lang }: { lang: Lang }) {
             strokeLinecap="round"
             strokeLinejoin="round"
           >
-            <path d="M50 10 Q 10 15 15 50" />
-            <path d="M25 45 L 15 50 L 10 40" />
+            <motion.path
+              d="M50 10 Q 10 15 15 50"
+              initial={{ pathLength: 0 }}
+              animate={{ pathLength: 1 }}
+              transition={{ duration: 1.0, ease: "easeOut", delay: 1.0 }}
+            />
+            <motion.path
+              d="M25 45 L 15 50 L 10 40"
+              initial={{ pathLength: 0 }}
+              animate={{ pathLength: 1 }}
+              transition={{ duration: 0.3, ease: "easeOut", delay: 1.85 }}
+            />
           </svg>
         </div>
 
@@ -150,14 +165,19 @@ export function ExHero({ lang }: { lang: Lang }) {
         </h1>
 
         <div className="absolute -right-24 top-40 hidden lg:flex flex-col items-center rotate-[-5deg]">
-          <span className="font-serif italic text-xl text-muted-foreground mb-1">
+          <motion.span
+            className="font-serif italic text-xl text-muted-foreground mb-1"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.7, delay: 0.7 }}
+          >
             {content.exHero[lang].annotationRight.split("\n").map((line, i, arr) => (
               <span key={line}>
                 {line}
                 {i < arr.length - 1 && <br />}
               </span>
             ))}
-          </span>
+          </motion.span>
           <svg
             width="60"
             height="60"
@@ -168,8 +188,18 @@ export function ExHero({ lang }: { lang: Lang }) {
             strokeLinecap="round"
             strokeLinejoin="round"
           >
-            <path d="M10 10 Q 50 15 45 50" />
-            <path d="M35 45 L 45 50 L 50 40" />
+            <motion.path
+              d="M10 10 Q 50 15 45 50"
+              initial={{ pathLength: 0 }}
+              animate={{ pathLength: 1 }}
+              transition={{ duration: 1.0, ease: "easeOut", delay: 1.2 }}
+            />
+            <motion.path
+              d="M35 45 L 45 50 L 50 40"
+              initial={{ pathLength: 0 }}
+              animate={{ pathLength: 1 }}
+              transition={{ duration: 0.3, ease: "easeOut", delay: 2.05 }}
+            />
           </svg>
         </div>
       </div>
@@ -610,6 +640,19 @@ export function ExProcess({ lang }: { lang: Lang }) {
   const active = processSteps[activeStep];
   const ActiveIcon = active.Icon;
   const ActiveIllustration = stepIllustrations[activeStep];
+  const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
+
+  const handleTabKeyDown = (e: React.KeyboardEvent, i: number) => {
+    let next = i;
+    if (e.key === "ArrowRight") next = (i + 1) % processSteps.length;
+    else if (e.key === "ArrowLeft") next = (i - 1 + processSteps.length) % processSteps.length;
+    else if (e.key === "Home") next = 0;
+    else if (e.key === "End") next = processSteps.length - 1;
+    else return;
+    e.preventDefault();
+    setActiveStep(next);
+    tabRefs.current[next]?.focus();
+  };
 
   return (
     <section
@@ -620,12 +663,7 @@ export function ExProcess({ lang }: { lang: Lang }) {
         {content.exProcess[lang].title}
       </h2>
       <div className="max-w-6xl w-full px-6 flex flex-col md:flex-row gap-12 lg:gap-20 items-stretch">
-        <div className="bg-[#1d1d1f] rounded-[2rem] p-8 md:p-10 w-full md:w-[45%] flex flex-col relative shadow-2xl shrink-0 border border-white/[0.03] overflow-hidden">
-          <div
-            aria-hidden="true"
-            className="absolute top-0 right-0 w-64 h-64 bg-[#4E000A]/15 blur-[80px] rounded-full pointer-events-none"
-          />
-
+        <div className="bg-card rounded-[2rem] p-8 md:p-10 w-full md:w-[45%] flex flex-col relative shadow-sm shrink-0 border border-border overflow-hidden">
           <AnimatePresence mode="wait">
             <motion.div
               key={activeStep}
@@ -635,63 +673,79 @@ export function ExProcess({ lang }: { lang: Lang }) {
               transition={{ duration: 0.3, ease: "easeOut" }}
               className="relative flex-1 flex flex-col gap-6"
             >
-              <div className="relative flex-1 flex items-center justify-center bg-gradient-to-br from-[#161618] via-[#1a1a1c] to-[#1d1d1f] rounded-[1.5rem] border border-white/[0.04] min-h-[280px] py-6">
+              <div className="relative flex-1 flex items-center justify-center bg-muted rounded-[1.5rem] border border-border/60 min-h-[280px] py-6">
                 <ActiveIllustration />
               </div>
 
-              <div className="flex flex-col gap-2">
-                <span className="inline-flex w-fit items-center px-2.5 py-1 rounded-md bg-[#4E000A] text-white text-[11px] font-bold tracking-[0.25em]">
-                  STEP {String(activeStep + 1).padStart(2, "0")}
+              <div>
+                <span className="inline-flex w-fit items-center gap-1 px-2.5 py-1 rounded-md bg-accent text-accent-foreground text-[11px] font-bold tracking-[0.25em] overflow-hidden">
+                  STEP{" "}
+                  <AnimatePresence mode="wait" initial={false}>
+                    <motion.span
+                      key={activeStep}
+                      initial={{ opacity: 0, y: 8 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -8 }}
+                      transition={{ duration: 0.16, ease: "easeOut" }}
+                      className="inline-block"
+                    >
+                      {String(activeStep + 1).padStart(2, "0")}
+                    </motion.span>
+                  </AnimatePresence>
                 </span>
-                <h3 className="text-white text-2xl md:text-[26px] font-bold leading-tight">
-                  {active.title}
-                </h3>
               </div>
             </motion.div>
           </AnimatePresence>
         </div>
 
         <div className="w-full md:w-[55%] flex flex-col">
-          <div className="flex items-end gap-4 mb-8">
-            <h2 className="text-[40px] font-bold text-white leading-none tracking-tight">
-              {content.exProcess[lang].brandName}
-            </h2>
-            <span className="text-[13px] font-medium text-white mb-1">
+          <div className="flex flex-col gap-1 mb-8">
+            <img
+              src="/logo/typo.webp"
+              alt="Nivorae"
+              className="h-7 w-auto max-w-[160px] object-contain object-left dark:brightness-0 dark:invert"
+            />
+            <span className="text-sm font-medium text-muted-foreground">
               {content.exProcess[lang].subtitle}
             </span>
           </div>
 
           <div
             role="tablist"
-            aria-label="開發流程步驟"
-            className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2 mb-6"
+            aria-label={lang === "zh" ? "開發流程步驟" : "Development process steps"}
+            className="grid grid-cols-3 lg:grid-cols-6 gap-1.5 mb-6"
           >
             {processSteps.map((step, i) => {
               const isActive = i === activeStep;
               return (
                 <button
                   key={step.title}
+                  ref={(el) => {
+                    tabRefs.current[i] = el;
+                  }}
                   type="button"
                   role="tab"
                   aria-selected={isActive}
                   aria-controls="process-step-panel"
+                  tabIndex={isActive ? 0 : -1}
                   onClick={() => setActiveStep(i)}
+                  onKeyDown={(e) => handleTabKeyDown(e, i)}
                   className={cn(
-                    "relative flex flex-col items-center justify-center gap-1 px-2 py-3 rounded-xl border transition-all duration-200",
+                    "relative flex flex-col items-center justify-center gap-1 px-1.5 py-3 min-h-[44px] rounded-xl border transition-all duration-200",
                     isActive
-                      ? "bg-[#4E000A] border-[#4E000A] text-white shadow-lg shadow-[#4E000A]/40 scale-[1.02]"
-                      : "bg-[#1d1d1f] border-white/[0.06] text-gray-300 hover:border-[#4E000A]/60 hover:text-white hover:-translate-y-0.5"
+                      ? "bg-accent border-accent text-accent-foreground shadow-lg shadow-accent/40 scale-[1.02]"
+                      : "bg-muted border-border text-muted-foreground hover:border-accent/60 hover:text-foreground hover:-translate-y-0.5"
                   )}
                 >
                   <span
                     className={cn(
                       "text-[10px] font-bold tracking-[0.15em]",
-                      isActive ? "text-white/70" : "text-gray-500"
+                      isActive ? "text-white/70" : "text-muted-foreground/70"
                     )}
                   >
                     STEP {String(i + 1).padStart(2, "0")}
                   </span>
-                  <span className="text-[12px] font-bold leading-tight text-center">
+                  <span className="text-[11px] font-bold leading-tight text-center">
                     {step.title}
                   </span>
                 </button>
@@ -703,7 +757,7 @@ export function ExProcess({ lang }: { lang: Lang }) {
             id="process-step-panel"
             role="tabpanel"
             aria-live="polite"
-            className="flex-1 bg-[#1d1d1f] border border-white/[0.05] rounded-[20px] p-6 md:p-8 shadow-xl min-h-[260px]"
+            className="flex-1 bg-card border border-border rounded-[20px] p-6 md:p-8 shadow-sm min-h-[260px]"
           >
             <AnimatePresence mode="wait">
               <motion.div
@@ -714,14 +768,14 @@ export function ExProcess({ lang }: { lang: Lang }) {
                 transition={{ duration: 0.25, ease: "easeOut" }}
               >
                 <div className="flex items-center gap-4 mb-6">
-                  <div className="w-14 h-14 rounded-2xl bg-[#4E000A]/15 text-white border border-[#4E000A]/40 flex items-center justify-center shrink-0">
+                  <div className="w-14 h-14 rounded-2xl bg-accent text-accent-foreground flex items-center justify-center shrink-0">
                     <ActiveIcon className="w-6 h-6" />
                   </div>
                   <div>
-                    <span className="block text-[11px] font-bold tracking-[0.2em] uppercase text-white">
+                    <span className="block text-[11px] font-bold tracking-[0.2em] uppercase text-muted-foreground">
                       Step {String(activeStep + 1).padStart(2, "0")} / 06
                     </span>
-                    <h3 className="text-2xl font-bold text-white leading-tight mt-1">
+                    <h3 className="text-2xl font-bold text-foreground leading-tight mt-1">
                       {active.title}
                     </h3>
                   </div>
@@ -731,11 +785,11 @@ export function ExProcess({ lang }: { lang: Lang }) {
                   {active.items.map((item) => (
                     <li
                       key={item}
-                      className="flex items-start gap-2.5 text-[14px] text-white tracking-wide"
+                      className="flex items-start gap-2.5 text-[14px] text-foreground tracking-wide"
                     >
                       <span
                         aria-hidden="true"
-                        className="mt-1.5 w-1.5 h-1.5 rounded-full bg-white shrink-0"
+                        className="mt-1.5 w-1.5 h-1.5 rounded-full bg-foreground shrink-0"
                       />
                       <span>{item}</span>
                     </li>
@@ -1053,13 +1107,8 @@ export function ExPortfolio({ lang }: { lang: Lang }) {
 
 // ─── Testimonials ────────────────────────────────────────────────────────────
 
-const testimonialColors = {
-  red: "#FF3B30",
-  purple: "#A259FF",
-  yellow: "#FFD100",
-  blue: "#0A6CFF",
-  green: "#00E5B1",
-};
+const TESTIMONIAL_PILL_ACCENT = "#4E000A";
+const TESTIMONIAL_PILL_MUTED = "#e0e0e0";
 
 function FeedbackCard({
   name,
@@ -1073,12 +1122,20 @@ function FeedbackCard({
   avatarBg: string;
 }) {
   return (
-    <div className="bg-white h-[90px] rounded-full flex items-center pr-10 pl-3 gap-5 shrink-0 shadow-lg cursor-default transition-transform hover:scale-[1.02] duration-300">
+    <motion.div
+      className="bg-white h-[90px] rounded-full flex items-center pr-10 pl-3 gap-5 shrink-0 shadow-lg cursor-default"
+      whileHover={{ y: -5, boxShadow: "0 14px 40px rgba(0,0,0,0.13)" }}
+      transition={{ type: "spring", stiffness: 360, damping: 22 }}
+    >
       <div
         className="w-[66px] h-[66px] rounded-full shrink-0 flex items-center justify-center p-[3px]"
         style={{ backgroundColor: avatarBg }}
       >
-        <div className="w-full h-full rounded-full bg-gray-200 overflow-hidden" />
+        <div className="w-full h-full rounded-full bg-gray-100 flex items-center justify-center overflow-hidden">
+          <span className="text-[22px] font-black leading-none" style={{ color: avatarBg }}>
+            {name.charAt(0)}
+          </span>
+        </div>
       </div>
       <div className="flex flex-col justify-center">
         <h4 className="text-[13px] font-black text-gray-900 leading-none mb-1.5">{name}</h4>
@@ -1087,7 +1144,7 @@ function FeedbackCard({
         </p>
         <p className="text-[11px] text-gray-500 font-medium leading-none">{subText}</p>
       </div>
-    </div>
+    </motion.div>
   );
 }
 
@@ -1100,23 +1157,30 @@ function MarqueeRow({
   direction?: "left" | "right";
   speed?: number;
 }) {
+  const [paused, setPaused] = useState(false);
+  const animName = direction === "left" ? "nivorae-marquee-left" : "nivorae-marquee-right";
+
   return (
-    <div className="flex w-full overflow-hidden">
-      <motion.div
+    <div
+      className="flex w-full overflow-hidden"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+    >
+      <div
         className="flex gap-6 w-max shrink-0 pr-6"
-        animate={{ x: direction === "left" ? ["0%", "-50%"] : ["-50%", "0%"] }}
-        transition={{ ease: "linear", duration: speed, repeat: Infinity }}
+        style={{
+          animation: `${animName} ${speed}s linear infinite`,
+          animationPlayState: paused ? "paused" : "running",
+        }}
       >
         <div className="flex gap-6 shrink-0 items-center">{children}</div>
         <div className="flex gap-6 shrink-0 items-center">{children}</div>
-      </motion.div>
+      </div>
     </div>
   );
 }
 
 export function ExTestimonials({ lang }: { lang: Lang }) {
-  const colors = testimonialColors;
-
   return (
     <section className="py-32 bg-background text-foreground overflow-hidden flex flex-col items-center border-y border-border/50 relative">
       <div className="max-w-7xl mx-auto px-6 mb-20 w-full relative z-10">
@@ -1127,7 +1191,7 @@ export function ExTestimonials({ lang }: { lang: Lang }) {
         <MarqueeRow direction="left" speed={45}>
           <div
             className="h-[90px] rounded-full shrink-0 w-[400px]"
-            style={{ backgroundColor: colors.red }}
+            style={{ backgroundColor: TESTIMONIAL_PILL_ACCENT }}
           />
           {content.exTestimonials.row1.map((t) => (
             <FeedbackCard
@@ -1143,11 +1207,11 @@ export function ExTestimonials({ lang }: { lang: Lang }) {
         <MarqueeRow direction="right" speed={55}>
           <div
             className="h-[90px] rounded-full shrink-0 w-[150px]"
-            style={{ backgroundColor: colors.yellow }}
+            style={{ backgroundColor: TESTIMONIAL_PILL_ACCENT }}
           />
           <div
             className="h-[90px] rounded-full shrink-0 w-[240px]"
-            style={{ backgroundColor: colors.blue }}
+            style={{ backgroundColor: TESTIMONIAL_PILL_MUTED }}
           />
           {content.exTestimonials.row2.map((t) => (
             <FeedbackCard
@@ -1258,12 +1322,14 @@ export function ExContact({ lang }: { lang: Lang }) {
             </label>
           </div>
 
-          <button
+          <motion.button
             type="button"
-            className="w-full bg-foreground text-background font-bold text-lg py-4 rounded-xl hover:opacity-90 transition-transform active:scale-[0.98]"
+            whileTap={{ scale: 0.975 }}
+            transition={{ type: "spring", stiffness: 400, damping: 22 }}
+            className="w-full bg-foreground text-background font-bold text-lg py-4 rounded-xl hover:opacity-90 transition-opacity"
           >
             {content.exContact[lang].form.submit}
-          </button>
+          </motion.button>
         </form>
       </div>
     </section>
@@ -1281,10 +1347,29 @@ export function ExAppShowcase() {
           transition={{ repeat: Infinity, ease: "linear", duration: 20 }}
           className="text-[#E9FF42] font-display text-[80px] lg:text-[120px] font-bold tracking-tight flex gap-8"
         >
-          <span>Nivorae</span>
-          <span>Nivorae</span>
-          <span>Nivorae</span>
-          <span>Nivorae</span>
+          <img
+            src="/logo/typo.webp"
+            alt="Nivorae"
+            className="h-20 lg:h-28 w-auto object-contain brightness-0 invert"
+          />
+          <img
+            src="/logo/typo.webp"
+            alt=""
+            aria-hidden="true"
+            className="h-20 lg:h-28 w-auto object-contain brightness-0 invert"
+          />
+          <img
+            src="/logo/typo.webp"
+            alt=""
+            aria-hidden="true"
+            className="h-20 lg:h-28 w-auto object-contain brightness-0 invert"
+          />
+          <img
+            src="/logo/typo.webp"
+            alt=""
+            aria-hidden="true"
+            className="h-20 lg:h-28 w-auto object-contain brightness-0 invert"
+          />
         </motion.div>
       </div>
 
@@ -1430,13 +1515,17 @@ export function ExFooter({ lang }: { lang: Lang }) {
           <div className="col-span-2">
             <div className="flex items-center gap-2 mb-6">
               <Image
-                src="/favicon.ico"
+                src="/logo/icon.webp"
                 alt="Nivorae"
                 width={20}
                 height={20}
                 className="h-5 w-auto object-contain"
               />
-              <span className="font-display font-semibold tracking-wide text-xl">Nivorae</span>
+              <img
+                src="/logo/typo.webp"
+                alt="Nivorae"
+                className="h-6 w-auto object-contain dark:brightness-0 dark:invert"
+              />
             </div>
             <p className="text-muted-foreground text-sm leading-relaxed max-w-sm mb-6">
               {content.exFooter[lang].tagline}
@@ -1468,6 +1557,11 @@ export function ExFooter({ lang }: { lang: Lang }) {
               ))}
             </ul>
           </div>
+        </div>
+
+        <div className="border-t border-border pt-6 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-muted-foreground">
+          <span>© {new Date().getFullYear()} Nivorae. All rights reserved.</span>
+          <span className="font-mono opacity-60">{__APP_VERSION__}</span>
         </div>
       </div>
     </footer>

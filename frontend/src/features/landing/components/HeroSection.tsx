@@ -9,11 +9,12 @@ export function HeroSection({ lang }: HeroSectionProps) {
 
   return (
     <section className="flex flex-col items-center justify-center px-6 text-center">
-      <h1
-        className="font-bold text-foreground dark:text-white text-balance tracking-tight leading-none mb-6"
-        style={{ fontSize: "clamp(4rem, 10vw, 8rem)" }}
-      >
-        {t.hero.name}
+      <h1 className="mb-6">
+        <img
+          src="/logo/typo.webp"
+          alt={t.hero.name}
+          className="w-[65vw] max-w-[700px] min-w-[260px] h-auto object-contain dark:brightness-0 dark:invert"
+        />
       </h1>
 
       <p

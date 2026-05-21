@@ -3,7 +3,10 @@ import { Link } from "react-router-dom";
 export function NotFoundPage() {
   return (
     <div className="min-h-screen bg-background text-foreground flex flex-col items-center justify-center px-6 text-center">
-      <p className="text-[10rem] font-black leading-none tracking-tighter text-foreground/10 select-none">
+      <p
+        className="text-[10rem] font-black leading-none tracking-tighter text-foreground/10 select-none"
+        aria-hidden="true"
+      >
         404
       </p>
 

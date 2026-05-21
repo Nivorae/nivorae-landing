@@ -52,13 +52,17 @@ export function Header({ lang, onLangChange }: HeaderProps) {
           {/* Logo */}
           <a href="/" className="flex items-center gap-3">
             <Image
-              src="/favicon.ico"
+              src="/logo/icon.webp"
               alt="Nivorae"
               width={20}
               height={20}
               className="h-5 w-auto object-contain"
             />
-            <span className="font-bold">Nivorae</span>
+            <img
+              src="/logo/typo.webp"
+              alt="Nivorae"
+              className="h-5 w-auto object-contain dark:brightness-0 dark:invert"
+            />
           </a>
 
           {/* Desktop nav — hidden below lg */}
@@ -126,7 +130,7 @@ export function Header({ lang, onLangChange }: HeaderProps) {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.2 }}
-              className="fixed inset-0 z-40 bg-black/40 backdrop-blur-sm lg:hidden"
+              className="fixed inset-0 z-40 bg-foreground/40 backdrop-blur-sm lg:hidden"
               onClick={closeMenu}
               aria-hidden="true"
             />

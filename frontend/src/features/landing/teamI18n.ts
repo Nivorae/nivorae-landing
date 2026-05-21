@@ -11,7 +11,7 @@ export const teamI18n = {
       heading: content.team.zh.teamHeading,
       members: content.team.zh.members,
     },
-    grid: content.plans.zh.grid,
+    process: content.plans.zh.process,
     plans: {
       heading: "方案選擇",
       hint: { default: "請選擇一個方案以查看詳細內容", selected: "點擊主按鈕可取消選擇" },
@@ -32,7 +32,7 @@ export const teamI18n = {
       heading: content.team.en.teamHeading,
       members: content.team.en.members,
     },
-    grid: content.plans.en.grid,
+    process: content.plans.en.process,
     plans: {
       heading: "PRICING PLANS",
       hint: { default: "Select a plan to view details", selected: "Click the card to deselect" },
