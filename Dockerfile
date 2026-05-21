@@ -1,21 +1,16 @@
 # syntax=docker/dockerfile:1.6
 #
-# Production image for the backend of a pnpm-workspace monorepo.
-# Build context: REPO ROOT (.). Never set build context to backend/.
-# Zeabur / Railway / Fly:
-#   - Root Directory  = .
-#   - Dockerfile Path = Dockerfile (at repo root)
+# Backend service only. Frontend is deployed as a zbpack static site (no Dockerfile).
+#
+# Zeabur two-service setup:
+#   nivorae-backend  → Build: Dockerfile | Root: . | Dockerfile: Dockerfile
+#   nivorae-frontend → Build: zbpack     | Root: . | ZBPACK_BUILD_COMMAND / ZBPACK_OUTPUT_DIR vars
 
 # ─── Base: pnpm-enabled Node image ───────────────────────────────────────────
 FROM node:20-alpine AS base
-# tzdata — for cron timezone
-# openssl — Prisma query engine needs it on Alpine
-# dumb-init — forwards SIGTERM so node shuts down gracefully
 RUN apk add --no-cache tzdata openssl dumb-init \
  && corepack enable && corepack prepare pnpm@10.28.2 --activate
 ENV TZ=UTC
-# Disable husky — root `prepare: husky install` fails under `--prod`
-# because husky is a devDep and gets stripped.
 ENV HUSKY=0
 WORKDIR /app
 
@@ -62,4 +57,4 @@ EXPOSE 3001
 # `exec node` replaces the sh process so node becomes PID 1 child of dumb-init
 # (not sh), ensuring proper signal forwarding.
 ENTRYPOINT ["dumb-init", "--"]
-CMD ["sh", "-c", "pnpm exec prisma migrate deploy && exec node dist/index.js"]
+CMD ["node", "dist/index.js"]
