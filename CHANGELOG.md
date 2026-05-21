@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.2.4
+
+- Added hamburger drawer to header for tablet and mobile
+- Added landing pages overhaul with RWD layout and `typo.webp` wordmark branding
+- Added fluid typography tokens, CSS animation keyframes, and `PageHero` component
+- Fixed footer switching to 2-col at tablet, 4-col at desktop
+- Fixed contact form fields stacking on mobile below `sm` breakpoint
+- Fixed process step tabs using 2-col grid on small screens
+- Fixed `AppShowcase` scale and marquee deferred to `lg` breakpoint
+- Fixed laptop mockup hidden at tablet, portfolio layout switched to `md:flex-row`
+- Fixed nav drawer closing on ESC key and lang switch
+- Changed logo assets added to `public/logo/` and favicon updated
+- Changed lockfile to remove `sharp` dependency
+
 ## 0.2.3
 
 - Added 404 not found and privacy policy pages
