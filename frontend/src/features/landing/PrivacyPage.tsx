@@ -11,7 +11,7 @@ const policy = {
     sections: [
       {
         heading: "一、蒐集的個人資料",
-        body: "當您透過本站聯絡表單送出需求時，我們會蒐集以下資訊：\n• 姓名 / 聯絡人\n• 電子郵件地址\n• LINE 帳號（用於後續透過 LINE 與您聯繫）\n• 專案預計完成日期\n• 專案類型",
+        body: "當您透過本站聯絡表單送出需求時，我們會蒐集以下資訊：\n• 姓名 / 聯絡人\n• 電子郵件地址\n• LINE 名稱（用於後續透過 LINE 與您聯繫）\n• 專案預計完成日期\n• 專案類型",
       },
       {
         heading: "二、蒐集目的",
@@ -55,7 +55,7 @@ const policy = {
     sections: [
       {
         heading: "1. Data We Collect",
-        body: "When you submit an inquiry via our contact form, we collect the following:\n• Name / contact person\n• Email address\n• LINE ID (used to contact you via LINE)\n• Target project completion date\n• Project type",
+        body: "When you submit an inquiry via our contact form, we collect the following:\n• Name / contact person\n• Email address\n• LINE display name (used to contact you via LINE)\n• Target project completion date\n• Project type",
       },
       {
         heading: "2. Purpose of Collection",
