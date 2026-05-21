@@ -663,7 +663,7 @@ export function ExProcess({ lang }: { lang: Lang }) {
         {content.exProcess[lang].title}
       </h2>
       <div className="max-w-6xl w-full px-6 flex flex-col md:flex-row gap-12 lg:gap-20 items-stretch">
-        <div className="bg-card rounded-[2rem] p-8 md:p-10 w-full md:w-[45%] flex flex-col relative shadow-sm shrink-0 border border-border overflow-hidden">
+        <div className="bg-card dark:bg-foreground/[0.12] rounded-[2rem] p-8 md:p-10 w-full md:w-[45%] flex flex-col relative shadow-sm dark:shadow-none shrink-0 border border-border overflow-hidden">
           <AnimatePresence mode="wait">
             <motion.div
               key={activeStep}
@@ -734,7 +734,7 @@ export function ExProcess({ lang }: { lang: Lang }) {
                     "relative flex flex-col items-center justify-center gap-1 px-1.5 py-3 min-h-[44px] rounded-xl border transition-all duration-200",
                     isActive
                       ? "bg-accent border-accent text-accent-foreground shadow-lg shadow-accent/40 scale-[1.02]"
-                      : "bg-muted border-border text-muted-foreground hover:border-accent/60 hover:text-foreground hover:-translate-y-0.5"
+                      : "bg-muted dark:bg-foreground/[0.12] border-border dark:border-foreground/[0.30] text-muted-foreground hover:border-accent/60 hover:text-foreground hover:-translate-y-0.5"
                   )}
                 >
                   <span
@@ -757,7 +757,7 @@ export function ExProcess({ lang }: { lang: Lang }) {
             id="process-step-panel"
             role="tabpanel"
             aria-live="polite"
-            className="flex-1 bg-card border border-border rounded-[20px] p-6 md:p-8 shadow-sm min-h-[260px]"
+            className="flex-1 bg-card dark:bg-foreground/[0.12] border border-border rounded-[20px] p-6 md:p-8 shadow-sm dark:shadow-none min-h-[260px]"
           >
             <AnimatePresence mode="wait">
               <motion.div

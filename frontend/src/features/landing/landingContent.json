@@ -476,6 +476,20 @@
           },
           { "title": "個資法合規架構", "desc": "所有系統預設符合台灣個人資料保護法規範。" }
         ]
+      },
+      "partnership": {
+        "badge": "互惠合作方案",
+        "headline": "零費用開發",
+        "desc": "Nivorae 以實際開發工時換取您的推薦與品牌聲量，不收任何服務費用。",
+        "conditions": [
+          "介紹 1–2 位潛在客戶",
+          "社群媒體公開發文（Instagram、Facebook 或 LinkedIn）",
+          "作品集展示授權（永久）"
+        ],
+        "attributionLabel": "PERMANENT",
+        "attribution": "網站每頁頁尾永久保留「Powered by Nivorae」標示",
+        "cta": "了解合作條件",
+        "sectionHeading": "推出\n合作方式"
       }
     },
     "en": {
@@ -581,6 +595,20 @@
             "desc": "Architecture that meets Taiwan's Personal Data Protection Act by default."
           }
         ]
+      },
+      "partnership": {
+        "badge": "PARTNERSHIP PROGRAM",
+        "headline": "Zero-cost development",
+        "desc": "We build your project at no cost in exchange for referrals and public advocacy — no invoice, ever.",
+        "conditions": [
+          "Introduce 1–2 potential clients",
+          "Public post on Instagram, Facebook, or LinkedIn",
+          "Portfolio exhibition rights (permanent)"
+        ],
+        "attributionLabel": "PERMANENT",
+        "attribution": "\"Powered by Nivorae\" in your site footer, every page, forever",
+        "cta": "Learn About Partnership",
+        "sectionHeading": "LAUNCHING THE\nPARTNERSHIP"
       }
     }
   },
