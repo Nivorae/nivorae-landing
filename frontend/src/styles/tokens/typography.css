@@ -24,6 +24,12 @@
    * Fluid typography with clamp() for responsive scaling
    * ============================================ */
 
+  /* Hero Display: landing sub-page hero h1 — large editorial statement */
+  --text-hero-display: clamp(3rem, 11vw, 8.5rem);
+
+  /* Section H2: marketing page section headings */
+  --text-section-h2: clamp(1.6rem, 3.2vw, 2.75rem);
+
   /* Display XL: 56px base → 3.5rem */
   --text-display-xl-size: 3.5rem;
   --text-display-xl-fluid: clamp(2.5rem, 5vw + 1rem, 3.5rem);

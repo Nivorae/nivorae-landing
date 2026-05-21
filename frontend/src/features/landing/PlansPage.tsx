@@ -1,11 +1,36 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
+import { motion, useInView } from "framer-motion";
 import { type Lang } from "./i18n";
 import { Header } from "./components/Header";
+import { ExFooter } from "./components/ExampleSections";
 import { teamI18n } from "./teamI18n";
+
+const stepContainerVariants = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.22, delayChildren: 0.06 } },
+};
+
+const stepRowVariants = {
+  hidden: { opacity: 0, y: 18 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { type: "spring" as const, stiffness: 60, damping: 18 },
+  },
+};
+
+const whyContainerVariants = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.14, delayChildren: 0.04 } },
+};
 
 export function PlansPage() {
   const [lang, setLang] = useState<Lang>("zh");
   const t = teamI18n[lang];
+  const timelineRef = useRef<HTMLDivElement>(null);
+  const whyRef = useRef<HTMLDivElement>(null);
+  const timelineInView = useInView(timelineRef, { once: true, margin: "-80px" });
+  const whyInView = useInView(whyRef, { once: true, margin: "-60px" });
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -30,14 +55,20 @@ export function PlansPage() {
             </p>
           </div>
 
-          {/* Right: 3D floating logo */}
+          {/* Right: floating full lockup — icon stacked above wordmark */}
           <div className="flex items-center justify-center">
-            <div className="relative">
-              <div className="absolute inset-0 rounded-full bg-foreground/5 blur-3xl scale-125 pointer-events-none" />
+            <div className="relative flex flex-col items-center gap-5 animate-[float_4s_ease-in-out_infinite]">
+              <div className="absolute inset-0 rounded-full bg-foreground/5 blur-3xl scale-150 pointer-events-none" />
               <img
-                src="/nivorae-logo.png"
+                src="/logo/icon.webp"
+                alt=""
+                aria-hidden="true"
+                className="relative w-32 lg:w-40 h-auto object-contain"
+              />
+              <img
+                src="/logo/typo.webp"
                 alt="Nivorae"
-                className="relative w-56 h-56 lg:w-72 lg:h-72 object-contain animate-[float_4s_ease-in-out_infinite]"
+                className="relative w-52 lg:w-64 h-auto object-contain dark:brightness-0 dark:invert"
               />
             </div>
           </div>
@@ -48,15 +79,12 @@ export function PlansPage() {
       <section className="bg-background py-20 lg:py-28 px-6 lg:px-16 border-b border-border">
         <div className="max-w-7xl mx-auto">
           <div className="mb-14">
-            <h2
-              className="font-black uppercase leading-tight text-foreground whitespace-pre-line"
-              style={{ fontSize: "clamp(1.6rem, 3.2vw, 2.75rem)" }}
-            >
+            <h2 className="font-black uppercase leading-tight text-foreground whitespace-pre-line text-section-h2">
               {t.pricing.heading}
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-start pt-6">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start pt-6">
             {t.plans.items.map((plan) => (
               <div
                 key={plan.id}
@@ -135,147 +163,84 @@ export function PlansPage() {
         </div>
       </section>
 
-      {/* Interactive Plans */}
-      {/* <section className="bg-background py-20 lg:py-28 px-6 lg:px-16 border-b border-border">
+      {/* How It Works + Why Us */}
+      <section className="bg-background border-t border-border py-20 lg:py-32 px-6 lg:px-16">
         <div className="max-w-7xl mx-auto">
-          <div className="mb-16">
-            <h2
-              className="font-black uppercase leading-tight text-foreground whitespace-pre-line"
-              style={{ fontSize: "clamp(1.6rem, 3.2vw, 2.75rem)" }}
+          {/* Asymmetric split: sticky heading left, timeline scrolls right */}
+          <div className="grid grid-cols-1 lg:grid-cols-[2fr_3fr] gap-12 lg:gap-24 mb-24">
+            {/* Left: heading */}
+            <div>
+              <p className="font-mono text-[11px] tracking-[0.2em] uppercase text-muted-foreground/40 mb-6 select-none">
+                ─ 03
+              </p>
+              <h2 className="font-black uppercase leading-[0.92] text-foreground whitespace-pre-line text-section-h2">
+                {t.process.heading}
+              </h2>
+            </div>
+
+            {/* Right: staggered timeline */}
+            <motion.div
+              ref={timelineRef}
+              variants={stepContainerVariants}
+              initial="hidden"
+              animate={timelineInView ? "visible" : "hidden"}
+              className="relative"
             >
-              {t.plans.heading}
-            </h2>
-            <p className="text-muted-foreground text-sm mt-3 tracking-widest uppercase animate-pulse">
-              {selectedPlan ? t.plans.hint.selected : t.plans.hint.default}
-            </p>
-          </div>
+              {/* Single continuous line running through all dots */}
+              <div
+                className="absolute w-px bg-border top-2 bottom-2 pointer-events-none z-0"
+                style={{ left: "calc(56px + 24px)" }}
+                aria-hidden="true"
+              />
 
-          <div
-            className={`flex flex-wrap items-start gap-8 transition-all duration-500 ${
-              selectedPlan ? "flex-col lg:flex-row justify-center" : "flex-row justify-start"
-            }`}
-          >
-            {visiblePlans.map((plan) => {
-              const isActive = selectedPlan === plan.id;
-
-              return (
-                <div
-                  key={plan.id}
-                  className={`flex flex-col lg:flex-row items-center gap-8 transition-all duration-500 ${
-                    isActive ? "w-full" : "w-auto"
-                  }`}
+              {t.process.steps.map((step, i) => (
+                <motion.div
+                  key={step.num}
+                  variants={stepRowVariants}
+                  className="grid grid-cols-[56px_1px_1fr] gap-x-6 items-start"
                 >
-                  <div className="shrink-0">
-                    {isActive ? (
-                      <button
-                        type="button"
-                        className="p-4 bg-muted/30 rounded-[2.5rem] hover:opacity-80 transition-opacity border border-border"
-                        onClick={() => setSelectedPlan(null)}
-                      >
-                        <div className="w-44 h-44 rounded-3xl bg-foreground text-background shadow-2xl flex flex-col items-center justify-center">
-                          <span className="font-bold text-base tracking-wide">{plan.title}</span>
-                          <span className="text-[10px] mt-2 tracking-wider opacity-60">
-                            {plan.en}
-                          </span>
-                        </div>
-                      </button>
-                    ) : (
-                      <button
-                        type="button"
-                        onClick={() => setSelectedPlan(plan.id)}
-                        className="w-44 h-44 rounded-3xl flex flex-col items-center justify-center transition-all duration-300 ease-out hover:-translate-y-2 bg-background text-foreground border border-border hover:border-foreground hover:shadow-lg"
-                      >
-                        <span className="font-bold text-base tracking-wide">{plan.title}</span>
-                        <span className="text-[10px] mt-2 tracking-wider text-muted-foreground">
-                          {plan.en}
-                        </span>
-                      </button>
-                    )}
-                  </div>
-
-                  {isActive && (
-                    <>
-                      <PlanPanel
-                        label={t.plans.includesLabel}
-                        sublabel="INCLUDES"
-                        items={plan.includes}
-                        iconBg="bg-foreground"
-                        listClassName="animate-[fadeIn_0.5s_ease-out_0.1s_both]"
-                      />
-                      <PlanPanel
-                        label={t.plans.deliverablesLabel}
-                        sublabel="DELIVERABLES"
-                        items={plan.deliverables}
-                        iconBg="bg-foreground/80"
-                        listClassName="animate-[fadeIn_0.5s_ease-out_0.2s_both]"
-                      />
-                    </>
-                  )}
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section> */}
-
-      {/* Services Accordion */}
-      {/* <section className="bg-background py-20 lg:py-28 px-6 lg:px-16 border-t border-border">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-[2fr_3fr] gap-12 lg:gap-28">
-          <div className="lg:pt-1">
-            <h2
-              className="font-black uppercase leading-tight text-foreground whitespace-pre-line"
-              style={{ fontSize: "clamp(1.6rem, 3.2vw, 2.75rem)" }}
-            >
-              {t.services.heading}
-            </h2>
-          </div>
-          <div>
-            {t.services.items.map((item, idx) => (
-              <div key={item.num}>
-                <div className="h-px bg-border" />
-                <button
-                  type="button"
-                  onClick={() => setActiveItem(activeItem === idx ? -1 : idx)}
-                  className="w-full flex items-baseline gap-6 py-5 text-left hover:opacity-75 transition-opacity duration-200"
-                >
-                  <span className="text-muted-foreground text-sm font-mono w-6 shrink-0 tabular-nums">
-                    {item.num}
-                  </span>
-                  <span className="text-foreground font-semibold text-lg">{item.title}</span>
-                </button>
-                {activeItem === idx && (
-                  <p className="text-muted-foreground text-sm leading-relaxed pb-6 pl-12 pr-4">
-                    {item.desc}
+                  <p
+                    className="font-mono text-[13px] text-muted-foreground/40 text-right tracking-[0.08em] pt-1 select-none"
+                    aria-hidden="true"
+                  >
+                    [{step.num}]
                   </p>
-                )}
-              </div>
-            ))}
-            <div className="h-px bg-border" />
+                  {/* Dot — centered on the line */}
+                  <div className="flex justify-center pt-1">
+                    <span className="relative z-10 w-2 h-2 rounded-full bg-accent shrink-0" />
+                  </div>
+                  <div className={i < t.process.steps.length - 1 ? "pt-1 pb-12" : "pt-1 pb-0"}>
+                    <h3 className="font-bold text-base uppercase tracking-[0.1em] text-foreground mb-2.5">
+                      {step.title}
+                    </h3>
+                    <p className="text-muted-foreground text-base leading-relaxed">{step.desc}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </motion.div>
           </div>
-        </div>
-      </section> */}
 
-      {/* Services Grid */}
-      <section className="bg-background border-t border-border py-20 lg:py-28 px-6 lg:px-16">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-16 lg:gap-24">
-          <div>
-            <h2
-              className="font-black uppercase leading-tight text-foreground whitespace-pre-line"
-              style={{ fontSize: "clamp(1.4rem, 2vw, 1.9rem)" }}
-            >
-              {t.grid.heading}
-            </h2>
-          </div>
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-x-10 gap-y-10">
-            {t.grid.items.map((item) => (
-              <div key={item.title}>
-                <h3 className="text-foreground font-semibold text-base mb-2">{item.title}</h3>
+          {/* Why Us */}
+          <motion.div
+            ref={whyRef}
+            variants={whyContainerVariants}
+            initial="hidden"
+            animate={whyInView ? "visible" : "hidden"}
+            className="border-t border-border pt-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10"
+          >
+            {t.process.whyUs.map((item) => (
+              <motion.div key={item.title} variants={stepRowVariants} className="group">
+                <p className="font-semibold text-foreground text-base mb-2 transition-colors duration-200 group-hover:text-accent">
+                  {item.title}
+                </p>
                 <p className="text-muted-foreground text-sm leading-relaxed">{item.desc}</p>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
+
+      <ExFooter lang={lang} />
     </div>
   );
 }

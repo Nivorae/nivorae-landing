@@ -13,6 +13,7 @@ import {
   ExFooter,
 } from "./components/ExampleSections";
 
+// TODO: migrate to HTTPS CDN (Vercel Blob / Cloudinary) — plain HTTP blocked by browsers on HTTPS pages
 const VIDEO_DARK = "http://8.209.221.1:32721/nivorae/video/background_video.mp4";
 const VIDEO_LIGHT = "http://8.209.221.1:32721/nivorae/video/background_video_white.mp4";
 
@@ -36,7 +37,7 @@ export function LandingPage() {
           className="absolute inset-0 w-full h-full object-cover"
         />
 
-        <div className="absolute inset-0 hidden dark:block dark:bg-black/70" />
+        <div className="absolute inset-0 hidden dark:block dark:bg-background/70" />
 
         <Header lang={lang} onLangChange={setLang} />
 

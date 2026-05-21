@@ -66,3 +66,5 @@ frontend/public/videos/
 
 # gstack security reports and session data (stay local)
 .gstack/
+.superpowers/
+.impeccable/
