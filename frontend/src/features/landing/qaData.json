@@ -2,7 +2,7 @@
   "zh": {
     "heroEyebrow": "新創公司 × 網頁開發",
     "heroTitle": "常見問題",
-    "heroSubtitle": "關於我們的服務、流程與合作方式，這裡有你需要的答案",
+    "heroSubtitle": "關於我們的服務、流程與合作方式，這裡有您需要的答案",
     "sectionHeading": "您想了解什麼？",
     "items": [
       {
@@ -10,7 +10,7 @@
         "icon": "Globe",
         "tag": "服務範圍",
         "question": "你們提供哪些網頁開發服務？",
-        "answer": "我們提供全端網頁開發，涵蓋企業品牌官網、SaaS 產品前後端開發、電商平台、行動裝置優先的 RWD 設計，以及第三方 API 串接（金流、CRM、行銷工具等）。從設計稿到正式上線，我們提供一站式服務，確保每個環節都達到最高品質標準。"
+        "answer": "我們提供全端網頁開發，涵蓋企業品牌官網、電商平台、行動裝置優先的 RWD 設計，以及第三方 API 串接（金流、CRM、行銷工具等）。從設計稿到正式上線，每個環節都設有明確的里程碑與驗收點。"
       },
       {
         "id": "timeline",
@@ -24,28 +24,28 @@
         "icon": "CreditCard",
         "tag": "費用計算",
         "question": "費用如何計算？有固定方案嗎？",
-        "answer": "我們提供兩種合作模式：固定報價（適合需求明確的專案）與時薪制（適合需求持續演進的新創）。初次諮詢完全免費，確認需求後我們在 3 個工作天內提供詳細估價單，費用涵蓋設計、開發、測試及部署，無任何隱藏費用。"
+        "answer": "我們採固定報價制，在需求確認後 7-10 個工作天內提供詳細估價單。費用涵蓋設計、開發、測試及部署，約定範圍內不追加費用。初次諮詢完全免費。"
       },
       {
         "id": "workflow",
         "icon": "GitBranch",
         "tag": "合作流程",
         "question": "如何開始合作？流程是什麼？",
-        "answer": "合作流程分為四步驟：①免費需求諮詢（約 30–60 分鐘視訊）→ ②提案與報價（3 個工作天內）→ ③簽約啟動開發 → ④驗收上線，並附上 30 天免費 Bug 修復保固。全程透過專案管理工具保持進度透明，確保你對每個階段都瞭若指掌。"
+        "answer": "從您的角度，合作有四個關鍵節點：①免費需求諮詢（約 30–60 分鐘視訊）→ ②提案與報價（7-10 個工作天內）→ ③簽約啟動開發 → ④驗收上線與系統移交。我們內部採六步驟開發流程，確保每個環節都有明確的里程碑與驗收點。"
       },
       {
         "id": "maintenance",
         "icon": "Wrench",
         "tag": "售後維護",
         "question": "上線後有提供維護和更新服務嗎？",
-        "answer": "有的。我們提供三種維護方案：月費維護（含效能監控、安全更新、定期備份）、按需計費（適合偶爾有小更新需求）、以及功能擴展（重新需求訪談後評估）。上線後 30 天內的 Bug 修復完全免費。"
+        "answer": "有的。我們提供三種維護方案：月費維護（含效能監控、安全更新、定期備份）、按需計費（適合偶爾有小更新需求）、以及功能擴展（重新需求訪談後評估）。維護費用與範圍於合作時書面確認。"
       },
       {
         "id": "techstack",
         "icon": "Code2",
         "tag": "技術棧",
         "question": "你們使用什麼技術開發？",
-        "answer": "前端採用 React / Next.js + TypeScript，後端使用 Node.js / Express 或 Python，資料庫依需求選用 PostgreSQL 或 MongoDB，部署採用 Vercel、AWS 或 GCP。所有程式碼透過 Git 進行版本控制，專案完成後程式碼所有權完整移轉給客戶。"
+        "answer": "前端採用 React / Next.js + TypeScript，後端使用 Node.js / Express，資料庫選用 PostgreSQL，檔案儲存使用 MinIO，部署採用 Vercel 或 Zeabur。所有程式碼透過 Git 進行版本控制，尾款付清後，程式碼著作權與帳號控制權移轉給您。"
       },
       {
         "id": "design",
@@ -59,7 +59,7 @@
         "icon": "ShieldCheck",
         "tag": "資料安全",
         "question": "資料隱私和安全如何保障？",
-        "answer": "我們遵循 OWASP Top 10 安全規範開發，確保防範常見網路攻擊（XSS、SQL Injection 等）。所有敏感資料透過 HTTPS 加密傳輸，環境變數與金鑰絕不出現在原始碼中。專案交付後，您擁有所有原始碼、資料庫及帳號的完整控制權，完全的數位主權屬於您。"
+        "answer": "我們依 OWASP Top 10 規範開發，針對 XSS、SQL Injection 等常見漏洞進行防護。所有敏感資料透過 HTTPS 加密傳輸，環境變數與金鑰絕不出現在原始碼中。尾款付清後，原始碼、資料庫及帳號控制權正式移轉給您。"
       }
     ]
   },
@@ -74,7 +74,7 @@
         "icon": "Globe",
         "tag": "Services",
         "question": "What web development services do you offer?",
-        "answer": "We provide full-stack web development including corporate brand websites, SaaS product development, e-commerce platforms, mobile-first RWD design, and third-party API integrations (payment gateways, CRMs, marketing tools, and more). From design mockups to live deployment, we offer an end-to-end service with uncompromising quality at every step."
+        "answer": "We provide full-stack web development including brand websites, e-commerce platforms, mobile-first RWD design, and third-party API integrations (payment gateways, CRMs, marketing tools, and more). From design mockup to live deployment, every phase has a defined milestone and acceptance checkpoint."
       },
       {
         "id": "timeline",
@@ -88,28 +88,28 @@
         "icon": "CreditCard",
         "tag": "Pricing",
         "question": "How is pricing calculated? Are there fixed packages?",
-        "answer": "We offer two models: fixed-price quotes (best for well-defined projects) and hourly billing (ideal for evolving startup requirements). Initial consultations are completely free. After confirming requirements, we deliver a detailed quote within 3 business days — covering design, development, testing, and deployment with no hidden fees."
+        "answer": "We use fixed-price quotes. After confirming requirements, we deliver a detailed quote within 7-10 business days — covering design, development, testing, and deployment. No hidden fees within agreed scope. Initial consultations are completely free."
       },
       {
         "id": "workflow",
         "icon": "GitBranch",
         "tag": "Workflow",
         "question": "How do we get started? What's the process?",
-        "answer": "Our process unfolds in four steps: ① Free consultation (30–60 min video call) → ② Proposal and quote (within 3 business days) → ③ Contract signing and development kickoff → ④ Final review, launch, and a 30-day free bug fix warranty. Progress is tracked transparently via project management tools throughout."
+        "answer": "From your perspective, collaboration has four key touchpoints: ① Free consultation (30–60 min video call) → ② Proposal and quote (within 7-10 business days) → ③ Contract signing and development kickoff → ④ Final review, launch, and system handoff. Our internal process follows a six-step development flow to ensure every phase has a clear milestone and acceptance checkpoint."
       },
       {
         "id": "maintenance",
         "icon": "Wrench",
         "tag": "Maintenance",
         "question": "Do you offer maintenance and updates after launch?",
-        "answer": "Yes. We offer three maintenance options: monthly retainer (includes performance monitoring, security updates, and regular backups), on-demand billing (pay-as-you-go for occasional updates), and feature expansion (re-scoped after a new requirements session). Bug fixes within 30 days of launch are always free."
+        "answer": "Yes. We offer three maintenance options: monthly retainer (includes performance monitoring, security updates, and regular backups), on-demand billing (pay-as-you-go for occasional updates), and feature expansion (re-scoped after a new requirements session). Maintenance scope and fees are confirmed in writing at the start of each engagement."
       },
       {
         "id": "techstack",
         "icon": "Code2",
         "tag": "Tech Stack",
         "question": "What technologies do you build with?",
-        "answer": "Frontend: React / Next.js + TypeScript. Backend: Node.js / Express or Python. Databases: PostgreSQL or MongoDB depending on requirements. Deployment: Vercel, AWS, or GCP. All code is version-controlled via Git, and upon project completion full source code ownership is transferred to you."
+        "answer": "Frontend: React / Next.js + TypeScript. Backend: Node.js / Express. Database: PostgreSQL. File storage: MinIO. Deployment: Vercel or Zeabur. All code is version-controlled via Git. Source code, database, and account ownership are transferred to you upon final payment."
       },
       {
         "id": "design",
@@ -123,7 +123,7 @@
         "icon": "ShieldCheck",
         "tag": "Data Security",
         "question": "How do you protect our data and privacy?",
-        "answer": "We develop to OWASP Top 10 standards, protecting against common attacks (XSS, SQL Injection, and more). All sensitive data is encrypted in transit via HTTPS, and credentials or API keys never appear in source code. Upon delivery, you retain full ownership of all source code, databases, and accounts — your digital sovereignty is absolute."
+        "answer": "We develop to OWASP Top 10 standards, guarding against XSS, SQL Injection, and other common vulnerabilities. All sensitive data is encrypted in transit via HTTPS, and credentials or API keys never appear in source code. Source code, databases, and accounts are transferred to you upon final payment."
       }
     ]
   }
