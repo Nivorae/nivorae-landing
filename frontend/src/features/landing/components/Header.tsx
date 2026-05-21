@@ -87,11 +87,14 @@ export function Header({ lang, onLangChange }: HeaderProps) {
             <ThemeToggle lang={lang} />
 
             {/* Desktop lang switcher — hidden below lg */}
-            <span className="h-4 w-px bg-border select-none hidden lg:block" aria-hidden="true" />
+            <span
+              className="h-4 w-px bg-foreground/20 select-none hidden lg:block"
+              aria-hidden="true"
+            />
             <div className="hidden lg:flex items-center gap-1 text-sm">
               {LANGS.map(({ code, label }, idx) => (
                 <span key={code} className="flex items-center">
-                  {idx > 0 && <span className="text-border select-none mx-0.5">|</span>}
+                  {idx > 0 && <span className="text-foreground/25 select-none mx-0.5">|</span>}
                   <button
                     type="button"
                     onClick={() => onLangChange(code)}
@@ -166,7 +169,7 @@ export function Header({ lang, onLangChange }: HeaderProps) {
               <div className="mt-auto flex items-center gap-2 pt-6 border-t border-border">
                 {LANGS.map(({ code, label }, idx) => (
                   <span key={code} className="flex items-center">
-                    {idx > 0 && <span className="text-border select-none mx-1">|</span>}
+                    {idx > 0 && <span className="text-foreground/25 select-none mx-1">|</span>}
                     <button
                       type="button"
                       onClick={() => {

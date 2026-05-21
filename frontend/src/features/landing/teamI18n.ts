@@ -21,6 +21,7 @@ export const teamI18n = {
     },
     plansHero: content.plans.zh.plansHero,
     pricing: content.plans.zh.pricing,
+    partnership: content.plans.zh.partnership,
   },
   en: {
     hero: { title: content.team.en.heroTitle },
@@ -42,5 +43,6 @@ export const teamI18n = {
     },
     plansHero: content.plans.en.plansHero,
     pricing: content.plans.en.pricing,
+    partnership: content.plans.en.partnership,
   },
 } as const;

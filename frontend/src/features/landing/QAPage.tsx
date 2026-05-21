@@ -257,7 +257,7 @@ export function QAPage() {
                 style={{ zIndex: 3 }}
               >
                 <div
-                  className="rounded-3xl border border-border bg-secondary p-8 lg:p-10"
+                  className="rounded-3xl border border-border bg-secondary dark:bg-foreground/[0.10] p-8 lg:p-10"
                   style={{
                     boxShadow:
                       "0 8px 28px -6px oklch(var(--foreground) / 0.14), 0 2px 8px -4px oklch(var(--foreground) / 0.08)",
@@ -265,7 +265,7 @@ export function QAPage() {
                 >
                   {/* Card header */}
                   <div className="flex items-center justify-between mb-7">
-                    <span className="flex items-center gap-2 bg-foreground/[0.07] text-foreground/70 px-3.5 py-1.5 rounded-full text-[0.7rem] font-semibold tracking-[0.18em] uppercase">
+                    <span className="flex items-center gap-2 bg-foreground/[0.07] dark:bg-foreground/[0.15] text-foreground/70 px-3.5 py-1.5 rounded-full text-[0.7rem] font-semibold tracking-[0.18em] uppercase">
                       {CardIcon && <CardIcon size={12} />}
                       {activeItem.tag}
                     </span>

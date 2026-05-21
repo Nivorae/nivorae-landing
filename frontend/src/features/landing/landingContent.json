@@ -76,7 +76,7 @@
       {
         "icon": "Zap",
         "title": "Performance",
-        "desc": "100/100 Lighthouse scores. Speed that users and search engines love."
+        "desc": "Lighthouse-first development. Most projects hit 90+ on Performance, Accessibility, and SEO."
       },
       {
         "icon": "Layers",
@@ -95,7 +95,7 @@
     "zh": {
       "title": "我們的開發模式",
       "brandName": "Nivorae",
-      "subtitle": "從需求釐清到驗收保固的六步驟協作流程"
+      "subtitle": "從需求釐清到結案移交的六步驟協作流程"
     },
     "en": {
       "title": "Our Development Process",
@@ -177,10 +177,10 @@
       },
       {
         "icon": "ShieldCheck",
-        "zh": { "title": "結案與保固", "items": ["教育訓練", "後續一個月保固"] },
+        "zh": { "title": "結案移交", "items": ["系統完整移交", "教育訓練", "操作手冊"] },
         "en": {
-          "title": "Closing & Warranty",
-          "items": ["Knowledge transfer", "One-month post-launch warranty"]
+          "title": "Closing & Handoff",
+          "items": ["Full system handoff", "Knowledge transfer", "Operations manual"]
         }
       }
     ]
@@ -194,7 +194,7 @@
         "id": 1,
         "color": "#ffa600",
         "image": "/feature_Scorder.png",
-        "tagText": "上線 15%",
+        "tagText": "三角色管理系統",
         "zh": {
           "title": "Scorder 餐廳線上點餐系統",
           "tech": "React / TypeScript / Tailwind",
@@ -210,11 +210,11 @@
         "id": 2,
         "color": "#1575ce",
         "image": "/feature_araS.png",
-        "tagText": "互動 75%",
+        "tagText": "個人財務工具",
         "zh": {
           "title": "araS 資產統計APP",
           "tech": "React / Next.js / Tailwind / PostgreSQL / Clerk",
-          "desc": "累計資產統計視覺呈現，以簡單視覺化呈現資產統計數據，並呈現退休計畫。"
+          "desc": "視覺化呈現資產配置，追蹤退休進度。"
         },
         "en": {
           "title": "araS Asset Dashboard App",
@@ -226,7 +226,7 @@
         "id": 3,
         "color": "#f3e45f",
         "image": "/feature_U-turn.png",
-        "tagText": "完成 100%",
+        "tagText": "社群運動管理",
         "zh": {
           "title": "U TURN 羽球分組系統",
           "tech": "React / PostgreSQL / Clerk / Tailwind / Zeabur",
@@ -327,12 +327,12 @@
   "exContact": {
     "zh": {
       "title": "準備好開始您的專案了嗎？",
-      "desc": "填寫簡短的需求表單，我們將在 24 小時內由資深技術經理與您聯繫，並提供初步報價區間。",
+      "desc": "填寫簡短的需求表單，我們將在 24 小時內與您聯繫，並提供初步報價區間。",
       "form": {
         "name": { "label": "姓名 / 聯絡人", "placeholder": "John Doe" },
         "email": { "label": "聯絡信箱", "placeholder": "john@example.com" },
         "date": { "label": "專案完成日期", "placeholder": "2026/01/01" },
-        "line": { "label": "Line名稱", "placeholder": "Your Line Name" },
+        "line": { "label": "LINE 帳號", "placeholder": "Your LINE ID" },
         "type": {
           "label": "專案類型",
           "options": ["Web 網站 / 系統開發", "iOS / Android App 開發", "UI/UX 設計", "其他技術諮詢"]
@@ -347,7 +347,7 @@
         "name": { "label": "Name / Contact", "placeholder": "John Doe" },
         "email": { "label": "Email", "placeholder": "john@example.com" },
         "date": { "label": "Target Completion Date", "placeholder": "2026/01/01" },
-        "line": { "label": "Line ID", "placeholder": "Your Line Name" },
+        "line": { "label": "LINE 名稱", "placeholder": "Your LINE Name" },
         "type": {
           "label": "Project Type",
           "options": [
@@ -454,7 +454,7 @@
           {
             "num": "01",
             "title": "需求確認",
-            "desc": "深入了解您的需求，鎖定範圍，提供固定報價。沒有模糊地帶，沒有隱藏費用。"
+            "desc": "深入了解您的需求，鎖定範圍，提供固定報價。超出範圍的變更事前書面告知，不會有隱藏費用。"
           },
           {
             "num": "02",
@@ -464,18 +464,35 @@
           {
             "num": "03",
             "title": "完整移交",
-            "desc": "原始碼、技術文件、IP 全數移交，第一天起完全屬於您。"
+            "desc": "結案驗收並付清尾款後，著作權與原始碼正式移轉給您；開發期間您即擁有完整使用權。"
           }
         ],
         "whyUs": [
-          { "title": "程式碼完全屬於你", "desc": "每個專案包含完整 IP 移交，無訂閱、無綁定。" },
-          { "title": "固定報價", "desc": "開工前報好總額，不會有讓您意外的追加帳單。" },
+          { "title": "程式碼完全屬於你", "desc": "尾款付清後完整 IP 移交，無訂閱、無綁定。" },
+          {
+            "title": "固定報價",
+            "desc": "開工前報好總額，約定範圍內固定報價；超範圍與第三方費用另計，事前書面告知。"
+          },
           {
             "title": "資深工程師全程主導",
             "desc": "從評估到交付，同一批工程師負責到底，不轉包新人。"
           },
-          { "title": "個資法合規架構", "desc": "所有系統預設符合台灣個人資料保護法規範。" }
+          { "title": "個資法合規處理", "desc": "依台灣個人資料保護法規範處理客戶與使用者資料。" }
         ]
+      },
+      "partnership": {
+        "badge": "互惠合作方案",
+        "headline": "零費用開發",
+        "desc": "Nivorae 以實際開發工時換取您的推薦與品牌聲量，不收任何服務費用。",
+        "conditions": [
+          "介紹 1–2 位潛在客戶",
+          "社群媒體公開發文（Instagram、Facebook 或 LinkedIn）",
+          "作品集展示授權（永久）"
+        ],
+        "attributionLabel": "PERMANENT",
+        "attribution": "網站每頁頁尾永久保留「Powered by Nivorae」標示",
+        "cta": "了解合作條件",
+        "sectionHeading": "推出\n合作方式"
       }
     },
     "en": {
@@ -550,7 +567,7 @@
           {
             "num": "01",
             "title": "Scope",
-            "desc": "We learn your requirements, lock scope, and give you a fixed price. No ambiguity, no hidden costs."
+            "desc": "We learn your requirements, lock scope, and give you a fixed price. Any out-of-scope changes are quoted in writing first."
           },
           {
             "num": "02",
@@ -560,27 +577,41 @@
           {
             "num": "03",
             "title": "Deliver",
-            "desc": "Source code, documentation, and full IP transfer. All yours from day one."
+            "desc": "Source code, documentation, and full IP transfer upon final payment. You hold full usage rights throughout development."
           }
         ],
         "whyUs": [
           {
             "title": "You own the code",
-            "desc": "Every project includes a full IP transfer. No subscriptions, no lock-in."
+            "desc": "Full IP transfer upon final payment. No subscriptions, no lock-in."
           },
           {
             "title": "Fixed price",
-            "desc": "Quoted before we start. You will never see an invoice that surprises you."
+            "desc": "Quoted before we start. Fixed price within agreed scope; out-of-scope and third-party costs quoted in writing first."
           },
           {
             "title": "Senior-led",
             "desc": "The engineers who scope your project build it. No junior hand-offs."
           },
           {
-            "title": "PDPA-compliant",
-            "desc": "Architecture that meets Taiwan's Personal Data Protection Act by default."
+            "title": "PDPA-aligned",
+            "desc": "We handle client and user data in accordance with Taiwan's Personal Data Protection Act."
           }
         ]
+      },
+      "partnership": {
+        "badge": "PARTNERSHIP PROGRAM",
+        "headline": "Zero-cost development",
+        "desc": "We build your project at no cost in exchange for referrals and public advocacy — no invoice, ever.",
+        "conditions": [
+          "Introduce 1–2 potential clients",
+          "Public post on Instagram, Facebook, or LinkedIn",
+          "Portfolio exhibition rights (permanent)"
+        ],
+        "attributionLabel": "PERMANENT",
+        "attribution": "\"Powered by Nivorae\" in your site footer, every page, forever",
+        "cta": "Learn About Partnership",
+        "sectionHeading": "LAUNCHING THE\nPARTNERSHIP"
       }
     }
   },
@@ -615,13 +646,13 @@
       "members": [
         {
           "name": "Juliana",
-          "role": "UI/UX Designer",
+          "role": "UI/UX & 前端工程師",
           "specialties": [
             { "text": "UIUX 設計", "image": "/team/網頁設計.png" },
             { "text": "前端開發", "image": "/team/前端開發.png" },
             { "text": "品牌視覺", "image": "/team/美感設計.png" },
             { "text": "互動設計", "image": "/team/前端設計.png" },
-            { "text": "原型設計", "image": "/team/專案管理.png" },
+            { "text": "專案管理", "image": "/team/專案管理.png" },
             { "text": "使用者研究", "image": "/team/行銷企劃.png" },
             { "text": "動態設計", "image": "/team/美感設計.png" },
             { "text": "設計系統", "image": "/team/前端設計.png" }
@@ -629,7 +660,7 @@
         },
         {
           "name": "James",
-          "role": "Backend Engineer",
+          "role": "後端工程師",
           "specialties": [
             { "text": "後端 API", "image": "/team/後端開發.png" },
             { "text": "資料庫設計", "image": "/team/資料處理管理.png" },
@@ -643,7 +674,7 @@
         },
         {
           "name": "Max",
-          "role": "Frontend Engineer",
+          "role": "UI/UX & 前端工程師",
           "specialties": [
             { "text": "SPA 開發", "image": "/team/前端開發.png" },
             { "text": "前端架構", "image": "/team/前端設計.png" },
@@ -686,7 +717,7 @@
       "members": [
         {
           "name": "Juliana",
-          "role": "UI/UX Designer",
+          "role": "UI/UX & Frontend Engineer",
           "specialties": [
             { "text": "UIUX Design", "image": "/team/網頁設計.png" },
             { "text": "Frontend Dev", "image": "/team/前端開發.png" },
@@ -714,7 +745,7 @@
         },
         {
           "name": "Max",
-          "role": "Frontend Engineer",
+          "role": "UI/UX & Frontend Engineer",
           "specialties": [
             { "text": "SPA Dev", "image": "/team/前端開發.png" },
             { "text": "Frontend Arch", "image": "/team/前端設計.png" },
