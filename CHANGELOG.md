@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.7
+
+- Fixed `LINE` field label to use display name in `PrivacyPage` and contact form
+
 ## 0.2.6
 
 - Fixed `PrivacyPage` hosting reference from `Vercel` to `Zeabur`
