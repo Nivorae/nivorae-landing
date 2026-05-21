@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.2.5
+
+- Added partnership program section to `PlansPage` with zero-cost collaboration offer
+- Fixed landing copy across all pages to align with content audit
+
 ## 0.2.4
 
 - Added hamburger drawer to header for tablet and mobile
