@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.6
+
+- Fixed `PrivacyPage` hosting reference from `Vercel` to `Zeabur`
+
 ## 0.2.5
 
 - Added partnership program section to `PlansPage` with zero-cost collaboration offer
